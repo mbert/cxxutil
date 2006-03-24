@@ -1,0 +1,57 @@
+O = .obj
+E = .exe
+A = .lib
+OBJ1 = MTuple$O mutil$O MPoint$O MPoint2d$O MPoint3d$O 
+OBJ2 = MPoint4d$O MVector$O MVector2d$O MVector3d$O 
+OBJ3 = MVector4d$O MMatrix$O MMatrix4x4$O
+OBJECTS = $(OBJ1) $(OBJ2) $(OBJ3)
+MAINOBJ = mathmain$O
+MAIN = mathmain$E
+TARGET = math$A
+
+CPPFLAGS = -i=.. -dPRINTF=""
+CFLAGS = -e25 -za -xs -zq -otexan -5s -mf -xr
+CWARN = -w2 -we 
+
+COMPILE = wpp386 $(CPPFLAGS) $(CWARN) $(CFLAGS)
+
+all : $(TARGET) .SYMBOLIC
+
+test : $(MAIN) .SYMBOLIC
+ $(MAIN)
+
+clean : .SYMBOLIC
+ -del $(OBJECTS) $(MAINOBJ) $(TARGET) $(MAIN)
+
+!define BLANK ""
+
+MTuple$O : MTuple.cc .AUTODEPEND
+mutil$O : mutil.cc .AUTODEPEND
+MPoint$O : MPoint.cc .AUTODEPEND
+MPoint2d$O : MPoint2d.cc .AUTODEPEND
+MPoint3d$O : MPoint3d.cc .AUTODEPEND
+MPoint4d$O : MPoint4d.cc .AUTODEPEND
+MVector$O : MVector.cc .AUTODEPEND
+MVector2d$O : MVector2d.cc .AUTODEPEND
+MVector3d$O : MVector3d.cc .AUTODEPEND
+MVector4d$O : MVector4d.cc .AUTODEPEND
+MMatrix$O : MMatrix.cc .AUTODEPEND
+MMatrix4x4$O : MMatrix4x4.cc .AUTODEPEND
+mathmain$O : mathmain.cc .AUTODEPEND
+
+.cc$O:
+ *$(COMPILE) $<
+
+$(TARGET) : $(OBJECTS) .AUTODEPEND
+ %create tmp.lb1
+!ifneq BLANK "$(OBJECTS)"
+ @for %i in ($(OBJECTS)) do @%append tmp.lb1 +'%i'
+!endif
+!ifneq BLANK ""
+ @for %i in () do @%append tmp.lb1 +'%i'
+!endif
+ *wlib -b -c -n -q -p=512 $(TARGET) @tmp.lb1
+ -del tmp.lb1
+
+$(MAIN) : $(TARGET) $(MAINOBJ) 
+ wcl386 $(CFLAGS) -fe=$@ $(TARGET) $(MAINOBJ)

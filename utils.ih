@@ -1,0 +1,12 @@
+#include <string.h>
+
+INLINE int
+HmdUtils::simplehash(const char s[], int key, int base)
+{
+  int l=strlen(s), i, r=0;
+  for ( i = 0; i < l; i ++ ) 
+    {
+      r = (base*r + (int)(s[i])) % key;
+    }
+  return r;
+}

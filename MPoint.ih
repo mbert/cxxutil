@@ -1,0 +1,92 @@
+/* ********************************************************************
+//  Class: MPoint
+//  Inline methods for class MPoint
+//  -------------------------------------------------------------------
+//  Project: Repairing and texturing of VR models
+//  (C) Copyright Fachhochschule Wedel, Germany 2003
+//  -------------------------------------------------------------------
+//  $Revision: 1.1 $
+//  $Date: 2006-03-24 15:36:45 $
+// ******************************************************************** */
+
+// Assignment to another point 
+template < class Scalar > INLINE MPoint < Scalar > &
+HmdUtils::MPoint < Scalar >::operator= (const MPoint < Scalar > &t)
+{
+  assignTo (t);
+  return *this;
+}
+
+// Assignment to a scalar
+template < class Scalar > INLINE MPoint < Scalar > &
+HmdUtils::MPoint < Scalar >::operator= (const Scalar s)
+{
+  assignTo (s);
+  return *this;
+}
+
+// Assignment to the same point plus scalar s
+template < class Scalar > INLINE MPoint < Scalar > &
+HmdUtils::MPoint < Scalar >::operator+= (const Scalar s)
+{
+  addToMe (s);
+  return *this;
+}
+
+// Assignment to the same point minus scalar t
+template < class Scalar > INLINE MPoint < Scalar > &
+HmdUtils::MPoint < Scalar >::operator-= (const Scalar s)
+{
+  subFromMe (s);
+  return *this;
+}
+
+// Assignment to the same point plus point t
+template < class Scalar > INLINE MPoint < Scalar > &
+HmdUtils::MPoint < Scalar >::operator+= (const MVector < Scalar > &t)
+{
+  addToMe (t);
+  return *this;
+}
+
+// Assignment to the same point minus point t
+template < class Scalar > INLINE MPoint < Scalar > &
+HmdUtils::MPoint < Scalar >::operator-= (const MVector < Scalar > &t)
+{
+  subFromMe (t);
+  return *this;
+}
+
+// Returns the sum of *this and point t
+template < class Scalar > INLINE MPoint < Scalar >
+HmdUtils::MPoint < Scalar >::operator+ (const MVector < Scalar > &t) const
+{
+  return add (t);
+}
+
+  // Returns the difference of *this and point t
+template < class Scalar > INLINE MPoint < Scalar >
+HmdUtils::MPoint < Scalar >::operator- (const MVector < Scalar > &t) const
+{
+  return subtract (t);
+}
+
+  // Returns the difference of *this and point t
+template < class Scalar > INLINE MVector < Scalar >
+HmdUtils::MPoint < Scalar >::operator- (const MPoint < Scalar > &t) const
+{
+  return MVector < Scalar > (subtract (t));
+}
+
+
+template < class Scalar > INLINE MPoint < Scalar > 
+HmdUtils::MPoint < Scalar >::operator* (const MPoint < Scalar > &v) const
+{
+  return multiply (v);
+}
+
+template < class Scalar > INLINE MPoint < Scalar > 
+HmdUtils::MPoint < Scalar >::operator* (const Scalar s) const
+{
+  return multiply (s);
+}

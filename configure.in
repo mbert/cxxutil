@@ -1,0 +1,163 @@
+# ##############################################################################
+# Configure script for configsys
+#
+# Author: Martin Dietze
+#
+# This script currently only disables doxygen or parts of it if necessary,
+# checks build prerequisites and aborts the build if necessary.
+#
+# Future versions might/should setup all the Makefiles and allow setting
+# build options, i.e. debug, optimization etc.
+
+# ##############################################################################
+# Initial checks (compiler, linker, standard libraries...)
+
+dnl Process this file with autoconf to produce a configure script.
+AC_INIT(utils.cc)
+
+dnl Checks for programs.
+AC_PROG_CXX
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_SUBST(CXX)
+
+# Set the language to C++ 
+AC_LANG(C++)
+
+#
+# OS / Compiler Checks:
+#
+AC_CANONICAL_HOST
+case "$host_os" in
+  *irix*)
+    case $CXX in
+      CC)
+        CXX="$CXX -LANG:std"
+        CXXOPT="-O -OPT:Olimit=0"
+        CXXWARN="-w2"
+        ;;
+    esac
+    if test -z "$PRELINK"; then
+      PRELINK="/usr/lib/DCC/edg_prelink"
+    fi
+    if test -z "$CXXWARN"; then
+      CXXWARN=""
+      #"-fullwarn"
+    fi
+    FORGLUT="-lXmu -lGLU"
+    ARCFG=2.dat
+    ;;
+  *linux*)
+    DEFINES="$DEFINES -Du_short=__u_short"
+    FORGLUT="-lpthread"
+    ARCFG=42.dat
+    ;;
+esac
+case $CXX in
+  gcc*|g++*|c++*)
+    if test -z "$CXXWARN"; then
+      CXXWARN="-Wall -Werror -ansi"
+      CXXWARN2="-pedantic"
+    fi
+    HAS_MM="yes"
+    ;;
+esac
+AC_SUBST(HAS_MM)
+AC_SUBST(CXXLANG)
+AC_SUBST(CXXMISC)
+AC_SUBST(CXXWARN)
+AC_SUBST(CXXWARN2)
+AC_SUBST(PRELINK)
+AC_SUBST(ARCFG)
+
+AC_CHECK_PROG(AR, ar, ar)
+if test -z "$AR"; then
+   AC_MSG_ERROR("ar not found. Make sure it is in the PATH and rerun configure.")
+fi
+AC_SUBST(AR)
+
+dnl Checks for libraries.
+dnl Replace `main' with a function in -lm:
+AC_CHECK_LIB(m, main)
+
+dnl Checks for header files.
+AC_HEADER_STDC
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+AC_TYPE_SIZE_T
+
+# Set CXXOPT depending on debug settings
+dnl Checks if we are going to enable debugging
+AC_ARG_ENABLE(debug,
+    [  --enable-debug          Turn on debugging],
+    CXXDEBUG="-g -DDEBUG"
+    test -z "$CXXOPT" && CXXOPT="",
+    CXXDEBUG="-DDPRINTF"
+    test -z "$CXXOPT" && CXXOPT="-O3"
+)
+AC_SUBST(CXXOPT)
+AC_SUBST(CXXDEBUG)
+
+# ##############################################################################
+# we may want this later:
+
+dnl Checks if we are going to enable extended debugging
+AC_ARG_ENABLE(debug-extended,
+    [  --enable-debug-extended turn on debugging plus optimization],
+    test "$enableval" == "yes" && TARGET=DEBUG_EXTENDED)
+
+AC_SUBST(TARGET)
+
+
+# ##############################################################################
+# Check for and configure doxygen
+
+GENERATE_LATEX=NO
+USE_PDFLATEX=NO
+HAVE_DOT=NO
+AC_CHECK_PROG(DOXYGEN, doxygen, doxygen)
+AC_CHECK_PROG(FIG2DEV, fig2dev, fig2dev)
+if test -z "$DOXYGEN"; then
+    AC_MSG_WARN("doxygen not found. Generating documentation disabled.")
+elif test -z "$FIG2DEV"; then
+    AC_MSG_WARN("fig2dev not found. Generating documentation disabled.")
+else
+    AC_CHECK_PROG(DOT, dot, dot)
+    test -n "$DOT" && HAVE_DOT=YES
+    AC_CHECK_PROG(LATEX, latex, latex)
+    if test -z "$LATEX"; then
+        AC_MSG_WARN("latex not found. Generating dvi documentation disabled.")
+    else
+        GENERATE_LATEX=YES
+        AC_CHECK_PROG(PDFLATEX, pdflatex, pdflatex)
+        if test -n "$PDFLATEX" ; then
+          USE_PDFLATEX=YES
+        fi
+    fi
+fi
+AC_SUBST(HAVE_DOT)
+AC_SUBST(USE_PDFLATEX)
+AC_SUBST(GENERATE_LATEX)
+AC_SUBST(DOXYGEN)
+AC_SUBST(DEFINES)
+
+# ##############################################################################
+# Finally write it all to the Makefiles
+
+MFMESSAGE="# Makefile automatically generated from Makefile.in by configure"
+AC_SUBST(MFMESSAGE)
+
+MRMESSAGE="# make.rules automatically generated from make.rules.in by configure"
+AC_SUBST(MRMESSAGE)
+
+DFMESSAGE="# Doxyfile automatically generated from Doxyfile.in by configure"
+AC_SUBST(DFMESSAGE)
+
+VERSION=`grep UTILS_VERSION utils_version.h | sed "s/.*\"\(.*\)\"/\1/"`
+AC_SUBST(VERSION)
+
+MAJOR=`grep UTILS_VERSION utils_version.h | sed "s/.*\"\(.*\)\..*\"/\1/"`
+AC_SUBST(MAJOR)
+
+AC_OUTPUT(Makefile Doxyfile)

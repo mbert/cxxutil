@@ -1,0 +1,89 @@
+#
+# MSC Makefile for Math --  (c) 2003 by Herbert
+#
+# No dependency checking done!
+#
+
+SHELL = cmd.exe /c
+
+#
+# The program's main version...
+#
+VERSION = 0.9
+MAJOR = 0
+
+#
+# tools used for compiling / installing...
+#
+CXX = cl -nologo
+AR = lib
+O = .obj
+E = .exe
+A = .lib
+
+#
+# Name of target object files:
+#
+OBJS = MTuple$O mutil$O \
+	MPoint$O MPoint2d$O MPoint3d$O MPoint4d$O \
+	MVector$O MVector2d$O MVector3d$O MVector4d$O \
+	MMatrix$O MMatrix4x4$O
+MAINOBJ = mathmain$O
+LIBS = 
+.PHONY: all clean _test tar zip
+
+#
+# Main target and file dependencies:
+#
+
+all: Math$A
+
+test: _test
+_test: mathmain$E
+	@echo  From ze test its beginnink...
+	@.\\mathmain$E
+	@echo From ze test its end!
+
+#
+# Flags passed to the compiler
+#
+CPPFLAGS = -I.. 
+CXXDEBUG = -DDPRINTF=""
+CXXOPT = -Ox 
+CXXFLAGS = $(CXXDEBUG) $(CPPFLAGS) $(CXXOPT) -GX -TP -W3 -WX
+LDFLAGS = /link .\\Math$A ..\\common\\$A
+LDOFLAG = -Fe 
+
+#
+# Flags passed to the lib utility
+#
+ARFLAGS = /nologo /out:
+
+#
+# Automatic stuff, should not be changed:
+#
+
+#
+# rules:
+#
+
+Math$A: $(OBJS)
+	$(AR) $(ARFLAGS)$@ $(OBJS)
+
+mathmain$E: $(MAINOBJ)
+
+clean: 
+	-del $(OBJS) *~ Math$A Math-$(VERSION)-win32-bin.tar.gz \
+		Math-$(VERSION)-win32-bin.zip
+
+#
+# Automatic targets and rules:
+#
+
+.SUFFIXES: $O .cc
+
+.cc$O:
+	$(CXX) -c $(CXXFLAGS) $< 
+
+$O$E:
+	$(CXX) $< $(LDOFLAG)$@ $(LDFLAGS)

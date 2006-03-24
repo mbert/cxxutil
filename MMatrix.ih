@@ -1,0 +1,52 @@
+/* ********************************************************************
+//  Class: MMatrix
+//  Inline methods for class MMatrix
+//  -------------------------------------------------------------------
+//  Project: Repairing and texturing of VR models
+//  (C) Copyright Fachhochschule Wedel, Germany 2003
+//  -------------------------------------------------------------------
+//  $Revision: 1.1 $
+//  $Date: 2006-03-24 15:36:45 $
+// ******************************************************************** */
+
+/* ========================= main class MMatrix ======================= */
+
+template < class Scalar > INLINE bool
+HmdUtils::MMatrix < Scalar >::operator== (const MMatrix < Scalar > &matrix)
+{
+  return m_rows == matrix.m_rows && m_cols == matrix.m_cols &&
+    *m_values == *matrix.m_values;
+}
+
+template < class Scalar > INLINE bool
+HmdUtils::MMatrix < Scalar >::operator!= (const MMatrix < Scalar > &matrix)
+{
+  return !(*this == matrix);
+}
+
+template < class Scalar > INLINE Scalar &
+HmdUtils::MMatrix < Scalar >::operator ()(int row, int col)
+{
+  return m_values->at (m_rowOffsets[row] + col);
+}
+
+template < class Scalar > INLINE MMatrix < Scalar > &
+HmdUtils::MMatrix < Scalar >::operator= (const MMatrix < Scalar > &m)
+{
+  destroy ();
+  copy (m);
+  return *this;
+}
+
+
+template < class Scalar > INLINE int
+HmdUtils::MMatrix < Scalar >::cols (void) const
+{
+  return m_cols;
+}
+
+template < class Scalar > INLINE int
+HmdUtils::MMatrix < Scalar >::rows (void) const
+{
+  return m_rows;
+}

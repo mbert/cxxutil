@@ -1,0 +1,114 @@
+/* ********************************************************************
+//  Class: MTuple
+//  Inline methods for class MTuple
+//  -------------------------------------------------------------------
+//  Project: Repairing and texturing of VR models
+//  (C) Copyright Fachhochschule Wedel, Germany 2003
+//  -------------------------------------------------------------------
+//  $Revision: 1.1 $
+//  $Date: 2006-03-24 15:36:45 $
+// ******************************************************************** */
+
+template < class Scalar > INLINE Scalar &
+HmdUtils::MTuple < Scalar > ::at (int pos)
+{
+  return this->m_coord[pos];
+}
+
+template < class Scalar > INLINE MTuple < Scalar > &
+HmdUtils::MTuple < Scalar > ::operator+= (MTuple  < Scalar > & v)
+{
+  addToMe (v);
+  return *this;
+}
+
+template < class Scalar > INLINE MTuple < Scalar > &
+HmdUtils::MTuple < Scalar > ::operator-= (MTuple  < Scalar > & v)
+{
+  subFromMe (v);
+  return *this;
+}
+
+template < class Scalar > INLINE MTuple < Scalar > &
+HmdUtils::MTuple < Scalar > ::operator*= (const Scalar s)
+{
+  multMeBy (s);
+  return *this;
+}
+
+template < class Scalar > INLINE MTuple < Scalar > &
+HmdUtils::MTuple < Scalar > ::operator/= (const Scalar s)
+{
+  divMeBy (s);
+  return *this;
+}
+
+template < class Scalar > INLINE MTuple < Scalar > 
+HmdUtils::MTuple < Scalar > ::mul (const MTuple < Scalar > & v) const 
+{
+  return MTuple < Scalar > (this->multiply (v));
+}
+
+////////////////////////////////////////////////////////////////////////
+// BINARY ASSIGNMENT OPERATORS
+// NOTE: operators of type `Scalar operator Tuple` are not
+// implemented due to template constraints
+////////////////////////////////////////////////////////////////////////
+
+// Returns the sum of *this and tuple t
+template < class Scalar > INLINE AbstractTuple < Scalar >
+HmdUtils::AbstractTuple < Scalar >::add (const AbstractTuple < Scalar > &t) const
+{
+  return AbstractTuple < Scalar > (*this, '+', t);
+}
+
+// Returns the sum of *this and Scalar s
+template < class Scalar > INLINE AbstractTuple < Scalar >
+HmdUtils::AbstractTuple < Scalar >::add (const Scalar s) const
+{
+  return AbstractTuple < Scalar > (*this, '+', s);
+}
+
+// Returns the difference of *this and tuple t
+template < class Scalar > INLINE AbstractTuple < Scalar >
+HmdUtils::AbstractTuple < Scalar >::subtract (const AbstractTuple < Scalar > &t) const
+{
+  return AbstractTuple < Scalar > (*this, '-', t);
+}
+
+// Returns the difference of *this and Scalar s
+template < class Scalar > INLINE AbstractTuple < Scalar >
+HmdUtils::AbstractTuple < Scalar >::subtract (const Scalar s) const
+{
+  return AbstractTuple < Scalar > (*this, '-', s);
+}
+
+// Returns the componentwise product of *this and tuple t
+template < class Scalar > INLINE AbstractTuple < Scalar >
+HmdUtils::AbstractTuple < Scalar >::multiply (const AbstractTuple < Scalar > &t) const
+{
+  return AbstractTuple < Scalar > (*this, '*', t);
+}
+
+// Returns the componentwise product of *this and Scalar s
+template < class Scalar > INLINE AbstractTuple < Scalar >
+HmdUtils::AbstractTuple < Scalar >::multiply (const Scalar s) const
+{
+  return AbstractTuple < Scalar > (*this, '*', s);
+}
+
+// Returns the componentwise division of *this by tuple t
+// NOTE: The components of t MUST be != zero!
+template < class Scalar > INLINE AbstractTuple < Scalar >
+HmdUtils::AbstractTuple < Scalar >::divide (const AbstractTuple < Scalar > &t) const
+{
+  return AbstractTuple < Scalar > (*this, '/', t);
+}
+
+// Returns the componentwise division of *this by s
+// NOTE: s MUST be != zero!
+template < class Scalar > INLINE AbstractTuple < Scalar >
+HmdUtils::AbstractTuple < Scalar >::divide (const Scalar s) const
+{
+  return AbstractTuple < Scalar > (*this, '/', s);
+}

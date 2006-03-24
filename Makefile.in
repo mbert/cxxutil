@@ -1,0 +1,114 @@
+#
+# Makefile for utils --  (c) 2003 by Herbert
+#
+# Compatibility: GNU
+#
+# $Revision: 1.1 $
+# $Date: 2006-03-24 15:36:45 $
+#
+
+#
+# The program's main version...
+#
+VERSION = @VERSION@
+MAJOR = @MAJOR@
+
+#
+# Default installation root...
+#
+prefix = @prefix@
+
+#
+# tools used for compiling / installing...
+#
+CXX = @CXX@
+AR = @AR@
+PRELINK = @PRELINK@
+HAS_MM = @HAS_MM@
+INSTALL = @INSTALL@
+DOXYGEN = @DOXYGEN@
+O = .o
+E = 
+A = .a
+D = .so
+
+TARGET = libUtils$A
+
+#
+# Name of target object files:
+#
+MAIN = utilsmain
+OBJS = CDebug$O Getopt$O MMatrix$O MMatrix4x4$O MPoint$O MPoint2d$O MPoint3d$O \
+	MPoint4d$O MTuple$O MVector$O MVector2d$O MVector3d$O MVector4d$O \
+	StringTok$O mutil$O utils$O
+MAINOBJ = $(MAIN)$O
+SOURCES = $(OBJS:$O=.cc) $(MAINOBJ:$O=.cpp)
+DEPENDS = $(SOURCES:.cc=.dd)
+HEADERS = $(wildcard *.h)
+
+LIBS = 
+BINDIR = $(prefix)/bin
+LIBDIR = $(prefix)/lib
+INCDIR = $(prefix)/include
+DOCDIR = $(prefix)/doc
+MANDIR = $(prefix)/man
+
+#
+# Flags passed to the compiler
+#
+CPPFLAGS = @CPPFLAGS@ -I.. @DEFINES@
+CXXSHARED = 
+CXXDEBUG = @CXXDEBUG@
+CXXOPT = @CXXOPT@
+CXXWARN = @CXXWARN@ @CXXWARN2@ 
+LDFLAGS = @LDFLAGS@ -lm 
+CXXFLAGS = $(CPPFLAGS) @X_CFLAGS@ $(CXXSHARED) $(CXXOPT) $(CXXDEBUG) \
+	$(CXXWARN) @CXXMISC@
+
+.PHONY : all complete test install uninstall clean distclean debug 
+
+#
+# Main target and file dependencies:
+#
+
+all: $(TARGET)
+
+complete: all test 
+
+debug:
+	$(MAKE) "CXXDEBUG=-g -DDEBUG" all $(MAIN)$E
+
+test: $(MAIN)$E
+	./$<
+
+$(MAIN)$E: $(MAINOBJ) $(TARGET)
+	$(CXX) $^ -o $@ $(LDFLAGS)
+
+clean: 
+	rm -f $(OBJS) $(DEPENDS) $(TARGET) $(MAIN)$E $(MAINOBJ) *~ .\#*.[0-9]*
+
+distclean: 
+	-$(MAKE) clean
+	-rm -f config.cache config.status config.log Makefile 
+
+
+$(TARGET): $(OBJS)
+ifdef PRELINK
+	$(PRELINK) $^
+endif
+	$(AR) crs $@ $^
+
+#
+# Automatic targets and rules:
+#
+%$O: %.cc
+	$(CXX) -c $(CXXFLAGS) $< -o $@
+
+%.dd: %.cc
+	@$(SHELL) -ec '$(CXX) -MM $(CPPFLAGS) $< \
+	| sed '\''s/\($*\)\.o[ :]*/\1.o $@ : /g'\'' > $@; \
+	[ -s $@ ] || rm -f $@'
+
+ifeq (yes,${HAS_MM})
+-include $(DEPENDS)
+endif
