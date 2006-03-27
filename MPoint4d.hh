@@ -13,7 +13,7 @@
 //  MPoint4D (MPoint<..>). This constructor is absolutely neccessary.
 //
 //  @ingroup math
-//  @author  Andreas Kolb <akolb@fh-wedel.de>, Martin Dietze <di@fh-wedel.de>
+//  @author  Andreas Kolb<akolb@fh-wedel.de>, Martin Dietze<di@fh-wedel.de>
 //  @version 0.1
 */
 /*  --------------------------------------------------------------------
@@ -32,16 +32,16 @@
 
 
 // class specific includes
-#include "cdefines.h"
-#include "MPoint3d.hh"
+#include "cxxutils/cdefines.h"
+#include "cxxutils/MPoint3d.hh"
 
 
 // forward declarations
 
-namespace HmdUtils 
+namespace CxxUtils 
 {
 
-  template < class Scalar > class MPoint4D:public MPoint < Scalar >
+  template<class Scalar> class MPoint4D:public MPoint<Scalar>
   {
   public:
     // -------------------------------------------------------------------
@@ -57,22 +57,22 @@ namespace HmdUtils
     /** Constructor from base class
 	@param p general point as src for this 4D point
     */
-    MPoint4D (const MTuple < Scalar > &p);
+    MPoint4D (const MTuple<Scalar> &p);
 
     /** Destructor */
     virtual ~ MPoint4D (void);
 
     /** Project this point into 3D space */
-    MPoint3D < Scalar > projectTo3D (void) const;
+    MPoint3D<Scalar> projectTo3D (void) const;
   };
 
-  typedef MPoint4D < double >MP4D;
+  typedef MPoint4D<double>MP4D;
+}
 
   // include INLINES if required
-#include "MPoint4d.cc"
+#include "cxxutils/MPoint4d.cc"
 #ifndef OUTLINE
-#include "MPoint4d.ih"
+#include "cxxutils/MPoint4d.ih"
 #endif
-}
 
 #endif // MPOINT4D_HPP

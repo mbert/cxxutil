@@ -13,18 +13,18 @@
 #include <assert.h>
 
 // class specific includes
-#include "MVector3d.hh"
+#include "cxxutils/MVector3d.hh"
 
 // include "outlined" INLINE functions
 #ifdef OUTLINE
-#include "MVector3d.ih"
+#include "cxxutils/MVector3d.ih"
 #endif
 
 // Description:
 // Default constructor using MVector instantiation
-template < class Scalar > 
-HmdUtils::MVector3D < Scalar >::MVector3D (void)
-  : MVector < Scalar > (3)
+template<class Scalar> 
+CxxUtils::MVector3D<Scalar>::MVector3D (void)
+  : MVector<Scalar> (3)
 {
 }
 
@@ -32,9 +32,9 @@ HmdUtils::MVector3D < Scalar >::MVector3D (void)
 
 // Description:
 // Build an instance given two doubles
-template < class Scalar >
-HmdUtils::MVector3D < Scalar >::MVector3D (const Scalar & u, const Scalar & v,
-                                   const Scalar & w): MVector < Scalar > (3)
+template<class Scalar>
+CxxUtils::MVector3D<Scalar>::MVector3D (const Scalar & u, const Scalar & v,
+                                   const Scalar & w): MVector<Scalar> (3)
 {
   this->m_coord[0] = u;
   this->m_coord[1] = v;
@@ -45,9 +45,9 @@ HmdUtils::MVector3D < Scalar >::MVector3D (const Scalar & u, const Scalar & v,
 // Description:
 // Upward copy constructor 
 // This constructor is the base for inheriting the MVector-functionality
-template < class Scalar >
-HmdUtils::MVector3D < Scalar >::MVector3D (const MTuple < Scalar > &p)
-  : MVector < Scalar > (p)
+template<class Scalar>
+CxxUtils::MVector3D<Scalar>::MVector3D (const MTuple<Scalar> &p)
+  : MVector<Scalar> (p)
 {
   assert (p.getDim () == 3);
 }
@@ -55,13 +55,13 @@ HmdUtils::MVector3D < Scalar >::MVector3D (const MTuple < Scalar > &p)
 
 // Description:
 // Virtual destructor (just for completeness)
-template < class Scalar > 
-HmdUtils::MVector3D < Scalar >::~MVector3D (void)
+template<class Scalar> 
+CxxUtils::MVector3D<Scalar>::~MVector3D (void)
 {
 }
 
-template < class Scalar > MVector3D < Scalar >
-HmdUtils::MVector3D < Scalar >::operator^ (const MVector3D & v) const
+template<class Scalar> CxxUtils::MVector3D<Scalar>
+CxxUtils::MVector3D<Scalar>::operator^ (const MVector3D & v) const
 {
   MVector3D ret;
 

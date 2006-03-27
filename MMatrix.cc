@@ -8,12 +8,12 @@
 //  Project: Repairing and texturing of VR models
 //  (C) Copyright Fachhochschule Wedel, Germany 2003
 //  -------------------------------------------------------------------
-//  $Revision: 1.1 $
-//  $Date: 2006-03-24 15:36:45 $
+//  $Revision: 1.2 $
+//  $Date: 2006-03-27 09:02:55 $
 // ******************************************************************** */
 
 // class specific includes
-#include "MMatrix.hh"
+#include "cxxutils/MMatrix.hh"
 
 // system specific includes
 #include <iostream>
@@ -22,8 +22,8 @@
 
 /* ========================= main class MMatrix ======================= */
 
-template < class Scalar >
-HmdUtils::MMatrix < Scalar >::MMatrix (int rows, int cols, Scalar value)
+template<class Scalar>
+CxxUtils::MMatrix<Scalar>::MMatrix (int rows, int cols, Scalar value)
 {
   m_rows = rows;
   m_cols = cols;
@@ -32,37 +32,37 @@ HmdUtils::MMatrix < Scalar >::MMatrix (int rows, int cols, Scalar value)
   fill (value);
 }
 
-template < class Scalar >
-HmdUtils::MMatrix < Scalar >::MMatrix (const MMatrix < Scalar > &matrix)
+template<class Scalar>
+CxxUtils::MMatrix<Scalar>::MMatrix (const MMatrix<Scalar> &matrix)
 {
   copy (matrix);
 }
 
-template < class Scalar > void
-HmdUtils::MMatrix < Scalar >::copy (const MMatrix < Scalar > &matrix)
+template<class Scalar> void
+CxxUtils::MMatrix<Scalar>::copy (const MMatrix<Scalar> &matrix)
 {
   m_rows = matrix.m_rows;
   m_cols = matrix.m_cols;
-  m_values = NEW (MTuple < Scalar > (*matrix.m_values));
+  m_values = NEW (MTuple<Scalar> (*matrix.m_values));
   m_rowOffsets = NULL;
   updateRowsArray ();
 }
 
-template < class Scalar > 
-HmdUtils::MMatrix < Scalar >::~MMatrix (void)
+template<class Scalar> 
+CxxUtils::MMatrix<Scalar>::~MMatrix (void)
 {
   destroy ();
 }
 
-template < class Scalar > void
-HmdUtils::MMatrix < Scalar >::init (void)
+template<class Scalar> void
+CxxUtils::MMatrix<Scalar>::init (void)
 {
-  m_values = NEW (MTuple < Scalar > (m_rows * m_cols));
+  m_values = NEW (MTuple<Scalar> (m_rows * m_cols));
   m_rowOffsets = NULL;
 }
 
-template < class Scalar > void
-HmdUtils::MMatrix < Scalar >::fill (Scalar value)
+template<class Scalar> void
+CxxUtils::MMatrix<Scalar>::fill (Scalar value)
 {
   for (int i = m_rows * m_cols - 1; i > -1; i--)
     {
@@ -71,8 +71,8 @@ HmdUtils::MMatrix < Scalar >::fill (Scalar value)
     }
 }
 
-template < class Scalar > void 
-HmdUtils::MMatrix < Scalar >::updateRowsArray (void)
+template<class Scalar> void 
+CxxUtils::MMatrix<Scalar>::updateRowsArray (void)
 {
   DELETENOTNULL (m_rowOffsets);
   m_rowOffsets = NEW (int [m_rows]);
@@ -82,15 +82,15 @@ HmdUtils::MMatrix < Scalar >::updateRowsArray (void)
     }
 }
 
-template < class Scalar > void
-HmdUtils::MMatrix < Scalar >::destroy (void)
+template<class Scalar> void
+CxxUtils::MMatrix<Scalar>::destroy (void)
 {
   DELETE (m_values);
   DELETE (m_rowOffsets);
 }
 
-template < class Scalar > std::ostream &
-HmdUtils::operator<< (std::ostream & os, MMatrix < Scalar > m)
+template<class Scalar> std::ostream &
+CxxUtils::operator<< (std::ostream & os, MMatrix<Scalar> m)
 {
   os << "( ";
   for (int row = 0; row < m.rows (); row++)
@@ -122,7 +122,7 @@ HmdUtils::operator<< (std::ostream & os, MMatrix < Scalar > m)
 
 // include "outlined" INLINE functions
 #ifdef OUTLINE
-#include "MMatrix.ih"
+#include "cxxutils/MMatrix.ih"
 #endif
 
 #endif // MMATRIX_CPP

@@ -13,7 +13,7 @@
 //  MVector4D (MVector<..>). This constructor is absolutely neccessary.
 //
 //  @ingroup math
-//  @author  Andreas Kolb <akolb@fh-wedel.de>, Martin Dietze <di@fh-wedel.de>
+//  @author  Andreas Kolb<akolb@fh-wedel.de>, Martin Dietze<di@fh-wedel.de>
 //  @version 0.1
 */
 /*  --------------------------------------------------------------------
@@ -32,16 +32,16 @@
 
 
 // class specific includes
-#include "cdefines.h"
-#include "MVector.hh"
+#include "cxxutils/cdefines.h"
+#include "cxxutils/MVector.hh"
 
 
 // forward declarations
 
-namespace HmdUtils 
+namespace CxxUtils 
 {
 
-  template < class Scalar > class MVector4D:public MVector < Scalar >
+  template<class Scalar> class MVector4D:public MVector<Scalar>
   {
   public:
     // -------------------------------------------------------------------
@@ -57,7 +57,7 @@ namespace HmdUtils
     /** Constructor from base class
 	@param p general vector as src for this 4D vector
     */
-    MVector4D (const MTuple < Scalar > &p);
+    MVector4D (const MTuple<Scalar> &p);
 
     /** Destructor */
     virtual ~ MVector4D (void);
@@ -69,13 +69,13 @@ namespace HmdUtils
 
   };
 
-  typedef MVector4D < double >MV4D;
+  typedef MVector4D<double>MV4D;
+}
 
   // include INLINES if required
-#include "MVector4d.cc"
+#include "cxxutils/MVector4d.cc"
 #ifndef OUTLINE
-#include "MVector4d.ih"
+#include "cxxutils/MVector4d.ih"
 #endif
-}
 
 #endif // MVECTOR4D_HPP

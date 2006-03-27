@@ -6,7 +6,7 @@
 //  Output messages
 //
 //  @ingroup math
-//  @author Martin Dietze <herbert@spamcop.net>
+//  @author Martin Dietze<herbert@spamcop.net>
 //  @version 0.1
 */
 /*  --------------------------------------------------------------------

@@ -3,10 +3,10 @@
  * Code based on Conversations article in C/C++ Users' Journal, issue 10/2001 
  */
 
-#include "StringTok.hh"
+#include "cxxutils/StringTok.hh"
 
 template<class T> T
-HmdUtils::StringTok<T>::operator() (const T& delim)
+CxxUtils::StringTok<T>::operator() (const T& delim)
 {
   T token;
 
@@ -28,11 +28,11 @@ HmdUtils::StringTok<T>::operator() (const T& delim)
 	  m_pos = first + num;
 	  if (m_pos != T::npos)
 	    {
-	      ++m_po_;
+	      ++m_pos;
 	    }
 	  if (m_pos >= m_seq.size ())
 	    {
-	      m_pos_= T::npos;
+	      m_pos = T::npos;
 	    }
 	}
     }

@@ -5,19 +5,19 @@
 //  Project: Repairing and texturing of VR models
 //  (C) Copyright Fachhochschule Wedel, Germany 2003
 //  -------------------------------------------------------------------
-//  $Revision: 1.1 $
-//  $Date: 2006-03-24 15:36:45 $
+//  $Revision: 1.2 $
+//  $Date: 2006-03-27 09:02:55 $
 // ******************************************************************** */
 
 
 /* ====================== main class MMatrix4x4 ======================= */
 
-template < class Scalar > INLINE void
-HmdUtils::MMatrix4x4 < Scalar >::fromA (Scalar (&a)[4][4])
+template<class Scalar> INLINE void
+CxxUtils::MMatrix4x4<Scalar>::fromA (Scalar (&a)[4][4])
 {
-  for (int col = 0; col < this->m_cols; col++)
+  for (int col = 0; col<this->m_cols; col++)
     {
-      for (int row = 0; row < this->m_rows; row++)
+      for (int row = 0; row<this->m_rows; row++)
         {
           this->m_values->at (row * this->m_cols + col) = a[col][row];
         }

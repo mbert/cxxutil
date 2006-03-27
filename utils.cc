@@ -5,8 +5,8 @@
 //  Project: Repairing and texturing of VR models
 //  (C) Copyright Fachhochschule Wedel, Germany 2003
 //  -------------------------------------------------------------------
-//  $Revision: 1.1 $
-//  $Date: 2006-03-24 15:36:45 $
+//  $Revision: 1.2 $
+//  $Date: 2006-03-27 09:02:56 $
 // ******************************************************************** */
 
 #if defined __GNUC__ && defined __GLIBC__
@@ -14,16 +14,17 @@
 # undef __USE_MISC
 # endif
 # define __USE_MISC 1
-# ifdef __USE_BSD 
-# undef __USE_BSD 
+# ifdef __USE_BSD
+# undef __USE_BSD
 # endif
 # define __USE_BSD  1
 #endif
 
-#include "utils/utils.h"
+#include "cxxutils/utils.h"
+#include "cxxutils/cdefines.h"
 
 #ifdef OUTLINE
-#include "utils/utils.ih"
+#include "cxxutils/utils.ih"
 #endif
 
 #ifdef WIN32
@@ -45,41 +46,41 @@ int setenv (const char *, const char *, int);
 #endif
 
 int
-HmdUtils::tempFileName (char *templ, const char *extension)
+CxxUtils::tempFileName (char *templ, const char *extension)
 {
-  static char letters[] 
+  static char letters[]
     = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
   int templen = strlen (templ);
   int letterlen = strlen (letters);
   int extenlen = strlen (extension);
-  
+
   if(templen < 6)
     {
       return -1;
     }
-  
+
   char *p = templ + templen - 6;
 
   if (strcmp (p, "XXXXXX") != 0)
     {
       return -1;
     }
-  
+
   srand ((unsigned)time (NULL));
   int fd;
-  char *fname = new char [templen + extenlen + 1];
+  char *fname = NEW (char [templen + extenlen + 1]);
   strcpy (fname, templ);
   strcat (fname, extension);
   p = fname + templen - 6;
-  
+
   for (int run = 0; run < 512; run++)
     {
       for (int i = 0; i < 6; i++)
         {
           p[i] = letters[rand () % letterlen];
         }
-      
+
       if ((fd = open (fname, O_CREAT | O_EXCL)) > 0)
         {
           break;
@@ -88,22 +89,22 @@ HmdUtils::tempFileName (char *templ, const char *extension)
 
   if (fd < 0)
     {
-      delete fname;
+      DELETE( fname);
       return -1;
     }
-  
+
   close (fd);
   (void)remove (fname);
   strncpy (templ, fname, templen);
-  delete fname;
-  
+  DELETE( fname);
+
   return 0;
 }
 
 FILE *
-HmdUtils::tempFile (char *templ)
+CxxUtils::tempFile (char *templ)
 {
-  if (HmdUtils::tempFileName (templ) < 0)
+  if (CxxUtils::tempFileName (templ) < 0)
     {
       return NULL;
     }
@@ -111,7 +112,7 @@ HmdUtils::tempFile (char *templ)
 }
 
 int
-HmdUtils::putEnvironment (char *name, char *value)
+CxxUtils::putEnvironment (char *name, char *value)
 {
 #ifdef IRIX
   // On IRIX we are somewhat less flexible...
@@ -128,13 +129,13 @@ HmdUtils::putEnvironment (char *name, char *value)
 #endif
 }
 
-unsigned char* 
-HmdUtils::htond (double dat)
+unsigned char*
+CxxUtils::htond (double dat)
 {
   static unsigned char res[8];
   int s;
   int e;
-  bmbfi64 m;
+  CxxUtils::i64 m;
   double md;
   double temp;
 
@@ -146,7 +147,7 @@ HmdUtils::htond (double dat)
         {
           res[i] = 0;
         }
-      return res;  
+      return res;
     }
 
   s = (dat >=0 ) ? 0 : 1;
@@ -163,7 +164,7 @@ HmdUtils::htond (double dat)
       temp /= 2;
       e++;
     }
-  
+
   if (temp >= DBL_EPSILON)
     {
       while(temp < 1.0)
@@ -180,14 +181,14 @@ HmdUtils::htond (double dat)
   dat /= pow ((double)2, e);
 
   e += 1023;
- 
+
   res[0]  = (s << 7);
   res[0] |= (e >> 4) & 0x7f;
   res[1]  = (e << 4) & 0xf0;
 
   md =  (dat * (4294967296.0 * 1048576.0));
-  m = (bmbfi64)md;
-  
+  m = (CxxUtils::i64)md;
+
   res[1] |= (unsigned char)((m >> 48) & 0x0f);
   res[2]  = (unsigned char)((m >> 40) & 0xff);
   res[3]  = (unsigned char)((m >> 32) & 0xff);
@@ -199,15 +200,15 @@ HmdUtils::htond (double dat)
   return res;
 }
 
-double 
-HmdUtils::ntohd (unsigned char *dat)
+double
+CxxUtils::ntohd (unsigned char *dat)
 {
   double res;
   int s;
   int e;
-  bmbfi64 m;
+  CxxUtils::i64 m;
 
-  if (*((bmbfi64*)dat) == 0)
+  if (*((CxxUtils::i64*)dat) == 0)
     {
       return 0.0;
     }
@@ -216,37 +217,39 @@ HmdUtils::ntohd (unsigned char *dat)
   e  = (dat[0] & 0x7f) << 4;
   e |= (dat[1] & 0xf0) >> 4;
   e -= 1023;
-  m  = ((bmbfi64)dat[1] & 0x0f) << 48;
-  m += ((bmbfi64)dat[2] & 0xff) << 40;
-  m += ((bmbfi64)dat[3] & 0xff) << 32;
-  m += ((bmbfi64)dat[4] & 0xff) << 24;
-  m += ((bmbfi64)dat[5] & 0xff) << 16;
-  m += ((bmbfi64)dat[6] & 0xff) << 8;
-  m += ((bmbfi64)dat[7] & 0xff);
+  m  = ((CxxUtils::i64)dat[1] & 0x0f) << 48;
+  m += ((CxxUtils::i64)dat[2] & 0xff) << 40;
+  m += ((CxxUtils::i64)dat[3] & 0xff) << 32;
+  m += ((CxxUtils::i64)dat[4] & 0xff) << 24;
+  m += ((CxxUtils::i64)dat[5] & 0xff) << 16;
+  m += ((CxxUtils::i64)dat[6] & 0xff) << 8;
+  m += ((CxxUtils::i64)dat[7] & 0xff);
 
-  res = (1.0 - (2.0 * (double)s)) * pow (2.0 ,(double)e) * 
+  res = (1.0 - (2.0 * (double)s)) * pow (2.0 ,(double)e) *
         (1.0 + ((double)m / (4294967296.0 * 1048576.0)));
 
   return res;
 }
 
-double
-HmdUtils::innerProduct (MMatrix < double > &mat, Image &img, int ypos, int xpos)
+char *
+CxxUtils::strdup(const std::string &str)
 {
-  MirrorPosition posit (false, false);
-  double rVal = 0.0;
-  int lengthY = mat.rows ();
-  int lengthX = mat.cols ();
-  int dummy = 0;
-  // calculate the inner product
-  for (int y = 0; y < lengthY; y++)
-    {
-      for (int x = 0; x < lengthX; x++)
-        {
-          rVal += mat (y, x) * 
-            img.at (posit.pos (ypos + y, 0, img.rows (), dummy),
-                    posit.pos (xpos + x, 0, img.cols (), dummy));
-        }
-    }
-  return rVal;
+	return strdup(str.c_str());
 }
+
+char *
+CxxUtils::strdup (const char *str)
+{
+  const char *s = str;
+  if (str == NULL)
+    {
+      s = "";
+    }
+  int len = strlen (s);
+  char *ret = new char [len + 1];
+  ret[len] = '\0';
+  strcpy (ret, s);
+  assert (ret[len] == '\0');
+  return ret;
+}
+

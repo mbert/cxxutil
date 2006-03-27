@@ -3,8 +3,8 @@
 #
 # Compatibility: GNU
 #
-# $Revision: 1.1 $
-# $Date: 2006-03-24 15:36:45 $
+# $Revision: 1.2 $
+# $Date: 2006-03-27 09:02:56 $
 #
 
 #
@@ -32,7 +32,7 @@ E =
 A = .a
 D = .so
 
-TARGET = libUtils$A
+TARGET = libCxxUtils$A
 
 #
 # Name of target object files:
@@ -56,14 +56,13 @@ MANDIR = $(prefix)/man
 #
 # Flags passed to the compiler
 #
-CPPFLAGS = @CPPFLAGS@ -I.. @DEFINES@
+CPPFLAGS = @CPPFLAGS@ -I.. -I. @DEFINES@
 CXXSHARED = 
 CXXDEBUG = @CXXDEBUG@
 CXXOPT = @CXXOPT@
 CXXWARN = @CXXWARN@ @CXXWARN2@ 
 LDFLAGS = @LDFLAGS@ -lm 
-CXXFLAGS = $(CPPFLAGS) @X_CFLAGS@ $(CXXSHARED) $(CXXOPT) $(CXXDEBUG) \
-	$(CXXWARN) @CXXMISC@
+CXXFLAGS = $(CPPFLAGS) $(CXXSHARED) $(CXXOPT) $(CXXDEBUG) $(CXXWARN) @CXXMISC@
 
 .PHONY : all complete test install uninstall clean distclean debug 
 

@@ -5,45 +5,45 @@
 //  Project: Repairing and texturing of VR models
 //  (C) Copyright Fachhochschule Wedel, Germany 2003
 //  -------------------------------------------------------------------
-//  $Revision: 1.1 $
-//  $Date: 2006-03-24 15:36:45 $
+//  $Revision: 1.2 $
+//  $Date: 2006-03-27 09:02:56 $
 // ******************************************************************** */
 
 #include <math.h>
 #include <float.h>
 
 INLINE double
-HmdUtils::cub (double a)
+CxxUtils::cub (double a)
 {
   return a * a * a;
 }
 
 INLINE float
-HmdUtils::cub (float a)
+CxxUtils::cub (float a)
 {
   return a * a * a;
 }
 
 INLINE double
-HmdUtils::sqr (double a)
+CxxUtils::sqr (double a)
 {
   return a * a;
 }
 
 INLINE float
-HmdUtils::sqr (float a)
+CxxUtils::sqr (float a)
 {
   return a * a;
 }
 
 INLINE int
-HmdUtils::abs (int a)
+CxxUtils::abs (int a)
 {
   return (a < 0) ? -a : a;
 }
 
 INLINE void
-HmdUtils::swap (double &a, double &b)
+CxxUtils::swap (double &a, double &b)
 {
   double temp = a;
   a = b;
@@ -51,7 +51,7 @@ HmdUtils::swap (double &a, double &b)
 }
 
 INLINE void
-HmdUtils::swap (float &a, float &b)
+CxxUtils::swap (float &a, float &b)
 {
   float temp = a;
   a = b;
@@ -59,7 +59,7 @@ HmdUtils::swap (float &a, float &b)
 }
 
 INLINE void
-HmdUtils::swap (int &a, int &b)
+CxxUtils::swap (int &a, int &b)
 {
   int temp = a;
   a = b;
@@ -67,79 +67,79 @@ HmdUtils::swap (int &a, int &b)
 }
 
 INLINE double
-HmdUtils::sign (double a, double b)
+CxxUtils::sign (double a, double b)
 {
   return (a < 0) ? -b : b;
 }
 
 INLINE float
-HmdUtils::sign (float a, float b)
+CxxUtils::sign (float a, float b)
 {
   return (a < 0) ? -b : b;
 }
 
 INLINE int
-HmdUtils::sign (int a, int b)
+CxxUtils::sign (int a, int b)
 {
   return (a < 0) ? -b : b;
 }
 
 INLINE double
-HmdUtils::min (double a, double b)
+CxxUtils::min (double a, double b)
 {
   return (a > b) ? b : a;
 }
 
 INLINE double
-HmdUtils::max (double a, double b)
+CxxUtils::max (double a, double b)
 {
   return (a > b) ? a : b;
 }
 
 INLINE float
-HmdUtils::min (float a, float b)
+CxxUtils::min (float a, float b)
 {
   return (a > b) ? b : a;
 }
 
 INLINE float
-HmdUtils::max (float a, float b)
+CxxUtils::max (float a, float b)
 {
   return (a > b) ? a : b;
 }
 
 INLINE int
-HmdUtils::min (int a, int b)
+CxxUtils::min (int a, int b)
 {
   return (a > b) ? b : a;
 }
 
 INLINE int
-HmdUtils::max (int a, int b)
+CxxUtils::max (int a, int b)
 {
   return (a > b) ? a : b;
 }
 
 INLINE int
-HmdUtils::toInt (double a)
+CxxUtils::toInt (double a)
 {
   return (a >= 0.0) ? int (a + 0.5) : int (a - 0.5);
 }
 
 INLINE int
-HmdUtils::toInt (float a)
+CxxUtils::toInt (float a)
 {
   return (a >= 0.0) ? int (a + 0.5) : int (a - 0.5);
 }
 
 INLINE bool
-HmdUtils::isZero (double d)
+CxxUtils::isZero (double d)
 {
   return (fabs (d) < DBL_EPSILON);
 }
 
 INLINE bool
-HmdUtils::isZero (float f)
+CxxUtils::isZero (float f)
 {
   return (fabs (f) < FLT_EPSILON);
 }

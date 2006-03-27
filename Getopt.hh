@@ -5,9 +5,18 @@
 #include <list>
 #include <string>
 
-namespace HmdUtils 
+#ifndef INLINE
+#ifdef OUTLINE
+#define INLINE
+#else
+#define INLINE inline
+#endif
+#endif
+
+struct my_option;
+
+namespace CxxUtils 
 {
-	struct my_option;
 	extern int my_opterr;
 
 	class Getopt {
@@ -19,7 +28,7 @@ namespace HmdUtils
 				: m_option(option), m_value(value), m_valueSet(true) {}
 			ProgOption (const std::string option)
 				: m_option(option), m_valueSet(false) {}
-			inline const std::string getName(void) const {return m_option;}
+			INLINE const std::string getName(void) const {return m_option;}
 			const std::string getValue(void) const; 
 		private:
 			const std::string m_option;
@@ -36,10 +45,10 @@ namespace HmdUtils
 		const Getopt::ProgOption& opt (const std::string option) const;
 		bool given (const std::string option) const;
 		int firstnonop(void) const {return m_lastoptndx;}
-		inline bool error(void) const {return m_error;}
-		inline void disableWarnings(void) { my_opterr = 0;}
-		inline void enableWarnings(void) { my_opterr = 1;}
-		inline std::string lastInvalid(void) const { return m_lastError; }
+		INLINE bool error(void) const {return m_error;}
+		INLINE void disableWarnings(void) { my_opterr = 0;}
+		INLINE void enableWarnings(void) { my_opterr = 1;}
+		INLINE std::string lastInvalid(void) const { return m_lastError; }
 		void showHelp(void);
 
 	private:
@@ -53,7 +62,7 @@ namespace HmdUtils
 			std::string rightSide;
 		} OptionDescription;
 
-		std::list <OptionDescription> m_optDescriptions;
+		std::list<OptionDescription> m_optDescriptions;
 
 		std::string m_optionString; 
 		struct my_option *m_longOpts;

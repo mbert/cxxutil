@@ -6,13 +6,9 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include "Wave.hh"
-#include "math/MMatrix.h"
-#include "common/cdefines.h"
-
 #include <stdio.h>
-//#include <stdlib.h>
 #include <cstdlib>
+#include <string>
 
 #ifndef INLINE
 #ifdef OUTLINE
@@ -22,7 +18,7 @@
 #endif
 #endif
 
-namespace HmdUtils 
+namespace CxxUtils 
 {
 
   /** Compute a simple hash value on a string
@@ -54,31 +50,34 @@ namespace HmdUtils
    * @return zero on success, -1 if error */
   int putEnvironment (char *name, char *value);
 
-  /** Compute the inner product between a matrix and the underlying area of
-   * an image. Placing the matrix outside the image boundaries is legal. In 
-   * such cases the image boundaries will be used as mirror axises to map 
-   * all locations back into the image.
-   * @param mat the matrix
-   * @param img the image
-   * @param ypos the uppermost row in the image to start with
-   * @param xpos the leftmost col in the image to start with */
-  double innerProduct (MMatrix < double > &mat, Image &img, 
-			     int ypos, int xpos);
-
   unsigned char* htond (double dat);
   double ntohd (unsigned char *dat);
 
-#define BMBF_NTOHD(x) ntohd(x)
-#define BMBF_HTOND(x) htond(x)
+  /**
+   * @brief Copies a C-string into a new one allocating necessary memory.
+   * 
+   * @param str the source string
+   * @return the newly allocated result string 
+   */
+  char *strdup (const char *str);
+  
+  /**
+   * Returns a new C-String from a std::string
+   * @param str the input std::string
+   * @return a new C-string
+   */
+  char *strdup(const std::string &str);
+
+#define CXXU_NTOHD(x) ntohd(x)
+#define CXXU_HTOND(x) htond(x)
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
-
-#ifndef OUTLINE
-#include "utils/utils.ih"
-#endif
 }
 
+#ifndef OUTLINE
+#include "cxxutils/utils.ih"
+#endif
 
 #endif

@@ -13,7 +13,7 @@
 //  MVector2D (MVector<..>). This constructor is absolutely neccessary.
 //
 //  @ingroup math
-//  @author  Andreas Kolb <akolb@fh-wedel.de>, Martin Dietze <di@fh-wedel.de>
+//  @author  Andreas Kolb<akolb@fh-wedel.de>, Martin Dietze<di@fh-wedel.de>
 //  @version 0.1
 */
 /*  --------------------------------------------------------------------
@@ -32,16 +32,16 @@
 
 
 // class specific includes
-#include "cdefines.h"
-#include "MVector.hh"
+#include "cxxutils/cdefines.h"
+#include "cxxutils/MVector.hh"
 
 
 // forward declarations
 
-namespace HmdUtils 
+namespace CxxUtils 
 {
 
-  template < class Scalar > class MVector2D:public MVector < Scalar >
+  template<class Scalar> class MVector2D:public MVector<Scalar>
   {
   public:
     // -------------------------------------------------------------------
@@ -56,7 +56,7 @@ namespace HmdUtils
     /** Constructor from base class
 	@param p general vector as src for this 2D vector
     */
-    MVector2D (const MTuple < Scalar > &p);
+    MVector2D (const MTuple<Scalar> &p);
 
     /** Destructor */
     virtual ~ MVector2D (void);
@@ -68,17 +68,17 @@ namespace HmdUtils
     /** Computation of the vector normal to this
 	The normal is computed such that {this, normal} build a right hand CS
     */
-    MVector2D < Scalar > getOrthogonal (void) const;
+    MVector2D<Scalar> getOrthogonal (void) const;
 
   };
 
-  typedef MVector2D < double >MV2D;
+  typedef MVector2D<double>MV2D;
+}
 
   // include INLINES if required
-#include "MVector2d.cc"
+#include "cxxutils/MVector2d.cc"
 #ifndef OUTLINE
-#include "MVector2d.ih"
+#include "cxxutils/MVector2d.ih"
 #endif
-}
 
 #endif // MVECTOR2D_HPP

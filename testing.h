@@ -6,15 +6,15 @@
 //  @short Testing macros
 //
 //  @ingroup common 
-//  @author  Martin Dietze <herbert@spamcop.net>
+//  @author  Martin Dietze<herbert@spamcop.net>
 //  @version 0.1
 //
 /*  --------------------------------------------------------------------
 //  Project: Repairing and texturing of VR models
 //  (C) Copyright Fachhochschule Wedel, Germany 2003
 //  --------------------------------------------------------------------
-//  $Revision: 1.1 $
-//  $Date: 2006-03-24 15:36:45 $
+//  $Revision: 1.2 $
+//  $Date: 2006-03-27 09:02:56 $
 // ********************************************************************** */
 
 #include <assert.h>

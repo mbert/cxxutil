@@ -8,15 +8,15 @@
 //  @short A generic NM matrix.
 //
 //  @ingroup math
-//  @author Andreas Kolb <ko@fh-wedel.de>, Martin Dietze <herbert@spamcop.net>
+//  @author Andreas Kolb<ko@fh-wedel.de>, Martin Dietze<herbert@spamcop.net>
 //  @version 0.1
 */
 /*  --------------------------------------------------------------------
 //  Project: Repairing and texturing of VR models
 //  (C) Copyright Fachhochschule Wedel, Germany 2003
 //  --------------------------------------------------------------------
-//  $Revision: 1.1 $
-//  $Date: 2006-03-24 15:36:45 $
+//  $Revision: 1.2 $
+//  $Date: 2006-03-27 09:02:55 $
 // ********************************************************************** */
 
 // INLINE declaration
@@ -28,7 +28,7 @@
 #endif
 #endif
 
-#include "MVector.hh"
+#include "cxxutils/MVector.hh"
 
 #include <iostream>
 
@@ -38,10 +38,10 @@
     if (m1.m_rows != m2.m_rows || m1.m_cols != m2.m_cols) { \
         throw std::invalid_argument (method ": " MSG_ERROR_DIMENSIONS); } }
 
-namespace HmdUtils 
+namespace CxxUtils 
 {
 
-  template < class Scalar > class MMatrix
+  template<class Scalar> class MMatrix
   {
   public:
     /** constructor setting rows, cols and initializing all values
@@ -52,7 +52,7 @@ namespace HmdUtils
 
     /** copy constructor
      * @param matrix the source matrix */
-    MMatrix (const MMatrix < Scalar > &matrix);
+    MMatrix (const MMatrix<Scalar> &matrix);
 
     /** destructor */
     ~MMatrix (void);
@@ -72,12 +72,12 @@ namespace HmdUtils
     /** equality operator
      * @param matrix the other matrix
      * @return true if both matrices have the same dimensions and values */
-    INLINE bool operator== (const MMatrix < Scalar > &matrix);
+    INLINE bool operator== (const MMatrix<Scalar> &matrix);
 
     /** non-equality operator
      * @param matrix the other matrix
      * @return true if both matrices have differing dimensions or values */
-    INLINE bool operator!= (const MMatrix < Scalar > &matrix);
+    INLINE bool operator!= (const MMatrix<Scalar> &matrix);
 
     /** member access, returning a reference to a matrix'es value a_ik
      * @param row the row
@@ -88,21 +88,21 @@ namespace HmdUtils
     /** assignment operator
      * @param m the other matrix
      * @return a reference to *this */
-    INLINE MMatrix < Scalar > &operator= (const MMatrix < Scalar > &m);
+    INLINE MMatrix<Scalar> &operator= (const MMatrix<Scalar> &m);
 
     /** multiplication of a matrix with a vector
      * @exception invalid_argument if the dimensions do not match
      * @param MMatrix the matrix
      * @param MVector the vector
      * @return the result vector */
-    friend MVector < Scalar > operator* (const MMatrix < Scalar > &MMatrix,
-					 const MVector < Scalar > &MVector)
+    friend MVector<Scalar> operator* (const MMatrix<Scalar> &MMatrix,
+					 const MVector<Scalar> &MVector)
     {
       if (MMatrix.cols () != MVector.getDim ())
 	{
 	  throw std::invalid_argument ("operator*: " MSG_ERROR_DIMENSIONS);
 	}
-      MVector < Scalar > result (MMatrix.m_rows, 0);
+      CxxUtils::MVector<Scalar> result (MMatrix.m_rows, 0);
       for (int row = 0; row < result.getDim (); row++)
 	{
 	  for (int col = 0; col < MMatrix.m_cols; col++)
@@ -112,7 +112,7 @@ namespace HmdUtils
 				      col) * MVector[col];
 	    }
 	}
-      return MVector < Scalar > (result);
+      return CxxUtils::MVector<Scalar> (result);
     }
 
     /** multiplication of a matrix with a matrix
@@ -120,26 +120,26 @@ namespace HmdUtils
      * @param m1 the first matrix
      * @param m2 the second matrix
      * @return the result matrix */
-    friend MMatrix < Scalar > operator* (const MMatrix < Scalar > &m1,
-					 const MMatrix < Scalar > &m2)
+    friend MMatrix<Scalar> operator* (const MMatrix<Scalar> &m1,
+					 const MMatrix<Scalar> &m2)
     {
       if (m1.cols () != m2.rows ())
 	{
 	  throw std::invalid_argument ("operator*: " MSG_ERROR_DIMENSIONS);
 	}
-      MMatrix < Scalar > result (m1.m_rows, m2.m_cols, 0);
+      MMatrix<Scalar> result (m1.m_rows, m2.m_cols, 0);
       for (int row = 0; row < result.m_rows; row++)
 	{
 	  for (int col = 0; col < result.m_cols; col++)
 	    {
 	      for (int i = 0; i < m1.cols (); i++)
 		{
-		  result (row, col) += ((MMatrix < Scalar > &)m1) (row, i)
-		    * ((MMatrix < Scalar > &)m2) (i, col);
+		  result (row, col) += ((MMatrix<Scalar> &)m1) (row, i)
+		    * ((MMatrix<Scalar> &)m2) (i, col);
 		}
 	    }
 	}
-      return MMatrix < Scalar > (result);
+      return MMatrix<Scalar> (result);
     }
 
     /** inner product between two matrices
@@ -147,8 +147,8 @@ namespace HmdUtils
      * @param m1 the first matrix
      * @param m2 the other matrix
      * @return the scalar product */
-    friend Scalar operator| (const MMatrix < Scalar > &m1,
-			     const MMatrix < Scalar > &m2)
+    friend Scalar operator| (const MMatrix<Scalar> &m1,
+			     const MMatrix<Scalar> &m2)
     {
       MATRIX_DIMENSIONS (m1, m2, "operator|");
       return (m1.m_values->mul (*m2.m_values)).getSum ();
@@ -159,11 +159,11 @@ namespace HmdUtils
      * @param m1 the first matrix
      * @param m2 the other matrix
      * @return the addition result */
-    friend MMatrix < Scalar > operator+ (const MMatrix < Scalar > &m1,
-					 const MMatrix < Scalar > &m2)
+    friend MMatrix<Scalar> operator+ (const MMatrix<Scalar> &m1,
+					 const MMatrix<Scalar> &m2)
     {
       MATRIX_DIMENSIONS (m1, m2, "operator+");
-      MMatrix < Scalar > result (m1);
+      MMatrix<Scalar> result (m1);
       *result.m_values += *m2.m_values;
       return result;
     }
@@ -173,11 +173,11 @@ namespace HmdUtils
      * @param m1 the first matrix
      * @param m2 the other matrix
      * @return the subtraction result */
-    friend MMatrix < Scalar > operator- (const MMatrix < Scalar > &m1,
-					 const MMatrix < Scalar > &m2)
+    friend MMatrix<Scalar> operator- (const MMatrix<Scalar> &m1,
+					 const MMatrix<Scalar> &m2)
     {
       MATRIX_DIMENSIONS (m1, m2, "operator-");
-      MMatrix < Scalar > result (m1);
+      MMatrix<Scalar> result (m1);
       *result.m_values -= *m2.m_values;
       return result;
     }
@@ -186,10 +186,10 @@ namespace HmdUtils
      * @param matrix the matrix
      * @param val the scalar
      * @return the multiplication result */
-    friend MMatrix < Scalar > operator* (const MMatrix < Scalar > &matrix,
+    friend MMatrix<Scalar> operator* (const MMatrix<Scalar> &matrix,
 					 const Scalar val)
     {
-      MMatrix < Scalar > result (matrix);
+      MMatrix<Scalar> result (matrix);
       *result.m_values *= val;
       return result;
     }
@@ -198,10 +198,10 @@ namespace HmdUtils
      * @param matrix the matrix
      * @param val the scalar
      * @return the division result */
-    friend MMatrix < Scalar > operator/ (const MMatrix < Scalar > &matrix,
+    friend MMatrix<Scalar> operator/ (const MMatrix<Scalar> &matrix,
 					 const Scalar val)
     {
-      MMatrix < Scalar > result (matrix);
+      MMatrix<Scalar> result (matrix);
       *result.m_values /= val;
       return result;
     }
@@ -215,7 +215,7 @@ namespace HmdUtils
     void destroy (void);
 
     /** an internal helper function to copy from another matrix */
-    void copy (const MMatrix < Scalar > &matrix);
+    void copy (const MMatrix<Scalar> &matrix);
 
     /** update the `m_rowOffsets' array */
     void updateRowsArray (void);
@@ -226,21 +226,21 @@ namespace HmdUtils
     int m_rows;
 
     /** the matrix data (all rows serialized in one tuple) */
-    MTuple < Scalar > *m_values;
+    MTuple<Scalar> *m_values;
 
     /** array holding all row offsets */
     int *m_rowOffsets;
   };
 
   /** output operator for std::ostream's */
-  template < class Scalar > std::ostream &
-  operator<< (std::ostream & os, MMatrix < Scalar > m);
+  template<class Scalar> std::ostream &
+  operator<< (std::ostream & os, MMatrix<Scalar> m);
 
-  // include INLINES if required
-#include "MMatrix.cc"
-#ifndef OUTLINE
-#include "MMatrix.ih"
-#endif
 }
+  // include INLINES if required
+#include "cxxutils/MMatrix.cc"
+#ifndef OUTLINE
+#include "cxxutils/MMatrix.ih"
+#endif
 
 #endif // MMATRIX_H

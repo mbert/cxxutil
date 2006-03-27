@@ -5,16 +5,16 @@
 //  Project: Repairing and texturing of VR models
 //  (C) Copyright Fachhochschule Wedel, Germany 2003
 //  -------------------------------------------------------------------
-//  $Revision: 1.1 $
-//  $Date: 2006-03-24 15:36:45 $
+//  $Revision: 1.2 $
+//  $Date: 2006-03-27 09:02:56 $
 // ******************************************************************** */
 
 // C-file for the INLINE-functions in mutil.h
-#include "mutil.h"
+#include "cxxutils/mutil.h"
 
-// include "outlined" INLINE functions
+// include "cxxutils/outlined" INLINE functions
 #ifdef OUTLINE
-#include "mutil.ih"
+#include "cxxutils/mutil.ih"
 #endif
 
 #ifdef __WATCOMC__ 

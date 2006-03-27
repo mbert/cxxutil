@@ -9,15 +9,15 @@
 //  provide support for the 4x4 array structure needed by RxHelper.
 //
 //  @ingroup math
-//  @author Andreas Kolb <ko@fh-wedel.de>, Martin Dietze <herbert@spamcop.net>
+//  @author Andreas Kolb<ko@fh-wedel.de>, Martin Dietze<herbert@spamcop.net>
 //  @version 0.1
 */
 /*  --------------------------------------------------------------------
 //  Project: Repairing and texturing of VR models
 //  (C) Copyright Fachhochschule Wedel, Germany 2003
 //  --------------------------------------------------------------------
-//  $Revision: 1.1 $
-//  $Date: 2006-03-24 15:36:45 $
+//  $Revision: 1.2 $
+//  $Date: 2006-03-27 09:02:55 $
 // ********************************************************************** */
 
 // INLINE declaration
@@ -29,12 +29,12 @@
 #endif
 #endif
 
-#include "MMatrix.hh"
+#include "cxxutils/MMatrix.hh"
 
-namespace HmdUtils 
+namespace CxxUtils 
 {
 
-  template < class Scalar > class MMatrix4x4:public MMatrix < Scalar >
+  template<class Scalar> class MMatrix4x4:public MMatrix<Scalar>
   {
   public:
     /** default constutor that initializes all elements
@@ -42,7 +42,7 @@ namespace HmdUtils
     MMatrix4x4 (Scalar value = 0);
     /** copy constructor
      * @param matrix the source matrix */
-    MMatrix4x4 (const MMatrix4x4 < Scalar > &matrix);
+    MMatrix4x4 (const MMatrix4x4<Scalar> &matrix);
     /** destructor */
     ~MMatrix4x4 (void);
     /** read the matrix contents from a 4x4-array
@@ -51,14 +51,14 @@ namespace HmdUtils
   };
 
   /** this is needed by RxHelper in Redux */
-  typedef MMatrix4x4 < float >MFloatMatrix4x4;
+  typedef MMatrix4x4<float>MFloatMatrix4x4;
+}
 
   // include INLINES if required
-#include "MMatrix4x4.cc"
+#include "cxxutils/MMatrix4x4.cc"
 #ifndef OUTLINE
-#include "MMatrix4x4.ih"
+#include "cxxutils/MMatrix4x4.ih"
 #endif
-}
 
 
 #endif // MMATRIX4X4_H

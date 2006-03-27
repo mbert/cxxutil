@@ -13,18 +13,18 @@
 #include <assert.h>
 
 // class specific includes
-#include "MVector4d.hh"
+#include "cxxutils/MVector4d.hh"
 
 // include "outlined" INLINE functions
 #ifdef OUTLINE
-#include "MVector4d.ih"
+#include "cxxutils/MVector4d.ih"
 #endif
 
 // Description:
 // Default constructor using MVector instantiation
-template < class Scalar > 
-HmdUtils::MVector4D < Scalar >::MVector4D (void)
-  : MVector < Scalar > (4)
+template<class Scalar> 
+CxxUtils::MVector4D<Scalar>::MVector4D (void)
+  : MVector<Scalar> (4)
 {
 }
 
@@ -32,10 +32,10 @@ HmdUtils::MVector4D < Scalar >::MVector4D (void)
 
 // Description:
 // Build an instance given two doubles
-template < class Scalar >
-HmdUtils::MVector4D < Scalar >::MVector4D (const Scalar & u, const Scalar & v,
+template<class Scalar>
+CxxUtils::MVector4D<Scalar>::MVector4D (const Scalar & u, const Scalar & v,
 					   const Scalar & w, const Scalar & x)
-  : MVector < Scalar > (4)
+  : MVector<Scalar> (4)
 {
   this->m_coord[0] = u;
   this->m_coord[1] = v;
@@ -47,9 +47,9 @@ HmdUtils::MVector4D < Scalar >::MVector4D (const Scalar & u, const Scalar & v,
 // Description:
 // Upward copy constructor 
 // This constructor is the base for inheriting the MVector-functionality
-template < class Scalar >
-HmdUtils::MVector4D < Scalar >::MVector4D (const MTuple < Scalar > &p)
-  : MVector < Scalar > (p)
+template<class Scalar>
+CxxUtils::MVector4D<Scalar>::MVector4D (const MTuple<Scalar> &p)
+  : MVector<Scalar> (p)
 {
   assert (p.getDim () == 4);
 }
@@ -57,8 +57,8 @@ HmdUtils::MVector4D < Scalar >::MVector4D (const MTuple < Scalar > &p)
 
 // Description:
 // Virtual destructor (just for completeness)
-template < class Scalar > 
-HmdUtils::MVector4D < Scalar >::~MVector4D (void)
+template<class Scalar> 
+CxxUtils::MVector4D<Scalar>::~MVector4D (void)
 {
 }
 

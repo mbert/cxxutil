@@ -4,9 +4,11 @@
 // BESCHR.: 
 //          
 // ----------------------------------------------------------------- */
+
+#include "cxxutils/CDebug.hh"
+
 #include <stdlib.h>
 #include <stdio.h>
-#include "CDebug.hh"
 #include <stdarg.h>
 
 
@@ -15,20 +17,20 @@ using namespace std;
 #endif
 
 // Definition and initialisation of static class data
-ofstream HmdUtils::CDebug::ostr;
-string HmdUtils::CDebug::errorcodeFilename;
-int HmdUtils::CDebug::level;
+ofstream CxxUtils::CDebug::ostr;
+string CxxUtils::CDebug::errorcodeFilename;
+int CxxUtils::CDebug::level;
 
 
 //! Default constructor
 /*! Constructor for the static CDebug-class */
-HmdUtils::CDebug::CDebug (void)
+CxxUtils::CDebug::CDebug (void)
 {
   level = CDebug::Info | CDebug::Error;
 }
 
 //! destructor
-HmdUtils::CDebug::~CDebug (void)
+CxxUtils::CDebug::~CDebug (void)
 {
   if (ostr.is_open ())
     {
@@ -42,7 +44,7 @@ HmdUtils::CDebug::~CDebug (void)
 }
 
 void
-HmdUtils::CDebug::writeErrorCode (int errorcode)
+CxxUtils::CDebug::writeErrorCode (int errorcode)
 {
   if (errorcodeFilename.length ())
     {
@@ -62,7 +64,7 @@ HmdUtils::CDebug::writeErrorCode (int errorcode)
 
 //! Setting out-stream to a file
 bool 
-HmdUtils::CDebug::open (const char *fileName)
+CxxUtils::CDebug::open (const char *fileName)
 {
   if (ostr.is_open ())
     {
@@ -87,7 +89,7 @@ HmdUtils::CDebug::open (const char *fileName)
 /*! This method is used to put a given message to stdout or the specified
     file*/
 ostream & 
-HmdUtils::CDebug::getOStr (void)
+CxxUtils::CDebug::getOStr (void)
 {
   if (ostr.is_open ())
     {
@@ -101,7 +103,7 @@ HmdUtils::CDebug::getOStr (void)
 
 
 void
-HmdUtils::CDebug::setLevel (const char *str)
+CxxUtils::CDebug::setLevel (const char *str)
 {
   int len = strlen (str);
   int curr = 0;
@@ -150,8 +152,9 @@ HmdUtils::CDebug::setLevel (const char *str)
   return;
 }
 
+#if !defined (NDEBUG) && !defined (DPRINTF)
 int 
-HmdUtils::cdebug_printf (const char *tmpl, ...)
+CxxUtils::debug_printf (const char *tmpl, ...)
 {
   va_list ap;
   int result;
@@ -161,4 +164,4 @@ HmdUtils::cdebug_printf (const char *tmpl, ...)
   va_end (ap);
   return result;
 }
-
+#endif

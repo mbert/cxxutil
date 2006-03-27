@@ -8,15 +8,15 @@
 //  @short A vector.
 //
 //  @ingroup math
-//  @author  Andreas Kolb <ko@fh-wedel.de>, Martin Dietze <herbert@spamcop.net>
+//  @author  Andreas Kolb<ko@fh-wedel.de>, Martin Dietze<herbert@spamcop.net>
 //  @version 0.1
 */
 /*  --------------------------------------------------------------------
 //  Project: Repairing and texturing of VR models
 //  (C) Copyright Fachhochschule Wedel, Germany 2003
 //  --------------------------------------------------------------------
-//  $Revision: 1.1 $
-//  $Date: 2006-03-24 15:36:45 $
+//  $Revision: 1.2 $
+//  $Date: 2006-03-27 09:02:56 $
 // ********************************************************************** */
 
 // INLINE declaration
@@ -29,76 +29,76 @@
 #endif
 
 // class specific includes
-#include "MTuple.hh"
+#include "cxxutils/MTuple.hh"
 // this is necessary for VC++ compatibility!
-#include "MPoint.hh"
+#include "cxxutils/MPoint.hh"
 
 // system specific includes
 #include <iostream>
 #include <math.h>
 
-namespace HmdUtils 
+namespace CxxUtils 
 {
   // forward declaration
-  template < class Scalar > class MPoint;
+  template<class Scalar> class MPoint;
 
-  template < class Scalar > class MVector:public AbstractTuple < Scalar >
+  template<class Scalar> class MVector:public AbstractTuple<Scalar>
   {
   public:
     // CONSTRUCTORS
     MVector (int dim = 1);
-    MVector (const MVector < Scalar > &v);
-    MVector (const AbstractTuple < Scalar > &v);
+    MVector (const MVector<Scalar> &v);
+    MVector (const AbstractTuple<Scalar> &v);
     MVector (const int dim, const Scalar s);
 
     // DESTRUCTORS
-    virtual ~ MVector < Scalar > (void);
+    virtual ~ MVector<Scalar> (void);
 
     // ASSIGNMENT OPERATORS
     // unary
-    INLINE MVector < Scalar > &operator= (const MVector < Scalar > &v);
-    INLINE MVector < Scalar > &operator+= (const MVector < Scalar > &v);
-    INLINE MVector < Scalar > &operator-= (const MVector < Scalar > &v);
-    INLINE MVector < Scalar > &operator*= (const Scalar s);
-    INLINE MVector < Scalar > &operator/= (const Scalar s);
+    INLINE MVector<Scalar> &operator= (const MVector<Scalar> &v);
+    INLINE MVector<Scalar> &operator+= (const MVector<Scalar> &v);
+    INLINE MVector<Scalar> &operator-= (const MVector<Scalar> &v);
+    INLINE MVector<Scalar> &operator*= (const Scalar s);
+    INLINE MVector<Scalar> &operator/= (const Scalar s);
 
     // binary
     // NOTE: operators of type `Scalar operator vector` are not
     // implemented due to template constraints
-    INLINE MVector < Scalar > operator+ (const MVector < Scalar > &v) const;
-    INLINE MVector < Scalar > operator- (const MVector < Scalar > &v) const;
-    INLINE MVector < Scalar > operator* (const Scalar s) const;
-    INLINE MVector < Scalar > operator/ (const Scalar s) const;
+    INLINE MVector<Scalar> operator+ (const MVector<Scalar> &v) const;
+    INLINE MVector<Scalar> operator- (const MVector<Scalar> &v) const;
+    INLINE MVector<Scalar> operator* (const Scalar s) const;
+    INLINE MVector<Scalar> operator/ (const Scalar s) const;
 
     // COMPARISON OPERATORS
-    //bool operator== (const MVector < Scalar > & v) const;
-    //bool operator!= (const MVector < Scalar > & v) const;
+    //bool operator== (const MVector<Scalar> & v) const;
+    //bool operator!= (const MVector<Scalar> & v) const;
 
     // Inner product
-    Scalar operator| (const MVector < Scalar > &v) const;
+    Scalar operator| (const MVector<Scalar> &v) const;
 
     // NORM OPERATORS
     // compute vector norm
     INLINE Scalar getNorm (void) const;
     // return a normalized version of *this
-    MVector < Scalar > getNormalized (void) const;
+    MVector<Scalar> getNormalized (void) const;
     // normalized this
     Scalar normalize (void);
 
     // CONVERSION
-    MPoint < Scalar > toPoint (void) const;
+    MPoint<Scalar> toPoint (void) const;
 
     ////////////////////////////////////////////////////////////////////////
   protected:
     // multiplication
-    MVector < Scalar > operator* (const MVector < Scalar > &v) const;
+    MVector<Scalar> operator* (const MVector<Scalar> &v) const;
   };
+}
 
   // include INLINES if required
-#include "MVector.cc"
+#include "cxxutils/MVector.cc"
 #ifndef OUTLINE
-#include "MVector.ih"
+#include "cxxutils/MVector.ih"
 #endif
-}
 
 #endif // MVECTOR_HPP

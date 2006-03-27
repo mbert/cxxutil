@@ -5,43 +5,43 @@
 //  Project: Repairing and texturing of VR models
 //  (C) Copyright Fachhochschule Wedel, Germany 2003
 //  -------------------------------------------------------------------
-//  $Revision: 1.1 $
-//  $Date: 2006-03-24 15:36:45 $
+//  $Revision: 1.2 $
+//  $Date: 2006-03-27 09:02:56 $
 // ******************************************************************** */
 
 
 // ASSIGNMENT OPERATORS
 // unary
-template < class Scalar > INLINE MVector < Scalar > &
-HmdUtils::MVector < Scalar >::operator= (const MVector < Scalar > &v)
+template<class Scalar> INLINE CxxUtils::MVector<Scalar> &
+CxxUtils::MVector<Scalar>::operator= (const CxxUtils::MVector<Scalar> &v)
 {
   assignTo (v);
   return *this;
 }
 
-template < class Scalar > INLINE MVector < Scalar > &
-HmdUtils::MVector < Scalar >::operator+= (const MVector < Scalar > &v)
+template<class Scalar> INLINE CxxUtils::MVector<Scalar> &
+CxxUtils::MVector<Scalar>::operator+= (const CxxUtils::MVector<Scalar> &v)
 {
   addToMe (v);
   return *this;
 }
 
-template < class Scalar > INLINE MVector < Scalar > &
-HmdUtils::MVector < Scalar >::operator-= (const MVector < Scalar > &v)
+template<class Scalar> INLINE CxxUtils::MVector<Scalar> &
+CxxUtils::MVector<Scalar>::operator-= (const CxxUtils::MVector<Scalar> &v)
 {
   subFromMe (v);
   return *this;
 }
 
-template < class Scalar > INLINE MVector < Scalar > &
-HmdUtils::MVector < Scalar >::operator*= (const Scalar s)
+template<class Scalar> INLINE CxxUtils::MVector<Scalar> &
+CxxUtils::MVector<Scalar>::operator*= (const Scalar s)
 {
   multMeBy (s);
   return *this;
 }
 
-template < class Scalar > INLINE MVector < Scalar > &
-HmdUtils::MVector < Scalar >::operator/= (const Scalar s)
+template<class Scalar> INLINE CxxUtils::MVector<Scalar> &
+CxxUtils::MVector<Scalar>::operator/= (const Scalar s)
 {
   divMeBy (s);
   return *this;
@@ -51,40 +51,40 @@ HmdUtils::MVector < Scalar >::operator/= (const Scalar s)
 // binary
 // NOTE: operators of type `Scalar operator vector` are not
 // implemented due to template constraints
-template < class Scalar > INLINE MVector < Scalar > 
-HmdUtils::MVector < Scalar >::operator+ (const MVector < Scalar > &v) const
+template<class Scalar> INLINE CxxUtils::MVector<Scalar> 
+CxxUtils::MVector<Scalar>::operator+ (const CxxUtils::MVector<Scalar> &v) const
 {
   return add (v);
 }
 
-template < class Scalar > INLINE MVector < Scalar > 
-HmdUtils::MVector < Scalar >::operator- (const MVector < Scalar > &v) const
+template<class Scalar> INLINE CxxUtils::MVector<Scalar> 
+CxxUtils::MVector<Scalar>::operator- (const CxxUtils::MVector<Scalar> &v) const
 {
   return subtract (v);
 }
 
-template < class Scalar > INLINE MVector < Scalar > 
-HmdUtils::MVector < Scalar >::operator* (const Scalar s) const
+template<class Scalar> INLINE CxxUtils::MVector<Scalar> 
+CxxUtils::MVector<Scalar>::operator* (const Scalar s) const
 {
   return multiply (s);
 }
 
-template < class Scalar > INLINE MVector < Scalar > 
-HmdUtils::MVector < Scalar >::operator/ (const Scalar s) const
+template<class Scalar> INLINE CxxUtils::MVector<Scalar> 
+CxxUtils::MVector<Scalar>::operator/ (const Scalar s) const
 {
   return divide (s);
 }
 
 // NORM OPERATORS
 // compute vector norm
-template < class Scalar > INLINE Scalar 
-HmdUtils::MVector < Scalar >::getNorm () const
+template<class Scalar> INLINE Scalar 
+CxxUtils::MVector<Scalar>::getNorm () const
 {
   return sqrt (this->getNormQuad ());
 }
 
-template < class Scalar > INLINE MVector < Scalar > 
-HmdUtils::MVector < Scalar >::operator* (const MVector < Scalar > &v) const
+template<class Scalar> INLINE CxxUtils::MVector<Scalar> 
+CxxUtils::MVector<Scalar>::operator* (const CxxUtils::MVector<Scalar> &v) const
 {
   return multiply (v);
 }

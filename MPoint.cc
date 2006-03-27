@@ -8,58 +8,58 @@
 //  Project: Repairing and texturing of VR models
 //  (C) Copyright Fachhochschule Wedel, Germany 2003
 //  -------------------------------------------------------------------
-//  $Revision: 1.1 $
-//  $Date: 2006-03-24 15:36:45 $
+//  $Revision: 1.2 $
+//  $Date: 2006-03-27 09:02:55 $
 // ******************************************************************** */
 
 // class specific includes
-#include "MPoint.hh"
+#include "cxxutils/MPoint.hh"
 
-template < class Scalar > 
-HmdUtils::MPoint < Scalar >::MPoint (int dim)
-  : AbstractTuple < Scalar > (dim)
+template<class Scalar> 
+CxxUtils::MPoint<Scalar>::MPoint (int dim)
+  : AbstractTuple<Scalar> (dim)
 {
 }
 
-template < class Scalar >
-HmdUtils::MPoint < Scalar >::MPoint (const MPoint < Scalar > &t)
-  : AbstractTuple < Scalar > (t)
+template<class Scalar>
+CxxUtils::MPoint<Scalar>::MPoint (const CxxUtils::MPoint<Scalar> &t)
+  : AbstractTuple<Scalar> (t)
 {
 }
 
-template < class Scalar >
-HmdUtils::MPoint < Scalar >::MPoint (const AbstractTuple < Scalar > &t)
-  : AbstractTuple < Scalar > (t)
+template<class Scalar>
+CxxUtils::MPoint<Scalar>::MPoint (const CxxUtils::AbstractTuple<Scalar> &t)
+  : AbstractTuple<Scalar> (t)
 {
 }
 
-template < class Scalar >
-HmdUtils::MPoint < Scalar >::MPoint (const int dim, const Scalar s)
-  : AbstractTuple < Scalar > (dim, s)
+template<class Scalar>
+CxxUtils::MPoint<Scalar>::MPoint (const int dim, const Scalar s)
+  : AbstractTuple<Scalar> (dim, s)
 {
 }
 
-template < class Scalar > 
-HmdUtils::MPoint < Scalar >::~MPoint (void)
+template<class Scalar> 
+CxxUtils::MPoint<Scalar>::~MPoint (void)
 {
 }
 
-template < class Scalar > MVector < Scalar >
-HmdUtils::MPoint < Scalar >::toVector (void) const
+template<class Scalar> CxxUtils::MVector<Scalar>
+CxxUtils::MPoint<Scalar>::toVector (void) const
 {
-  return MVector < Scalar > (*this);
+  return MVector<Scalar> (*this);
 }
 
 // distance computaion
-template < class Scalar > Scalar
-HmdUtils::MPoint < Scalar >::dist (const MPoint < Scalar > &q) const
+template<class Scalar> Scalar
+CxxUtils::MPoint<Scalar>::dist (const CxxUtils::MPoint<Scalar> &q) const
 {
   return (*this - q).getNorm ();
 }
 
 // include "outlined" INLINE functions
 #ifdef OUTLINE
-#include "MPoint.ih"
+#include "cxxutils/MPoint.ih"
 #endif
 
 

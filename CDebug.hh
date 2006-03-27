@@ -7,7 +7,7 @@
 //          
 // ----------------------------------------------------------------- */
 
-// $Id: CDebug.hh,v 1.1 2006-03-24 15:36:45 herbert Exp $
+// $Id: CDebug.hh,v 1.2 2006-03-27 09:02:55 herbert Exp $
 
 // debug inline functions?
 #ifndef INLINE
@@ -25,19 +25,19 @@
 #include <string>
 
 // other includes
-#include "cdefines.h"
+#include "cxxutils/cdefines.h"
 
-namespace HmdUtils 
+namespace CxxUtils 
 {
 
 #if !defined (NDEBUG) && !defined (DPRINTF)
 
-  int cdebug_printf (const char *tmpl, ...);
+  int debug_printf (const char *tmpl, ...);
 
 #define STRR(X) #X
 #define STR(X) STRR(X)
 #define DPRINTF(X) \
-  (cdebug_printf("DEBUG %s [%s]: ", __FILE__, STR(__LINE__)), cdebug_printf X)
+  (debug_printf("DEBUG %s [%s]: ", __FILE__, STR(__LINE__)), debug_printf X)
 
 #else /* NDEBUG */
 

@@ -13,7 +13,7 @@
 //  MVector3D (MVector<..>). This constructor is absolutely neccessary.
 //
 //  @ingroup math
-//  @author  Andreas Kolb <akolb@fh-wedel.de>, Martin Dietze <di@fh-wedel.de>
+//  @author  Andreas Kolb<akolb@fh-wedel.de>, Martin Dietze<di@fh-wedel.de>
 //  @version 0.1
 */
 /*  --------------------------------------------------------------------
@@ -32,16 +32,16 @@
 
 
 // class specific includes
-#include "cdefines.h"
-#include "MVector.hh"
+#include "cxxutils/cdefines.h"
+#include "cxxutils/MVector.hh"
 
 
 // forward declarations
 
-namespace HmdUtils 
+namespace CxxUtils 
 {
 
-  template < class Scalar > class MVector3D:public MVector < Scalar >
+  template<class Scalar> class MVector3D:public MVector<Scalar>
   {
   public:
     // -------------------------------------------------------------------
@@ -56,7 +56,7 @@ namespace HmdUtils
     /** Constructor from base class
 	@param p general vector as src for this 3D vector
     */
-    MVector3D (const MTuple < Scalar > &p);
+    MVector3D (const MTuple<Scalar> &p);
 
     /** Destructor */
     virtual ~ MVector3D (void);
@@ -68,16 +68,16 @@ namespace HmdUtils
     /** Computation of the cross product
 	@param v vector to build the cross-product with
     */
-    MVector3D < Scalar > operator^ (const MVector3D & v) const;
+    MVector3D<Scalar> operator^ (const MVector3D & v) const;
   };
 
-  typedef MVector3D < double >MV3D;
+  typedef MVector3D<double>MV3D;
+}
 
   // include INLINES if required
-#include "MVector3d.cc"
+#include "cxxutils/MVector3d.cc"
 #ifndef OUTLINE
-#include "MVector3d.ih"
+#include "cxxutils/MVector3d.ih"
 #endif
-}
 
 #endif // MVECTOR3D_HPP

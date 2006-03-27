@@ -3,7 +3,7 @@
  * Code based on Conversations article in C/C++ Users' Journal, issue 10/2001 
  */
 
-namespace HmdUtils
+namespace CxxUtils
 {
 
 

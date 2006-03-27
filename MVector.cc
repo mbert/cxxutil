@@ -5,66 +5,66 @@
 //  Project: Repairing and texturing of VR models
 //  (C) Copyright Fachhochschule Wedel, Germany 2003
 //  -------------------------------------------------------------------
-//  $Revision: 1.1 $
-//  $Date: 2006-03-24 15:36:45 $
+//  $Revision: 1.2 $
+//  $Date: 2006-03-27 09:02:56 $
 // ******************************************************************** */
 
 #ifndef MVECTOR_CPP
 #define MVECTOR_CPP
 
 // class specific includes
-#include "MVector.hh"
+#include "cxxutils/MVector.hh"
 
-template < class Scalar > 
-HmdUtils::MVector < Scalar >::MVector (int dim) : AbstractTuple < Scalar > (dim)
+template<class Scalar> 
+CxxUtils::MVector<Scalar>::MVector (int dim) : AbstractTuple<Scalar> (dim)
 {
 }
 
-template < class Scalar >
-HmdUtils::MVector < Scalar >::MVector (const MVector < Scalar > &t)
-  : AbstractTuple < Scalar > (t)
+template<class Scalar>
+CxxUtils::MVector<Scalar>::MVector (const MVector<Scalar> &t)
+  : AbstractTuple<Scalar> (t)
 {
 }
 
-template < class Scalar >
-HmdUtils::MVector < Scalar >::MVector (const AbstractTuple < Scalar > &t)
-  : AbstractTuple < Scalar > (t)
+template<class Scalar>
+CxxUtils::MVector<Scalar>::MVector (const AbstractTuple<Scalar> &t)
+  : AbstractTuple<Scalar> (t)
 {
 }
 
-template < class Scalar >
-HmdUtils::MVector < Scalar >::MVector (const int dim, const Scalar s)
-  : AbstractTuple < Scalar > (dim, s)
+template<class Scalar>
+CxxUtils::MVector<Scalar>::MVector (const int dim, const Scalar s)
+  : AbstractTuple<Scalar> (dim, s)
 {
 }
 
-template < class Scalar > 
-HmdUtils::MVector < Scalar >::~MVector (void)
+template<class Scalar> 
+CxxUtils::MVector<Scalar>::~MVector (void)
 {
 }
 
-template < class Scalar > Scalar 
-HmdUtils::MVector < Scalar >::operator| (const MVector < Scalar > &v) const
+template<class Scalar> Scalar 
+CxxUtils::MVector<Scalar>::operator| (const MVector<Scalar> &v) const
 {
   return (*this * v).getSum ();
 }
 
-template < class Scalar > MPoint < Scalar > 
-HmdUtils::MVector < Scalar >::toPoint (void) const
+template<class Scalar> CxxUtils::MPoint<Scalar> 
+CxxUtils::MVector<Scalar>::toPoint (void) const
 {
-  return MPoint < Scalar > (*this);
+  return MPoint<Scalar> (*this);
 }
 
 // return a normalized version of *this
-template < class Scalar > MVector < Scalar > 
-HmdUtils::MVector < Scalar >::getNormalized (void) const
+template<class Scalar> CxxUtils::MVector<Scalar> 
+CxxUtils::MVector<Scalar>::getNormalized (void) const
 {
   return ((*this) / getNorm ());
 }
 
 // normalized this
-template < class Scalar > Scalar 
-HmdUtils::MVector < Scalar >::normalize (void)
+template<class Scalar> Scalar 
+CxxUtils::MVector<Scalar>::normalize (void)
 {
   Scalar norm = getNorm ();
   (*this) /= norm;
@@ -73,7 +73,7 @@ HmdUtils::MVector < Scalar >::normalize (void)
 
 // include "outlined" INLINE functions
 #ifdef OUTLINE
-#include "MVector.ih"
+#include "cxxutils/MVector.ih"
 #endif
 
 

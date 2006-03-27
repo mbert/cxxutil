@@ -13,7 +13,7 @@
 //  MPoint3D (MPoint<..>). This constructor is absolutely neccessary.
 //
 //  @ingroup math
-//  @author  Andreas Kolb <akolb@fh-wedel.de>, Martin Dietze <di@fh-wedel.de>
+//  @author  Andreas Kolb<akolb@fh-wedel.de>, Martin Dietze<di@fh-wedel.de>
 //  @version 0.1
 */
 /*  --------------------------------------------------------------------
@@ -32,16 +32,16 @@
 
 
 // class specific includes
-#include "cdefines.h"
-#include "MPoint.hh"
+#include "cxxutils/cdefines.h"
+#include "cxxutils/MPoint.hh"
 
 
 // forward declarations
 
-namespace HmdUtils 
+namespace CxxUtils 
 {
 
-  template < class Scalar > class MPoint3D:public MPoint < Scalar >
+  template<class Scalar> class MPoint3D:public MPoint<Scalar>
   {
   public:
     // -------------------------------------------------------------------
@@ -56,19 +56,19 @@ namespace HmdUtils
     /** Constructor from base class
 	@param p general point as src for this 3D point
     */
-    MPoint3D (const MTuple < Scalar > &p);
+    MPoint3D (const MTuple<Scalar> &p);
 
     /** Destructor */
     virtual ~ MPoint3D (void);
   };
 
-  typedef MPoint3D < double >MP3D;
+  typedef MPoint3D<double>MP3D;
+}
 
   // include INLINES if required
-#include "MPoint3d.cc"
+#include "cxxutils/MPoint3d.cc"
 #ifndef OUTLINE
-#include "MPoint3d.ih"
+#include "cxxutils/MPoint3d.ih"
 #endif
-}
 
 #endif // MPOINT3D_HPP
