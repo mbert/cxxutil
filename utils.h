@@ -14,15 +14,15 @@
 /* --------------------------------------------------------------------
  * Utility function declarations
  *
- * $Date: 2006-03-27 13:00:01 $
- * $Revision: 1.4 $
+ * $Date: 2006-03-27 13:40:22 $
+ * $Revision: 1.5 $
  * -------------------------------------------------------------------- */
 
 /**
  * @short General utility functions
  */
 
-#include <stdio.h>
+#include <cstdio>
 #include <cstdlib>
 #include <string>
 
@@ -83,6 +83,41 @@ namespace CxxUtil
    * @return a new C-string
    */
   char *strdup(const std::string &str);
+
+  /**
+   * @brief Converts an integer into a string
+   *
+   * A pointer to a new string containing the result is returned. 
+   *
+   * @param num the number
+   * @return a string object with the result
+   */
+  std::string itoa (long num);
+  /**
+   * @brief Converts an unsigned long integer into a string
+   *
+   * A pointer to a new string containing the result is returned. 
+   *
+   * @param num the number
+   * @return a string object with the result
+   */
+  std::string utoa (unsigned long num);
+  /**
+   * Convert a string to a long int using any base
+   * @param str the string to process
+   * @param base the numbering base 
+   * @return an int representing the number
+   * @exception std::invalid_argument if the string could not be converted
+   */
+  long atoi(const std::string &str, int base = 10);
+  /**
+   * Convert a string to a unsigned long int using any base
+   * @param str the string to process
+   * @param base the numbering base 
+   * @return an int representing the number
+   * @exception std::invalid_argument if the string could not be converted
+   */
+  unsigned long atou(const std::string &str, int base = 10);
 
 #define CXXU_NTOHD(x) ntohd(x)
 #define CXXU_HTOND(x) htond(x)

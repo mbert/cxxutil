@@ -1,0 +1,67 @@
+Installation of the CxxUtil package on Windows systems
+======================================================
+
+Prerequisites
+-------------
+
+Supported platform: Windows NT, MS VC++ 6.0
+Probably working (not tested): Windows 2000, Windows XP, 
+                               VC++ versions other than 6.0
+
+Not supported: DOS-based Windows versions as the make process
+needs cmd.exe. Hand-compile may work however.
+
+The environment to run the VC++ command line utilities (cl.exe,
+nmake.exe etc.) needs to be set.
+
+
+Building Procedure
+------------------
+
+This step can be skipped if using the binary distribution.
+
+1. Unpack the package using tar and gzip, *don't* use WinZIP as it
+   is likely to mess up the image files contained in the package.
+2. Open a command line session, change to the `CxxUtil' directory 
+   and enter this command: `nmake -f Makefile.msc all' to generate
+   the programs.
+3. To run the tests, now enter: `nmake -f Makefile.msc _test'. If
+   successful, you should get the message `From ze test its end!' 
+   as the last output. If the test fails at the `imagefile' target,
+   check the test image files in the `test' directory and make sure
+   not to use WinZIP to extract them from the archive.
+
+Notes
+-----
+
+The MSC Makefiles are not very sophisticated, they do not contain any
+dependency information. As the package is primarily developed on real
+operating systems (Unix) there has not been too much testing under 
+Windows, apart from running the test suite.
+
+If using Visual C++, existing code may not compile anymore after 
+including the wrapper headers from this library. This is due to the 
+fact that VC++'s default scope of loop variables is not ISO-C++
+compatbile. If problems occur, just add the following immediately
+after the `#include' directive of the library's headers:
+
+  #ifdef for
+  #undef for
+  #endif
+
+
+Installation of the binary files
+--------------------------------
+
+For building software that uses the library, the headers and the library
+files need to be installed:
+
+1. Copy the library file[s] to some directory searched for libraries by
+   the linker.
+2. Create a directory `cxxutil' under a directory searched for headers by
+   the preprocessor. 
+3. Copy all headers (all .h, .hh files) to that directory
+4. Copy all inline implementations (all .ih files) to that directory
+5. Copy all template implementations (all .cc files implementing template
+   class methods, if in doubt: all files starting with uppercase letters) 
+   to that directory

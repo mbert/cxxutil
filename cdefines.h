@@ -13,12 +13,12 @@
 /* --------------------------------------------------------------------
  * Common definitions
  *
- * $Date: 2006-03-27 13:12:43 $
- * $Revision: 1.5 $
+ * $Date: 2006-03-27 13:40:22 $
+ * $Revision: 1.6 $
  * -------------------------------------------------------------------- */
 
-#include <limits.h>
-#include <float.h>
+#include <climits>
+#include <cfloat>
 #include <stdint.h>
 
 #ifndef EPSILON
@@ -70,7 +70,7 @@ typedef int64_t i64;
 // --------------------------------------------------------------------
 // GNU/Linux on MTX-1 platform, no glibc
 // --------------------------------------------------------------------
-#elif defined (__GNUC__) && defined (CONFIG_MIPS_MTX1) && (__GNUC__ >= 2)
+#elif defined (__GNUC__) && defined (__MIPSEL__) && (__GNUC__ >= 2)
 #ifndef LINUX
 #define LINUX
 #endif
@@ -226,8 +226,15 @@ typedef __int64 i64;
 #define SIZE_CHECK(type,size,name) \
   typedef type name[(sizeof (type) == size)*2-1]
 
-SIZE_CHECK (u16, 2, test_if_16_is_16);
-SIZE_CHECK (u32, 4, test_if_32_is_32);
+SIZE_CHECK (u8,  1, test_if_u8_is_8);
+SIZE_CHECK (u16, 2, test_if_u16_is_16);
+SIZE_CHECK (u32, 4, test_if_u32_is_32);
+SIZE_CHECK (u64, 8, test_if_u64_is_64);
+
+SIZE_CHECK (i8,  1, test_if_i8_is_8);
+SIZE_CHECK (i16, 2, test_if_i16_is_16);
+SIZE_CHECK (i32, 4, test_if_i32_is_32);
+SIZE_CHECK (i64, 8, test_if_i64_is_64);
 
 #undef SIZE_CHECK
 

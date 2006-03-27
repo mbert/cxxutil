@@ -14,8 +14,8 @@
 /* --------------------------------------------------------------------
  * Generic matrix class implementation
  *
- * $Date: 2006-03-27 13:00:00 $
- * $Revision: 1.4 $
+ * $Date: 2006-03-27 13:40:22 $
+ * $Revision: 1.5 $
  * -------------------------------------------------------------------- */
 
 // class specific includes
@@ -23,8 +23,8 @@
 
 // system specific includes
 #include <iostream>
-#include <stdarg.h>
-#include <assert.h>
+#include <cstdarg>
+#include <cassert>
 
 /* ========================= main class MMatrix ======================= */
 

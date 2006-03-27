@@ -11,12 +11,12 @@
 /* --------------------------------------------------------------------
  * Math utility function inline implementations
  *
- * $Date: 2006-03-27 13:00:01 $
- * $Revision: 1.4 $
+ * $Date: 2006-03-27 13:40:22 $
+ * $Revision: 1.5 $
  * -------------------------------------------------------------------- */
 
-#include <math.h>
-#include <float.h>
+#include <cmath>
+#include <cfloat>
 
 INLINE double
 CxxUtil::cub (double a)

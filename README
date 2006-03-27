@@ -1,0 +1,36 @@
+CxxUtil a toolbox for C++
+=========================
+
+The main idea behind CxxUtil is to collect more or less
+general-purpose code for use in C++ programs without copying
+and pasting code from module to module. Fell free to add own 
+classes and/or utility functions to the library.
+
+
+THIS IS BETA SOFTWARE!
+======================
+
+The code has been in use for a while now and can thus be considered
+fairly stable. Still it is of course not free of bugs! If you use 
+this software you know what you are doing. I am not responsible for 
+any damage it does to your system.
+
+License
+=======
+
+This software is provided 'as-is', without any express or implied
+warranty. In no event will the authors be held liable for any damages
+arising from the use of this software.
+
+This software is free software in terms of the GNU Lesser Public
+License which can be found in the COPYING file which is part of this 
+package.
+
+
+Authors
+=======
+
+  Martin Dietze <herbert@spamcop.net>
+  Andreas Kolb <andreas.kolb@uni-siegen.de>
+  ... and more
+

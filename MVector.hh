@@ -14,8 +14,8 @@
 /* --------------------------------------------------------------------
  * 3D vector class definition
  *
- * $Date: 2006-03-27 13:00:00 $
- * $Revision: 1.5 $
+ * $Date: 2006-03-27 13:40:22 $
+ * $Revision: 1.6 $
  * -------------------------------------------------------------------- */
 
 /**
@@ -40,7 +40,7 @@
 
 // system specific includes
 #include <iostream>
-#include <math.h>
+#include <cmath>
 
 namespace CxxUtil 
 {

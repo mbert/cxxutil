@@ -11,8 +11,8 @@
 /* --------------------------------------------------------------------
  * Utility function implementations
  *
- * $Date: 2006-03-27 13:00:01 $
- * $Revision: 1.4 $
+ * $Date: 2006-03-27 13:40:22 $
+ * $Revision: 1.5 $
  * -------------------------------------------------------------------- */
 
 
@@ -42,10 +42,12 @@
 #endif
 #include <fcntl.h>
 
-#include <stdlib.h>
-#include <time.h>
-#include <string.h>
-#include <math.h>
+#include <cstdlib>
+#include <ctime>
+#include <cstring>
+#include <cmath>
+#include <cassert>
+#include <stdexcept>
 
 #if defined __GNUC__ && __GNUC__ == 2 || __GNUC__ == 3 && __GNUC_MINOR__ == 0
  /* this is a workaround for g++ 2.95 and g++ 3.0 */
@@ -260,3 +262,43 @@ CxxUtil::strdup (const char *str)
   return ret;
 }
 
+
+std::string
+CxxUtil::itoa (long num)
+{
+  char ctemp[256];
+  snprintf(ctemp, sizeof ctemp, "%ld", num);
+  return std::string(ctemp);
+}
+
+std::string
+CxxUtil::utoa (unsigned long num)
+{
+  char ctemp[256];
+  snprintf(ctemp, sizeof ctemp, "%lu", num);
+  return std::string(ctemp);
+}
+
+long
+CxxUtil::atoi(const std::string &str, int base)
+{
+  char *error = NULL;
+  long ret = (int)strtol(str.c_str(), &error, base);
+  if (*error != '\0')
+    {
+      throw std::invalid_argument(std::string("Invalid number format at: ") + error);
+    }
+  return ret;
+}
+
+unsigned long
+CxxUtil::atou(const std::string &str, int base)
+{
+  char *error = NULL;
+  unsigned long ret = (int)strtoul(str.c_str(), &error, base);
+  if (*error != '\0')
+    {
+      throw std::invalid_argument(std::string("Invalid number format at: ") + error);
+    }
+  return ret;
+}

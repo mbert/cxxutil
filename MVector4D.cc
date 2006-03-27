@@ -14,12 +14,12 @@
 /* --------------------------------------------------------------------
  * 4D vector class implementation
  *
- * $Date: 2006-03-27 13:00:00 $
- * $Revision: 1.2 $
+ * $Date: 2006-03-27 13:40:22 $
+ * $Revision: 1.3 $
  * -------------------------------------------------------------------- */
 
 // system specific includes
-#include <assert.h>
+#include <cassert>
 
 // class specific includes
 #include "cxxutil/MVector4D.hh"

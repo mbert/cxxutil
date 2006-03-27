@@ -14,18 +14,18 @@
 /* --------------------------------------------------------------------
  * Testing macros
  *
- * $Date: 2006-03-27 13:00:01 $
- * $Revision: 1.4 $
+ * $Date: 2006-03-27 13:40:22 $
+ * $Revision: 1.5 $
  * -------------------------------------------------------------------- */
 
 /**
  * @short Testing macros
  */
 
-#include <assert.h>
-#include <math.h>
-#include <float.h>
-#include <string.h>
+#include <cassert>
+#include <cmath>
+#include <cfloat>
+#include <cstring>
 #include <stdexcept>
 
 /** The code cmd must throw an exception */
