@@ -14,8 +14,10 @@
 /* --------------------------------------------------------------------
  * Getopt wrapper class definition
  *
- * $Date: 2006-03-27 13:00:00 $
- * $Revision: 1.5 $
+ * Author: Michael Lipka, minor stuff by Martin Dietze
+ *
+ * $Date: 2006-03-27 13:05:09 $
+ * $Revision: 1.6 $
  * -------------------------------------------------------------------- */
 
 #include <list>

@@ -11,8 +11,10 @@
 /* --------------------------------------------------------------------
  * Getopt wrapper class implementation
  *
- * $Date: 2006-03-27 13:00:00 $
- * $Revision: 1.4 $
+ * Author: Michael Lipka, minor stuff by Martin Dietze
+ *
+ * $Date: 2006-03-27 13:05:09 $
+ * $Revision: 1.5 $
  * -------------------------------------------------------------------- */
 
 #include "cxxutil/Getopt.hh"
