@@ -1,6 +1,6 @@
 /* -*-gnu-*- */
 /*
- * CxxUtils C++ utility library
+ * CxxUtil C++ utility library
  * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
  *
  * Unless otherwise stated, this software is provided under the terms of the
@@ -11,22 +11,22 @@
 /* --------------------------------------------------------------------
  * Getopt wrapper class implementation
  *
- * $Date: 2006-03-27 11:08:15 $
- * $Revision: 1.3 $
+ * $Date: 2006-03-27 13:00:00 $
+ * $Revision: 1.4 $
  * -------------------------------------------------------------------- */
 
-#include "cxxutils/Getopt.hh"
+#include "cxxutil/Getopt.hh"
 
 #include <stdexcept>
 #include <iostream>
 #include <cstdio>
 #include <cassert>
 
-#include "cxxutils/utils.h"
-#include "cxxutils/cdefines.h"
+#include "cxxutil/utils.h"
+#include "cxxutil/cdefines.h"
 
 extern "C" {
-#include "cxxutils/getopt/getopt_wrapper.h"
+#include "cxxutil/getopt/getopt_wrapper.h"
 }
 
 extern int my_optopt;
@@ -79,7 +79,7 @@ structOption_add(struct option *opts, int &currentSize, struct option entry)
 
 // ----------------------------- Public ---------------------------------------
 
-CxxUtils::Getopt::Getopt (bool useSystemWarning)
+CxxUtil::Getopt::Getopt (bool useSystemWarning)
 	: m_longOpts(NULL), m_longOptsSize(0), m_lastoptndx(1), m_error(false)
 {
 	if (!useSystemWarning)
@@ -88,7 +88,7 @@ CxxUtils::Getopt::Getopt (bool useSystemWarning)
 	}
 }
 
-CxxUtils::Getopt::~Getopt (void)
+CxxUtil::Getopt::~Getopt (void)
 {
 	if (m_longOptsSize > 0)
 	{
@@ -101,7 +101,7 @@ CxxUtils::Getopt::~Getopt (void)
 }
 
 void 
-CxxUtils::Getopt::addOption (const char shortOpt, const bool takesArg, 
+CxxUtil::Getopt::addOption (const char shortOpt, const bool takesArg, 
 		const std::string description, const std::string longOpt)
 {
 	OptionDescription tmp;
@@ -132,7 +132,7 @@ CxxUtils::Getopt::addOption (const char shortOpt, const bool takesArg,
 }
 
 void 
-CxxUtils::Getopt::process(const int argc, char* const argv[])
+CxxUtil::Getopt::process(const int argc, char* const argv[])
 {
 	int o;
 	optind = 0;
@@ -161,8 +161,8 @@ CxxUtils::Getopt::process(const int argc, char* const argv[])
 	}
 }
 
-const CxxUtils::Getopt::ProgOption &
-CxxUtils::Getopt::opt (const std::string option) const
+const CxxUtil::Getopt::ProgOption &
+CxxUtil::Getopt::opt (const std::string option) const
 {
 	for (OptionIterator o = m_options.begin(); o != m_options.end(); ++o)
 	{
@@ -176,7 +176,7 @@ CxxUtils::Getopt::opt (const std::string option) const
 
 
 bool 
-CxxUtils::Getopt::given (const std::string option) const
+CxxUtil::Getopt::given (const std::string option) const
 {
 	for (OptionIterator o = m_options.begin(); o != m_options.end(); ++o)
 	{
@@ -189,7 +189,7 @@ CxxUtils::Getopt::given (const std::string option) const
 }
 
 void 
-CxxUtils::Getopt::showHelp(void)
+CxxUtil::Getopt::showHelp(void)
 {
 	int longest = 0;
 	for (std::list<OptionDescription>::iterator it = m_optDescriptions.begin();
@@ -214,14 +214,14 @@ CxxUtils::Getopt::showHelp(void)
 // ----------------------- Private / Protected --------------------------------
 
 std::string 
-CxxUtils::Getopt::ucar2str(const int chr)
+CxxUtil::Getopt::ucar2str(const int chr)
 {
 	sprintf(m_convstr,"%c", chr);
 	return m_convstr;
 }
 
 const std::string 
-CxxUtils::Getopt::ProgOption::getValue() const 
+CxxUtil::Getopt::ProgOption::getValue() const 
 {
 	if (!m_valueSet)
 	{

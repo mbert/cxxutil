@@ -1,5 +1,5 @@
 # ##############################################################################
-# Configure script for cxxutils --  (c) 2006 by Herbert
+# Configure script for cxxutil --  (c) 2006 by Herbert
 
 # ##############################################################################
 # Initial checks (compiler, linker, standard libraries...)

@@ -1,6 +1,6 @@
 /* -*-gnu-*- */
 /*
- * CxxUtils C++ utility library
+ * CxxUtil C++ utility library
  * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
  *
  * Unless otherwise stated in the source file, this code is provided under 
@@ -14,8 +14,8 @@
 /* --------------------------------------------------------------------
  * 3D vector class definition
  *
- * $Date: 2006-03-27 12:32:44 $
- * $Revision: 1.4 $
+ * $Date: 2006-03-27 13:00:00 $
+ * $Revision: 1.5 $
  * -------------------------------------------------------------------- */
 
 /**
@@ -34,15 +34,15 @@
 #endif
 
 // class specific includes
-#include "cxxutils/MTuple.hh"
+#include "cxxutil/MTuple.hh"
 // this is necessary for VC++ compatibility!
-#include "cxxutils/MPoint.hh"
+#include "cxxutil/MPoint.hh"
 
 // system specific includes
 #include <iostream>
 #include <math.h>
 
-namespace CxxUtils 
+namespace CxxUtil 
 {
   // forward declaration
   template<class Scalar> class MPoint;
@@ -101,9 +101,9 @@ namespace CxxUtils
 }
 
   // include INLINES if required
-#include "cxxutils/MVector.cc"
+#include "cxxutil/MVector.cc"
 #ifndef OUTLINE
-#include "cxxutils/MVector.ih"
+#include "cxxutil/MVector.ih"
 #endif
 
 #endif // MVECTOR_H

@@ -1,6 +1,6 @@
 /* -*-gnu-*- */
 /*
- * CxxUtils C++ utility library
+ * CxxUtil C++ utility library
  * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
  *
  * Unless otherwise stated in the source file, this code is provided under 
@@ -14,8 +14,8 @@
 /* --------------------------------------------------------------------
  * 2D Point class definition
  *
- * $Date: 2006-03-27 12:32:44 $
- * $Revision: 1.2 $
+ * $Date: 2006-03-27 13:00:00 $
+ * $Revision: 1.3 $
  * -------------------------------------------------------------------- */
 
 /**
@@ -40,13 +40,13 @@
 
 
 // class specific includes
-#include "cxxutils/cdefines.h"
-#include "cxxutils/MPoint.hh"
+#include "cxxutil/cdefines.h"
+#include "cxxutil/MPoint.hh"
 
 
 // forward declarations
 
-namespace CxxUtils 
+namespace CxxUtil 
 {
 
   template<class Scalar> class MPoint2D:public MPoint<Scalar>
@@ -74,9 +74,9 @@ namespace CxxUtils
 }
 
   // include INLINES if required
-#include "cxxutils/MPoint2D.cc"
+#include "cxxutil/MPoint2D.cc"
 #ifndef OUTLINE
-#include "cxxutils/MPoint2D.ih"
+#include "cxxutil/MPoint2D.ih"
 #endif
 
 #endif // MPOINT2D_H

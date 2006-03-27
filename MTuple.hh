@@ -1,6 +1,6 @@
 /* -*-gnu-*- */
 /*
- * CxxUtils C++ utility library
+ * CxxUtil C++ utility library
  * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
  *
  * Unless otherwise stated in the source file, this code is provided under 
@@ -14,8 +14,8 @@
 /* --------------------------------------------------------------------
  * 3D vector class definition
  *
- * $Date: 2006-03-27 12:32:44 $
- * $Revision: 1.4 $
+ * $Date: 2006-03-27 13:00:00 $
+ * $Revision: 1.5 $
  * -------------------------------------------------------------------- */
 
 /**
@@ -43,15 +43,15 @@
 #endif
 
 // class specific includes
-#include "cxxutils/CDebug.hh"
-#include "cxxutils/cdefines.h"
-#include "cxxutils/mutil.h"
+#include "cxxutil/CDebug.hh"
+#include "cxxutil/cdefines.h"
+#include "cxxutil/mutil.h"
 
 // system specific includes
 #include <iostream>
 #include <math.h>
 
-namespace CxxUtils 
+namespace CxxUtil 
 {
   template<class Scalar> class AbstractTuple
   {
@@ -283,9 +283,9 @@ namespace CxxUtils
 }
 
   // include INLINES if required
-#include "cxxutils/MTuple.cc"
+#include "cxxutil/MTuple.cc"
 #ifndef OUTLINE
-#include "cxxutils/MTuple.ih"
+#include "cxxutil/MTuple.ih"
 #endif
 
 #endif // MTUPLE_H

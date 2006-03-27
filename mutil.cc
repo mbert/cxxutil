@@ -1,6 +1,6 @@
 /* -*-gnu-*- */
 /*
- * CxxUtils C++ utility library
+ * CxxUtil C++ utility library
  * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
  *
  * Unless otherwise stated, this software is provided under the terms of the
@@ -11,16 +11,16 @@
 /* --------------------------------------------------------------------
  * Math utilities function implementations
  *
- * $Date: 2006-03-27 11:08:15 $
- * $Revision: 1.3 $
+ * $Date: 2006-03-27 13:00:01 $
+ * $Revision: 1.4 $
  * -------------------------------------------------------------------- */
 
 // C-file for the INLINE-functions in mutil.h
-#include "cxxutils/mutil.h"
+#include "cxxutil/mutil.h"
 
-// include "cxxutils/outlined" INLINE functions
+// include "cxxutil/outlined" INLINE functions
 #ifdef OUTLINE
-#include "cxxutils/mutil.ih"
+#include "cxxutil/mutil.ih"
 #endif
 
 #ifdef __WATCOMC__ 

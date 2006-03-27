@@ -1,6 +1,6 @@
 /* -*-gnu-*- */
 /*
- * CxxUtils C++ utility library
+ * CxxUtil C++ utility library
  * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
  *
  * Unless otherwise stated, this software is provided under the terms of the
@@ -14,25 +14,25 @@
 /* --------------------------------------------------------------------
  * 3D point class implementation
  *
- * $Date: 2006-03-27 11:08:15 $
- * $Revision: 1.1 $
+ * $Date: 2006-03-27 13:00:00 $
+ * $Revision: 1.2 $
  * -------------------------------------------------------------------- */
 
 // system specific includes
 #include <assert.h>
 
 // class specific includes
-#include "cxxutils/MPoint3D.hh"
+#include "cxxutil/MPoint3D.hh"
 
 // include "outlined" INLINE functions
 #ifdef OUTLINE
-#include "cxxutils/MPoint3D.ih"
+#include "cxxutil/MPoint3D.ih"
 #endif
 
 // Description:
 // Default constructor using MPoint instantiation
 template<class Scalar> 
-CxxUtils::MPoint3D<Scalar>::MPoint3D (void)
+CxxUtil::MPoint3D<Scalar>::MPoint3D (void)
   : MPoint<Scalar> (3)
 {
 }
@@ -42,7 +42,7 @@ CxxUtils::MPoint3D<Scalar>::MPoint3D (void)
 // Description:
 // Build an instance given two doubles
 template<class Scalar>
-CxxUtils::MPoint3D<Scalar>::MPoint3D (const Scalar & u, const Scalar & v,
+CxxUtil::MPoint3D<Scalar>::MPoint3D (const Scalar & u, const Scalar & v,
 					 const Scalar & w)
   : MPoint<Scalar> (3)
 {
@@ -56,7 +56,7 @@ CxxUtils::MPoint3D<Scalar>::MPoint3D (const Scalar & u, const Scalar & v,
 // Upward copy constructor 
 // This constructor is the base for inheriting the MPoint-functionality
 template<class Scalar>
-CxxUtils::MPoint3D<Scalar>::MPoint3D (const MTuple<Scalar> &p)
+CxxUtil::MPoint3D<Scalar>::MPoint3D (const MTuple<Scalar> &p)
   : MPoint<Scalar> (p)
 {
   assert (p.getDim () == 3);
@@ -66,7 +66,7 @@ CxxUtils::MPoint3D<Scalar>::MPoint3D (const MTuple<Scalar> &p)
 // Description:
 // Virtual destructor (just for completeness)
 template<class Scalar> 
-CxxUtils::MPoint3D<Scalar>::~MPoint3D (void)
+CxxUtil::MPoint3D<Scalar>::~MPoint3D (void)
 {
 }
 

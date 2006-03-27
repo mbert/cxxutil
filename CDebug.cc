@@ -1,6 +1,6 @@
 /* -*-gnu-*- */
 /*
- * CxxUtils C++ utility library
+ * CxxUtil C++ utility library
  * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
  *
  * Unless otherwise stated, this software is provided under the terms of the
@@ -11,11 +11,11 @@
 /* --------------------------------------------------------------------
  * Debugging utils class implementation
  *
- * $Date: 2006-03-27 11:08:15 $
- * $Revision: 1.3 $
+ * $Date: 2006-03-27 13:00:00 $
+ * $Revision: 1.4 $
  * -------------------------------------------------------------------- */
 
-#include "cxxutils/CDebug.hh"
+#include "cxxutil/CDebug.hh"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -27,20 +27,20 @@ using namespace std;
 #endif
 
 // Definition and initialisation of static class data
-ofstream CxxUtils::CDebug::ostr;
-string CxxUtils::CDebug::errorcodeFilename;
-int CxxUtils::CDebug::level;
+ofstream CxxUtil::CDebug::ostr;
+string CxxUtil::CDebug::errorcodeFilename;
+int CxxUtil::CDebug::level;
 
 
 //! Default constructor
 /** Constructor for the static CDebug-class */
-CxxUtils::CDebug::CDebug (void)
+CxxUtil::CDebug::CDebug (void)
 {
   level = CDebug::Info | CDebug::Error;
 }
 
 //! destructor
-CxxUtils::CDebug::~CDebug (void)
+CxxUtil::CDebug::~CDebug (void)
 {
   if (ostr.is_open ())
     {
@@ -54,7 +54,7 @@ CxxUtils::CDebug::~CDebug (void)
 }
 
 void
-CxxUtils::CDebug::writeErrorCode (int errorcode)
+CxxUtil::CDebug::writeErrorCode (int errorcode)
 {
   if (errorcodeFilename.length ())
     {
@@ -74,7 +74,7 @@ CxxUtils::CDebug::writeErrorCode (int errorcode)
 
 //! Setting out-stream to a file
 bool 
-CxxUtils::CDebug::open (const char *fileName)
+CxxUtil::CDebug::open (const char *fileName)
 {
   if (ostr.is_open ())
     {
@@ -99,7 +99,7 @@ CxxUtils::CDebug::open (const char *fileName)
 /** This method is used to put a given message to stdout or the specified
     file*/
 ostream & 
-CxxUtils::CDebug::getOStr (void)
+CxxUtil::CDebug::getOStr (void)
 {
   if (ostr.is_open ())
     {
@@ -113,7 +113,7 @@ CxxUtils::CDebug::getOStr (void)
 
 
 void
-CxxUtils::CDebug::setLevel (const char *str)
+CxxUtil::CDebug::setLevel (const char *str)
 {
   int len = strlen (str);
   int curr = 0;
@@ -164,7 +164,7 @@ CxxUtils::CDebug::setLevel (const char *str)
 
 #if !defined (NDEBUG) && !defined (DPRINTF)
 int 
-CxxUtils::debug_printf (const char *tmpl, ...)
+CxxUtil::debug_printf (const char *tmpl, ...)
 {
   va_list ap;
   int result;

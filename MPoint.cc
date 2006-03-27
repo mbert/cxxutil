@@ -1,6 +1,6 @@
 /* -*-gnu-*- */
 /*
- * CxxUtils C++ utility library
+ * CxxUtil C++ utility library
  * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
  *
  * Unless otherwise stated, this software is provided under the terms of the
@@ -14,58 +14,58 @@
 /* --------------------------------------------------------------------
  * Generic point class implementation
  *
- * $Date: 2006-03-27 11:08:15 $
- * $Revision: 1.3 $
+ * $Date: 2006-03-27 13:00:00 $
+ * $Revision: 1.4 $
  * -------------------------------------------------------------------- */
 
 // class specific includes
-#include "cxxutils/MPoint.hh"
+#include "cxxutil/MPoint.hh"
 
 template<class Scalar> 
-CxxUtils::MPoint<Scalar>::MPoint (int dim)
+CxxUtil::MPoint<Scalar>::MPoint (int dim)
   : AbstractTuple<Scalar> (dim)
 {
 }
 
 template<class Scalar>
-CxxUtils::MPoint<Scalar>::MPoint (const CxxUtils::MPoint<Scalar> &t)
+CxxUtil::MPoint<Scalar>::MPoint (const CxxUtil::MPoint<Scalar> &t)
   : AbstractTuple<Scalar> (t)
 {
 }
 
 template<class Scalar>
-CxxUtils::MPoint<Scalar>::MPoint (const CxxUtils::AbstractTuple<Scalar> &t)
+CxxUtil::MPoint<Scalar>::MPoint (const CxxUtil::AbstractTuple<Scalar> &t)
   : AbstractTuple<Scalar> (t)
 {
 }
 
 template<class Scalar>
-CxxUtils::MPoint<Scalar>::MPoint (const int dim, const Scalar s)
+CxxUtil::MPoint<Scalar>::MPoint (const int dim, const Scalar s)
   : AbstractTuple<Scalar> (dim, s)
 {
 }
 
 template<class Scalar> 
-CxxUtils::MPoint<Scalar>::~MPoint (void)
+CxxUtil::MPoint<Scalar>::~MPoint (void)
 {
 }
 
-template<class Scalar> CxxUtils::MVector<Scalar>
-CxxUtils::MPoint<Scalar>::toVector (void) const
+template<class Scalar> CxxUtil::MVector<Scalar>
+CxxUtil::MPoint<Scalar>::toVector (void) const
 {
   return MVector<Scalar> (*this);
 }
 
 // distance computaion
 template<class Scalar> Scalar
-CxxUtils::MPoint<Scalar>::dist (const CxxUtils::MPoint<Scalar> &q) const
+CxxUtil::MPoint<Scalar>::dist (const CxxUtil::MPoint<Scalar> &q) const
 {
   return (*this - q).getNorm ();
 }
 
 // include "outlined" INLINE functions
 #ifdef OUTLINE
-#include "cxxutils/MPoint.ih"
+#include "cxxutil/MPoint.ih"
 #endif
 
 

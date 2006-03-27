@@ -1,6 +1,6 @@
 /* -*-gnu-*- */
 /*
- * CxxUtils C++ utility library
+ * CxxUtil C++ utility library
  * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
  *
  * Unless otherwise stated in the source file, this code is provided under 
@@ -14,8 +14,8 @@
 /* --------------------------------------------------------------------
  * Getopt wrapper class definition
  *
- * $Date: 2006-03-27 12:32:44 $
- * $Revision: 1.4 $
+ * $Date: 2006-03-27 13:00:00 $
+ * $Revision: 1.5 $
  * -------------------------------------------------------------------- */
 
 #include <list>
@@ -31,7 +31,7 @@
 
 struct my_option;
 
-namespace CxxUtils 
+namespace CxxUtil 
 {
   extern int my_opterr;
 

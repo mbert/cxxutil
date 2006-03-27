@@ -1,16 +1,16 @@
-Source: libcxxutils
+Source: libcxxutil
 Priority: optional
 Maintainer: Martin Dietze <md@paulina.4g>
 Build-Depends: debhelper (>= 4.0.0)
 Standards-Version: 3.6.2
 Section: libs
 
-Package: libcxxutils-dev
+Package: libcxxutil-dev
 Section: libdevel
 Architecture: any
-Description: headers and static lib files for the libcxxutils library.
+Description: headers and static lib files for the libcxxutil library.
 
-Package: libcxxutils1
+Package: libcxxutil1
 Section: libs
 Architecture: any
-Description: shared library files for the libcxxutils library.
+Description: shared library files for the libcxxutil library.

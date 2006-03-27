@@ -1,10 +1,10 @@
 #
-# Makefile for cxxutils --  (c) 2006 by Herbert
+# Makefile for cxxutil --  (c) 2006 by Herbert
 #
 # Compatibility: GNU
 #
-# $Revision: 1.6 $
-# $Date: 2006-03-27 12:46:13 $
+# $Revision: 1.7 $
+# $Date: 2006-03-27 13:00:00 $
 #
 
 #
@@ -32,7 +32,7 @@ E =
 A = .a
 D = .so
 
-NAME = libCxxUtils
+NAME = libCxxUtil
 TARGET = $(NAME)$A
 
 #
@@ -51,8 +51,8 @@ TEMPLATES = $(shell grep -l _CC *.cc)
 LIBS = 
 BINDIR = $(prefix)/bin
 LIBDIR = $(prefix)/lib
-INCDIR = $(prefix)/include/cxxutils
-DOCDIR = $(prefix)/doc/cxxutils
+INCDIR = $(prefix)/include/cxxutil
+DOCDIR = $(prefix)/doc/cxxutil
 MANDIR = $(prefix)/man
 
 #
@@ -75,7 +75,7 @@ CXXFLAGS = $(CPPFLAGS) $(CXXSHARED) $(CXXOPT) $(CXXDEBUG) $(CXXWARN) @CXXMISC@
 all: $(TARGET)
 
 shared:
-	$(MAKE) -e LIB=libcxxutils$D CXXSHARED=-fPIC
+	$(MAKE) -e LIB=libcxxutil$D CXXSHARED=-fPIC
 
 complete: all test 
 
@@ -94,11 +94,11 @@ clean:
 
 distclean: 
 	-$(MAKE) clean
-	-rm -f config.cache config.status config.log Makefile 
+	-rm -f config.cache config.status config.log Makefile cxxutil-$(VERSION).tar.gz
 
-tar: cxxutils-$(VERSION).tar.gz
+tar: cxxutil-$(VERSION).tar.gz
 
-cxxutils-$(VERSION).tar.gz: clean
+cxxutil-$(VERSION).tar.gz: clean
 	rm -f $@
 	PWD=`pwd`; DIR=`basename $$PWD`; cd ..; find $$DIR -type f | \
 	egrep -v "CVS|autom4te\.cache|config\.status|config\.log" | \

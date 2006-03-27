@@ -1,6 +1,6 @@
 /* -*-gnu-*- */
 /*
- * CxxUtils C++ utility library
+ * CxxUtil C++ utility library
  * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
  *
  * Unless otherwise stated, this software is provided under the terms of the
@@ -14,24 +14,24 @@
 /* --------------------------------------------------------------------
  * 4D point class implementation
  *
- * $Date: 2006-03-27 11:08:15 $
- * $Revision: 1.1 $
+ * $Date: 2006-03-27 13:00:00 $
+ * $Revision: 1.2 $
  * -------------------------------------------------------------------- */
 
 // system specific includes
 
 // class specific includes
-#include "cxxutils/MPoint4D.hh"
+#include "cxxutil/MPoint4D.hh"
 
 // include "outlined" INLINE functions
 #ifdef OUTLINE
-#include "cxxutils/MPoint4D.ih"
+#include "cxxutil/MPoint4D.ih"
 #endif
 
 // Description:
 // Default constructor using MPoint instantiation
 template<class Scalar> 
-CxxUtils::MPoint4D<Scalar>::MPoint4D (void)
+CxxUtil::MPoint4D<Scalar>::MPoint4D (void)
   : MPoint<Scalar> (4)
 {
 }
@@ -41,7 +41,7 @@ CxxUtils::MPoint4D<Scalar>::MPoint4D (void)
 // Description:
 // Build an instance given two doubles
 template<class Scalar>
-CxxUtils::MPoint4D<Scalar>::MPoint4D (const Scalar & u, const Scalar & v,
+CxxUtil::MPoint4D<Scalar>::MPoint4D (const Scalar & u, const Scalar & v,
 					 const Scalar & w, const Scalar & x)
   : MPoint<Scalar> (4)
 {
@@ -56,7 +56,7 @@ CxxUtils::MPoint4D<Scalar>::MPoint4D (const Scalar & u, const Scalar & v,
 // Upward copy constructor 
 // This constructor is the base for inheriting the MPoint-functionality
 template<class Scalar>
-CxxUtils::MPoint4D<Scalar>::MPoint4D (const MTuple<Scalar> &p)
+CxxUtil::MPoint4D<Scalar>::MPoint4D (const MTuple<Scalar> &p)
   : MPoint<Scalar> (p)
 {
   assert (p.getDim () == 4);
@@ -66,12 +66,12 @@ CxxUtils::MPoint4D<Scalar>::MPoint4D (const MTuple<Scalar> &p)
 // Description:
 // Virtual destructor (just for completeness)
 template<class Scalar> 
-CxxUtils::MPoint4D<Scalar>::~MPoint4D (void)
+CxxUtil::MPoint4D<Scalar>::~MPoint4D (void)
 {
 }
 
-template<class Scalar> CxxUtils::MPoint3D<Scalar>
-CxxUtils::MPoint4D<Scalar>::projectTo3D (void) const
+template<class Scalar> CxxUtil::MPoint3D<Scalar>
+CxxUtil::MPoint4D<Scalar>::projectTo3D (void) const
 {
   MPoint3D<Scalar> res ((*this)[0] / (*this)[3],
                            (*this)[1] / (*this)[3], (*this)[2] / (*this)[3]);

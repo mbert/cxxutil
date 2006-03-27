@@ -1,6 +1,6 @@
 /* -*-gnu-*- */
 /*
- * CxxUtils C++ utility library
+ * CxxUtil C++ utility library
  * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
  *
  * Unless otherwise stated, this software is provided under the terms of the
@@ -11,88 +11,88 @@
 /* --------------------------------------------------------------------
  * Generic Point class inline implementations
  *
- * $Date: 2006-03-27 11:08:15 $
- * $Revision: 1.3 $
+ * $Date: 2006-03-27 13:00:00 $
+ * $Revision: 1.4 $
  * -------------------------------------------------------------------- */
 
 // Assignment to another point 
-template<class Scalar> INLINE CxxUtils::MPoint<Scalar> &
-CxxUtils::MPoint<Scalar>::operator= (const CxxUtils::MPoint<Scalar> &t)
+template<class Scalar> INLINE CxxUtil::MPoint<Scalar> &
+CxxUtil::MPoint<Scalar>::operator= (const CxxUtil::MPoint<Scalar> &t)
 {
   assignTo (t);
   return *this;
 }
 
 // Assignment to a scalar
-template<class Scalar> INLINE CxxUtils::MPoint<Scalar> &
-CxxUtils::MPoint<Scalar>::operator= (const Scalar s)
+template<class Scalar> INLINE CxxUtil::MPoint<Scalar> &
+CxxUtil::MPoint<Scalar>::operator= (const Scalar s)
 {
   assignTo (s);
   return *this;
 }
 
 // Assignment to the same point plus scalar s
-template<class Scalar> INLINE CxxUtils::MPoint<Scalar> &
-CxxUtils::MPoint<Scalar>::operator+= (const Scalar s)
+template<class Scalar> INLINE CxxUtil::MPoint<Scalar> &
+CxxUtil::MPoint<Scalar>::operator+= (const Scalar s)
 {
   addToMe (s);
   return *this;
 }
 
 // Assignment to the same point minus scalar t
-template<class Scalar> INLINE CxxUtils::MPoint<Scalar> &
-CxxUtils::MPoint<Scalar>::operator-= (const Scalar s)
+template<class Scalar> INLINE CxxUtil::MPoint<Scalar> &
+CxxUtil::MPoint<Scalar>::operator-= (const Scalar s)
 {
   subFromMe (s);
   return *this;
 }
 
 // Assignment to the same point plus point t
-template<class Scalar> INLINE CxxUtils::MPoint<Scalar> &
-CxxUtils::MPoint<Scalar>::operator+= (const CxxUtils::MVector<Scalar> &t)
+template<class Scalar> INLINE CxxUtil::MPoint<Scalar> &
+CxxUtil::MPoint<Scalar>::operator+= (const CxxUtil::MVector<Scalar> &t)
 {
   addToMe (t);
   return *this;
 }
 
 // Assignment to the same point minus point t
-template<class Scalar> INLINE CxxUtils::MPoint<Scalar> &
-CxxUtils::MPoint<Scalar>::operator-= (const CxxUtils::MVector<Scalar> &t)
+template<class Scalar> INLINE CxxUtil::MPoint<Scalar> &
+CxxUtil::MPoint<Scalar>::operator-= (const CxxUtil::MVector<Scalar> &t)
 {
   subFromMe (t);
   return *this;
 }
 
 // Returns the sum of *this and point t
-template<class Scalar> INLINE CxxUtils::MPoint<Scalar>
-CxxUtils::MPoint<Scalar>::operator+ (const CxxUtils::MVector<Scalar> &t) const
+template<class Scalar> INLINE CxxUtil::MPoint<Scalar>
+CxxUtil::MPoint<Scalar>::operator+ (const CxxUtil::MVector<Scalar> &t) const
 {
   return add (t);
 }
 
   // Returns the difference of *this and point t
-template<class Scalar> INLINE CxxUtils::MPoint<Scalar>
-CxxUtils::MPoint<Scalar>::operator- (const CxxUtils::MVector<Scalar> &t) const
+template<class Scalar> INLINE CxxUtil::MPoint<Scalar>
+CxxUtil::MPoint<Scalar>::operator- (const CxxUtil::MVector<Scalar> &t) const
 {
   return subtract (t);
 }
 
   // Returns the difference of *this and point t
-template<class Scalar> INLINE CxxUtils::MVector<Scalar>
-CxxUtils::MPoint<Scalar>::operator- (const CxxUtils::MPoint<Scalar> &t) const
+template<class Scalar> INLINE CxxUtil::MVector<Scalar>
+CxxUtil::MPoint<Scalar>::operator- (const CxxUtil::MPoint<Scalar> &t) const
 {
   return MVector<Scalar> (subtract (t));
 }
 
 
-template<class Scalar> INLINE CxxUtils::MPoint<Scalar> 
-CxxUtils::MPoint<Scalar>::operator* (const CxxUtils::MPoint<Scalar> &v) const
+template<class Scalar> INLINE CxxUtil::MPoint<Scalar> 
+CxxUtil::MPoint<Scalar>::operator* (const CxxUtil::MPoint<Scalar> &v) const
 {
   return multiply (v);
 }
 
-template<class Scalar> INLINE CxxUtils::MPoint<Scalar> 
-CxxUtils::MPoint<Scalar>::operator* (const Scalar s) const
+template<class Scalar> INLINE CxxUtil::MPoint<Scalar> 
+CxxUtil::MPoint<Scalar>::operator* (const Scalar s) const
 {
   return multiply (s);
 }

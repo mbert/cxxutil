@@ -1,6 +1,6 @@
 /* -*-gnu-*- */
 /*
- * CxxUtils C++ utility library
+ * CxxUtil C++ utility library
  * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
  *
  * Unless otherwise stated, this software is provided under the terms of the
@@ -11,8 +11,8 @@
 /* --------------------------------------------------------------------
  * Utility function implementations
  *
- * $Date: 2006-03-27 11:08:15 $
- * $Revision: 1.3 $
+ * $Date: 2006-03-27 13:00:01 $
+ * $Revision: 1.4 $
  * -------------------------------------------------------------------- */
 
 
@@ -27,11 +27,11 @@
 # define __USE_BSD  1
 #endif
 
-#include "cxxutils/utils.h"
-#include "cxxutils/cdefines.h"
+#include "cxxutil/utils.h"
+#include "cxxutil/cdefines.h"
 
 #ifdef OUTLINE
-#include "cxxutils/utils.ih"
+#include "cxxutil/utils.ih"
 #endif
 
 #ifdef WIN32
@@ -53,7 +53,7 @@ int setenv (const char *, const char *, int);
 #endif
 
 int
-CxxUtils::tempFileName (char *templ, const char *extension)
+CxxUtil::tempFileName (char *templ, const char *extension)
 {
   static char letters[]
     = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -109,9 +109,9 @@ CxxUtils::tempFileName (char *templ, const char *extension)
 }
 
 FILE *
-CxxUtils::tempFile (char *templ)
+CxxUtil::tempFile (char *templ)
 {
-  if (CxxUtils::tempFileName (templ) < 0)
+  if (CxxUtil::tempFileName (templ) < 0)
     {
       return NULL;
     }
@@ -119,7 +119,7 @@ CxxUtils::tempFile (char *templ)
 }
 
 int
-CxxUtils::putEnvironment (char *name, char *value)
+CxxUtil::putEnvironment (char *name, char *value)
 {
 #ifdef IRIX
   // On IRIX we are somewhat less flexible...
@@ -137,12 +137,12 @@ CxxUtils::putEnvironment (char *name, char *value)
 }
 
 unsigned char*
-CxxUtils::htond (double dat)
+CxxUtil::htond (double dat)
 {
   static unsigned char res[8];
   int s;
   int e;
-  CxxUtils::i64 m;
+  CxxUtil::i64 m;
   double md;
   double temp;
 
@@ -194,7 +194,7 @@ CxxUtils::htond (double dat)
   res[1]  = (e << 4) & 0xf0;
 
   md =  (dat * (4294967296.0 * 1048576.0));
-  m = (CxxUtils::i64)md;
+  m = (CxxUtil::i64)md;
 
   res[1] |= (unsigned char)((m >> 48) & 0x0f);
   res[2]  = (unsigned char)((m >> 40) & 0xff);
@@ -208,14 +208,14 @@ CxxUtils::htond (double dat)
 }
 
 double
-CxxUtils::ntohd (unsigned char *dat)
+CxxUtil::ntohd (unsigned char *dat)
 {
   double res;
   int s;
   int e;
-  CxxUtils::i64 m;
+  CxxUtil::i64 m;
 
-  if (*((CxxUtils::i64*)dat) == 0)
+  if (*((CxxUtil::i64*)dat) == 0)
     {
       return 0.0;
     }
@@ -224,13 +224,13 @@ CxxUtils::ntohd (unsigned char *dat)
   e  = (dat[0] & 0x7f) << 4;
   e |= (dat[1] & 0xf0) >> 4;
   e -= 1023;
-  m  = ((CxxUtils::i64)dat[1] & 0x0f) << 48;
-  m += ((CxxUtils::i64)dat[2] & 0xff) << 40;
-  m += ((CxxUtils::i64)dat[3] & 0xff) << 32;
-  m += ((CxxUtils::i64)dat[4] & 0xff) << 24;
-  m += ((CxxUtils::i64)dat[5] & 0xff) << 16;
-  m += ((CxxUtils::i64)dat[6] & 0xff) << 8;
-  m += ((CxxUtils::i64)dat[7] & 0xff);
+  m  = ((CxxUtil::i64)dat[1] & 0x0f) << 48;
+  m += ((CxxUtil::i64)dat[2] & 0xff) << 40;
+  m += ((CxxUtil::i64)dat[3] & 0xff) << 32;
+  m += ((CxxUtil::i64)dat[4] & 0xff) << 24;
+  m += ((CxxUtil::i64)dat[5] & 0xff) << 16;
+  m += ((CxxUtil::i64)dat[6] & 0xff) << 8;
+  m += ((CxxUtil::i64)dat[7] & 0xff);
 
   res = (1.0 - (2.0 * (double)s)) * pow (2.0 ,(double)e) *
         (1.0 + ((double)m / (4294967296.0 * 1048576.0)));
@@ -239,13 +239,13 @@ CxxUtils::ntohd (unsigned char *dat)
 }
 
 char *
-CxxUtils::strdup(const std::string &str)
+CxxUtil::strdup(const std::string &str)
 {
 	return strdup(str.c_str());
 }
 
 char *
-CxxUtils::strdup (const char *str)
+CxxUtil::strdup (const char *str)
 {
   const char *s = str;
   if (str == NULL)

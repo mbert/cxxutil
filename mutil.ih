@@ -1,6 +1,6 @@
 /* -*-gnu-*- */
 /*
- * CxxUtils C++ utility library
+ * CxxUtil C++ utility library
  * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
  *
  * Unless otherwise stated, this software is provided under the terms of the
@@ -11,45 +11,45 @@
 /* --------------------------------------------------------------------
  * Math utility function inline implementations
  *
- * $Date: 2006-03-27 11:08:15 $
- * $Revision: 1.3 $
+ * $Date: 2006-03-27 13:00:01 $
+ * $Revision: 1.4 $
  * -------------------------------------------------------------------- */
 
 #include <math.h>
 #include <float.h>
 
 INLINE double
-CxxUtils::cub (double a)
+CxxUtil::cub (double a)
 {
   return a * a * a;
 }
 
 INLINE float
-CxxUtils::cub (float a)
+CxxUtil::cub (float a)
 {
   return a * a * a;
 }
 
 INLINE double
-CxxUtils::sqr (double a)
+CxxUtil::sqr (double a)
 {
   return a * a;
 }
 
 INLINE float
-CxxUtils::sqr (float a)
+CxxUtil::sqr (float a)
 {
   return a * a;
 }
 
 INLINE int
-CxxUtils::abs (int a)
+CxxUtil::abs (int a)
 {
   return (a < 0) ? -a : a;
 }
 
 INLINE void
-CxxUtils::swap (double &a, double &b)
+CxxUtil::swap (double &a, double &b)
 {
   double temp = a;
   a = b;
@@ -57,7 +57,7 @@ CxxUtils::swap (double &a, double &b)
 }
 
 INLINE void
-CxxUtils::swap (float &a, float &b)
+CxxUtil::swap (float &a, float &b)
 {
   float temp = a;
   a = b;
@@ -65,7 +65,7 @@ CxxUtils::swap (float &a, float &b)
 }
 
 INLINE void
-CxxUtils::swap (int &a, int &b)
+CxxUtil::swap (int &a, int &b)
 {
   int temp = a;
   a = b;
@@ -73,79 +73,79 @@ CxxUtils::swap (int &a, int &b)
 }
 
 INLINE double
-CxxUtils::sign (double a, double b)
+CxxUtil::sign (double a, double b)
 {
   return (a < 0) ? -b : b;
 }
 
 INLINE float
-CxxUtils::sign (float a, float b)
+CxxUtil::sign (float a, float b)
 {
   return (a < 0) ? -b : b;
 }
 
 INLINE int
-CxxUtils::sign (int a, int b)
+CxxUtil::sign (int a, int b)
 {
   return (a < 0) ? -b : b;
 }
 
 INLINE double
-CxxUtils::min (double a, double b)
+CxxUtil::min (double a, double b)
 {
   return (a > b) ? b : a;
 }
 
 INLINE double
-CxxUtils::max (double a, double b)
+CxxUtil::max (double a, double b)
 {
   return (a > b) ? a : b;
 }
 
 INLINE float
-CxxUtils::min (float a, float b)
+CxxUtil::min (float a, float b)
 {
   return (a > b) ? b : a;
 }
 
 INLINE float
-CxxUtils::max (float a, float b)
+CxxUtil::max (float a, float b)
 {
   return (a > b) ? a : b;
 }
 
 INLINE int
-CxxUtils::min (int a, int b)
+CxxUtil::min (int a, int b)
 {
   return (a > b) ? b : a;
 }
 
 INLINE int
-CxxUtils::max (int a, int b)
+CxxUtil::max (int a, int b)
 {
   return (a > b) ? a : b;
 }
 
 INLINE int
-CxxUtils::toInt (double a)
+CxxUtil::toInt (double a)
 {
   return (a >= 0.0) ? int (a + 0.5) : int (a - 0.5);
 }
 
 INLINE int
-CxxUtils::toInt (float a)
+CxxUtil::toInt (float a)
 {
   return (a >= 0.0) ? int (a + 0.5) : int (a - 0.5);
 }
 
 INLINE bool
-CxxUtils::isZero (double d)
+CxxUtil::isZero (double d)
 {
   return (fabs (d) < DBL_EPSILON);
 }
 
 INLINE bool
-CxxUtils::isZero (float f)
+CxxUtil::isZero (float f)
 {
   return (fabs (f) < FLT_EPSILON);
 }

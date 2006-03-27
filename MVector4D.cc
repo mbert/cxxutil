@@ -1,6 +1,6 @@
 /* -*-gnu-*- */
 /*
- * CxxUtils C++ utility library
+ * CxxUtil C++ utility library
  * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
  *
  * Unless otherwise stated, this software is provided under the terms of the
@@ -14,25 +14,25 @@
 /* --------------------------------------------------------------------
  * 4D vector class implementation
  *
- * $Date: 2006-03-27 11:08:15 $
- * $Revision: 1.1 $
+ * $Date: 2006-03-27 13:00:00 $
+ * $Revision: 1.2 $
  * -------------------------------------------------------------------- */
 
 // system specific includes
 #include <assert.h>
 
 // class specific includes
-#include "cxxutils/MVector4D.hh"
+#include "cxxutil/MVector4D.hh"
 
 // include "outlined" INLINE functions
 #ifdef OUTLINE
-#include "cxxutils/MVector4D.ih"
+#include "cxxutil/MVector4D.ih"
 #endif
 
 // Description:
 // Default constructor using MVector instantiation
 template<class Scalar> 
-CxxUtils::MVector4D<Scalar>::MVector4D (void)
+CxxUtil::MVector4D<Scalar>::MVector4D (void)
   : MVector<Scalar> (4)
 {
 }
@@ -42,7 +42,7 @@ CxxUtils::MVector4D<Scalar>::MVector4D (void)
 // Description:
 // Build an instance given two doubles
 template<class Scalar>
-CxxUtils::MVector4D<Scalar>::MVector4D (const Scalar & u, const Scalar & v,
+CxxUtil::MVector4D<Scalar>::MVector4D (const Scalar & u, const Scalar & v,
 					   const Scalar & w, const Scalar & x)
   : MVector<Scalar> (4)
 {
@@ -57,7 +57,7 @@ CxxUtils::MVector4D<Scalar>::MVector4D (const Scalar & u, const Scalar & v,
 // Upward copy constructor 
 // This constructor is the base for inheriting the MVector-functionality
 template<class Scalar>
-CxxUtils::MVector4D<Scalar>::MVector4D (const MTuple<Scalar> &p)
+CxxUtil::MVector4D<Scalar>::MVector4D (const MTuple<Scalar> &p)
   : MVector<Scalar> (p)
 {
   assert (p.getDim () == 4);
@@ -67,7 +67,7 @@ CxxUtils::MVector4D<Scalar>::MVector4D (const MTuple<Scalar> &p)
 // Description:
 // Virtual destructor (just for completeness)
 template<class Scalar> 
-CxxUtils::MVector4D<Scalar>::~MVector4D (void)
+CxxUtil::MVector4D<Scalar>::~MVector4D (void)
 {
 }
 

@@ -1,6 +1,6 @@
 /* -*-gnu-*- */
 /*
- * CxxUtils C++ utility library
+ * CxxUtil C++ utility library
  * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
  *
  * Unless otherwise stated, this software is provided under the terms of the
@@ -11,43 +11,43 @@
 /* --------------------------------------------------------------------
  * Vector class inline implementations
  *
- * $Date: 2006-03-27 11:08:15 $
- * $Revision: 1.3 $
+ * $Date: 2006-03-27 13:00:00 $
+ * $Revision: 1.4 $
  * -------------------------------------------------------------------- */
 
 
 // ASSIGNMENT OPERATORS
 // unary
-template<class Scalar> INLINE CxxUtils::MVector<Scalar> &
-CxxUtils::MVector<Scalar>::operator= (const CxxUtils::MVector<Scalar> &v)
+template<class Scalar> INLINE CxxUtil::MVector<Scalar> &
+CxxUtil::MVector<Scalar>::operator= (const CxxUtil::MVector<Scalar> &v)
 {
   assignTo (v);
   return *this;
 }
 
-template<class Scalar> INLINE CxxUtils::MVector<Scalar> &
-CxxUtils::MVector<Scalar>::operator+= (const CxxUtils::MVector<Scalar> &v)
+template<class Scalar> INLINE CxxUtil::MVector<Scalar> &
+CxxUtil::MVector<Scalar>::operator+= (const CxxUtil::MVector<Scalar> &v)
 {
   addToMe (v);
   return *this;
 }
 
-template<class Scalar> INLINE CxxUtils::MVector<Scalar> &
-CxxUtils::MVector<Scalar>::operator-= (const CxxUtils::MVector<Scalar> &v)
+template<class Scalar> INLINE CxxUtil::MVector<Scalar> &
+CxxUtil::MVector<Scalar>::operator-= (const CxxUtil::MVector<Scalar> &v)
 {
   subFromMe (v);
   return *this;
 }
 
-template<class Scalar> INLINE CxxUtils::MVector<Scalar> &
-CxxUtils::MVector<Scalar>::operator*= (const Scalar s)
+template<class Scalar> INLINE CxxUtil::MVector<Scalar> &
+CxxUtil::MVector<Scalar>::operator*= (const Scalar s)
 {
   multMeBy (s);
   return *this;
 }
 
-template<class Scalar> INLINE CxxUtils::MVector<Scalar> &
-CxxUtils::MVector<Scalar>::operator/= (const Scalar s)
+template<class Scalar> INLINE CxxUtil::MVector<Scalar> &
+CxxUtil::MVector<Scalar>::operator/= (const Scalar s)
 {
   divMeBy (s);
   return *this;
@@ -57,26 +57,26 @@ CxxUtils::MVector<Scalar>::operator/= (const Scalar s)
 // binary
 // NOTE: operators of type `Scalar operator vector` are not
 // implemented due to template constraints
-template<class Scalar> INLINE CxxUtils::MVector<Scalar> 
-CxxUtils::MVector<Scalar>::operator+ (const CxxUtils::MVector<Scalar> &v) const
+template<class Scalar> INLINE CxxUtil::MVector<Scalar> 
+CxxUtil::MVector<Scalar>::operator+ (const CxxUtil::MVector<Scalar> &v) const
 {
   return add (v);
 }
 
-template<class Scalar> INLINE CxxUtils::MVector<Scalar> 
-CxxUtils::MVector<Scalar>::operator- (const CxxUtils::MVector<Scalar> &v) const
+template<class Scalar> INLINE CxxUtil::MVector<Scalar> 
+CxxUtil::MVector<Scalar>::operator- (const CxxUtil::MVector<Scalar> &v) const
 {
   return subtract (v);
 }
 
-template<class Scalar> INLINE CxxUtils::MVector<Scalar> 
-CxxUtils::MVector<Scalar>::operator* (const Scalar s) const
+template<class Scalar> INLINE CxxUtil::MVector<Scalar> 
+CxxUtil::MVector<Scalar>::operator* (const Scalar s) const
 {
   return multiply (s);
 }
 
-template<class Scalar> INLINE CxxUtils::MVector<Scalar> 
-CxxUtils::MVector<Scalar>::operator/ (const Scalar s) const
+template<class Scalar> INLINE CxxUtil::MVector<Scalar> 
+CxxUtil::MVector<Scalar>::operator/ (const Scalar s) const
 {
   return divide (s);
 }
@@ -84,13 +84,13 @@ CxxUtils::MVector<Scalar>::operator/ (const Scalar s) const
 // NORM OPERATORS
 // compute vector norm
 template<class Scalar> INLINE Scalar 
-CxxUtils::MVector<Scalar>::getNorm () const
+CxxUtil::MVector<Scalar>::getNorm () const
 {
   return sqrt (this->getNormQuad ());
 }
 
-template<class Scalar> INLINE CxxUtils::MVector<Scalar> 
-CxxUtils::MVector<Scalar>::operator* (const CxxUtils::MVector<Scalar> &v) const
+template<class Scalar> INLINE CxxUtil::MVector<Scalar> 
+CxxUtil::MVector<Scalar>::operator* (const CxxUtil::MVector<Scalar> &v) const
 {
   return multiply (v);
 }

@@ -1,6 +1,6 @@
 /* -*-gnu-*- */
 /*
- * CxxUtils C++ utility library
+ * CxxUtil C++ utility library
  * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
  *
  * Unless otherwise stated, this software is provided under the terms of the
@@ -14,12 +14,12 @@
 /* --------------------------------------------------------------------
  * Generic matrix class implementation
  *
- * $Date: 2006-03-27 11:08:15 $
- * $Revision: 1.3 $
+ * $Date: 2006-03-27 13:00:00 $
+ * $Revision: 1.4 $
  * -------------------------------------------------------------------- */
 
 // class specific includes
-#include "cxxutils/MMatrix.hh"
+#include "cxxutil/MMatrix.hh"
 
 // system specific includes
 #include <iostream>
@@ -29,7 +29,7 @@
 /* ========================= main class MMatrix ======================= */
 
 template<class Scalar>
-CxxUtils::MMatrix<Scalar>::MMatrix (int rows, int cols, Scalar value)
+CxxUtil::MMatrix<Scalar>::MMatrix (int rows, int cols, Scalar value)
 {
   m_rows = rows;
   m_cols = cols;
@@ -39,13 +39,13 @@ CxxUtils::MMatrix<Scalar>::MMatrix (int rows, int cols, Scalar value)
 }
 
 template<class Scalar>
-CxxUtils::MMatrix<Scalar>::MMatrix (const MMatrix<Scalar> &matrix)
+CxxUtil::MMatrix<Scalar>::MMatrix (const MMatrix<Scalar> &matrix)
 {
   copy (matrix);
 }
 
 template<class Scalar> void
-CxxUtils::MMatrix<Scalar>::copy (const MMatrix<Scalar> &matrix)
+CxxUtil::MMatrix<Scalar>::copy (const MMatrix<Scalar> &matrix)
 {
   m_rows = matrix.m_rows;
   m_cols = matrix.m_cols;
@@ -55,20 +55,20 @@ CxxUtils::MMatrix<Scalar>::copy (const MMatrix<Scalar> &matrix)
 }
 
 template<class Scalar> 
-CxxUtils::MMatrix<Scalar>::~MMatrix (void)
+CxxUtil::MMatrix<Scalar>::~MMatrix (void)
 {
   destroy ();
 }
 
 template<class Scalar> void
-CxxUtils::MMatrix<Scalar>::init (void)
+CxxUtil::MMatrix<Scalar>::init (void)
 {
   m_values = NEW (MTuple<Scalar> (m_rows * m_cols));
   m_rowOffsets = NULL;
 }
 
 template<class Scalar> void
-CxxUtils::MMatrix<Scalar>::fill (Scalar value)
+CxxUtil::MMatrix<Scalar>::fill (Scalar value)
 {
   for (int i = m_rows * m_cols - 1; i > -1; i--)
     {
@@ -78,7 +78,7 @@ CxxUtils::MMatrix<Scalar>::fill (Scalar value)
 }
 
 template<class Scalar> void 
-CxxUtils::MMatrix<Scalar>::updateRowsArray (void)
+CxxUtil::MMatrix<Scalar>::updateRowsArray (void)
 {
   DELETENOTNULL (m_rowOffsets);
   m_rowOffsets = NEW (int [m_rows]);
@@ -89,14 +89,14 @@ CxxUtils::MMatrix<Scalar>::updateRowsArray (void)
 }
 
 template<class Scalar> void
-CxxUtils::MMatrix<Scalar>::destroy (void)
+CxxUtil::MMatrix<Scalar>::destroy (void)
 {
   DELETE (m_values);
   DELETE (m_rowOffsets);
 }
 
 template<class Scalar> std::ostream &
-CxxUtils::operator<< (std::ostream & os, MMatrix<Scalar> m)
+CxxUtil::operator<< (std::ostream & os, MMatrix<Scalar> m)
 {
   os << "( ";
   for (int row = 0; row < m.rows (); row++)
@@ -128,7 +128,7 @@ CxxUtils::operator<< (std::ostream & os, MMatrix<Scalar> m)
 
 // include "outlined" INLINE functions
 #ifdef OUTLINE
-#include "cxxutils/MMatrix.ih"
+#include "cxxutil/MMatrix.ih"
 #endif
 
 #endif // MMATRIX_CC

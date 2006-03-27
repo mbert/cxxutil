@@ -1,6 +1,6 @@
 /* -*-gnu-*- */
 /*
- * CxxUtils C++ utility library
+ * CxxUtil C++ utility library
  * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
  *
  * Unless otherwise stated in the source file, this code is provided under 
@@ -17,15 +17,15 @@
 /* --------------------------------------------------------------------
  * String Tokenizer class definition
  *
- * $Date: 2006-03-27 11:08:15 $
- * $Revision: 1.3 $
+ * $Date: 2006-03-27 13:00:00 $
+ * $Revision: 1.4 $
  * -------------------------------------------------------------------- */
 
 /**
  * @class StringTok
  * @short String tokenizer class for use with C++ std::string or whatever.
  */
-namespace CxxUtils
+namespace CxxUtil
 {
   template<class T>
   class StringTok
@@ -42,6 +42,6 @@ namespace CxxUtils
   };
 }
 
-#include "cxxutils/StringTok.cc"
+#include "cxxutil/StringTok.cc"
 
 #endif // STRING_TOK_H

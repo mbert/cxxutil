@@ -1,6 +1,6 @@
 /* -*-gnu-*- */
 /*
- * CxxUtils C++ utility library
+ * CxxUtil C++ utility library
  * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
  *
  * Unless otherwise stated in the source file, this code is provided under 
@@ -14,8 +14,8 @@
 /* --------------------------------------------------------------------
  * 4D Matrix class definition
  *
- * $Date: 2006-03-27 12:32:44 $
- * $Revision: 1.4 $
+ * $Date: 2006-03-27 13:00:00 $
+ * $Revision: 1.5 $
  * -------------------------------------------------------------------- */
 
 /**
@@ -34,9 +34,9 @@
 #endif
 #endif
 
-#include "cxxutils/MMatrix.hh"
+#include "cxxutil/MMatrix.hh"
 
-namespace CxxUtils 
+namespace CxxUtil 
 {
 
   template<class Scalar> class MMatrix4x4:public MMatrix<Scalar>
@@ -60,9 +60,9 @@ namespace CxxUtils
 }
 
   // include INLINES if required
-#include "cxxutils/MMatrix4x4.cc"
+#include "cxxutil/MMatrix4x4.cc"
 #ifndef OUTLINE
-#include "cxxutils/MMatrix4x4.ih"
+#include "cxxutil/MMatrix4x4.ih"
 #endif
 
 

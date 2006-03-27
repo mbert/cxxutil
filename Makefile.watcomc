@@ -1,5 +1,5 @@
 #
-# Watcom C/C++ Makefile for cxxutils --  (c) 2006 by Herbert
+# Watcom C/C++ Makefile for cxxutil --  (c) 2006 by Herbert
 #
 
 O = .obj
@@ -10,7 +10,7 @@ OBJECTS = CDebug$O Getopt$O MMatrix$O MMatrix4x4$O MPoint$O MPoint2D$O   &
 	MVector4D$O StringTok$O mutil$O utils$O getopt_wrapper$O
 MAINOBJ = utilsmain$O
 MAIN = utilsmain$E
-TARGET = CxxUtils$A
+TARGET = CxxUtil$A
 
 CPPFLAGS = -i=.. -dPRINTF=""
 CFLAGS = -e25 -za -xs -zq -otexan -5s -mf -xr

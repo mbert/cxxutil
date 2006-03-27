@@ -1,6 +1,6 @@
 /* -*-gnu-*- */
 /*
- * CxxUtils C++ utility library
+ * CxxUtil C++ utility library
  * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
  *
  * Unless otherwise stated in the source file, this code is provided under 
@@ -14,8 +14,8 @@
 /* --------------------------------------------------------------------
  * Point class definition
  *
- * $Date: 2006-03-27 12:32:44 $
- * $Revision: 1.4 $
+ * $Date: 2006-03-27 13:00:00 $
+ * $Revision: 1.5 $
  * -------------------------------------------------------------------- */
 
 /**
@@ -34,17 +34,17 @@
 #endif
 
 // class specific includes
-#include "cxxutils/MTuple.hh"
-#include "cxxutils/mmessages.h"
+#include "cxxutil/MTuple.hh"
+#include "cxxutil/mmessages.h"
 // this is necessary for VC++ compatibility!
-#include "cxxutils/MVector.hh"
+#include "cxxutil/MVector.hh"
 
 // system specific includes
 #include <iostream>
 #include <stdexcept>
 #include <math.h>
 
-namespace CxxUtils 
+namespace CxxUtil 
 {
   // forward declaration
   template<class Scalar> class MVector;
@@ -132,9 +132,9 @@ namespace CxxUtils
 }
 
   // include INLINES if required
-#include "cxxutils/MPoint.cc"
+#include "cxxutil/MPoint.cc"
 #ifndef OUTLINE
-#include "cxxutils/MPoint.ih"
+#include "cxxutil/MPoint.ih"
 #endif
 
 

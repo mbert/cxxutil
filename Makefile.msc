@@ -1,5 +1,5 @@
 #
-# Microsoft Visual C/C++ Makefile for cxxutils --  (c) 2006 by Herbert
+# Microsoft Visual C/C++ Makefile for cxxutil --  (c) 2006 by Herbert
 #
 #
 # No dependency checking done!
@@ -36,7 +36,7 @@ LIBS =
 # Main target and file dependencies:
 #
 
-all: CxxUtils$A
+all: CxxUtil$A
 
 test: _test
 _test: utilmain$E
@@ -51,7 +51,7 @@ CPPFLAGS = -I..
 CXXDEBUG = -DDPRINTF=""
 CXXOPT = -Ox 
 CXXFLAGS = $(CXXDEBUG) $(CPPFLAGS) $(CXXOPT) -GX -TP -W3 -WX
-LDFLAGS = /link .\\CxxUtils$A 
+LDFLAGS = /link .\\CxxUtil$A 
 LDOFLAG = -Fe 
 
 #
@@ -67,14 +67,14 @@ ARFLAGS = /nologo /out:
 # rules:
 #
 
-CxxUtils$A: $(OBJS)
+CxxUtil$A: $(OBJS)
 	$(AR) $(ARFLAGS)$@ $(OBJS)
 
 utilmain$E: $(MAINOBJ)
 
 clean: 
-	-del $(OBJS) *~ CxxUtils$A CxxUtils-$(VERSION)-win32-bin.tar.gz \
-		CxxUtils-$(VERSION)-win32-bin.zip
+	-del $(OBJS) *~ CxxUtil$A CxxUtil-$(VERSION)-win32-bin.tar.gz \
+		CxxUtil-$(VERSION)-win32-bin.zip
 
 #
 # Automatic targets and rules:

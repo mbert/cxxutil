@@ -1,5 +1,5 @@
 /*
- * CxxUtils C++ utility library
+ * CxxUtil C++ utility library
  * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
  *
  * Unless otherwise stated, this software is provided under the terms of the
@@ -13,8 +13,8 @@
 /* --------------------------------------------------------------------
  * MMatrix class definition
  *
- * $Date: 2006-03-27 11:08:15 $
- * $Revision: 1.3 $
+ * $Date: 2006-03-27 13:00:00 $
+ * $Revision: 1.4 $
  * -------------------------------------------------------------------- */
 
 /**
@@ -36,7 +36,7 @@
 #endif
 #endif
 
-#include "cxxutils/MVector.hh"
+#include "cxxutil/MVector.hh"
 
 #include <iostream>
 
@@ -46,7 +46,7 @@
     if (m1.m_rows != m2.m_rows || m1.m_cols != m2.m_cols) { \
         throw std::invalid_argument (method ": " MSG_ERROR_DIMENSIONS); } }
 
-namespace CxxUtils 
+namespace CxxUtil 
 {
 
   template<class Scalar> class MMatrix
@@ -110,7 +110,7 @@ namespace CxxUtils
 	{
 	  throw std::invalid_argument ("operator*: " MSG_ERROR_DIMENSIONS);
 	}
-      CxxUtils::MVector<Scalar> result (MMatrix.m_rows, 0);
+      CxxUtil::MVector<Scalar> result (MMatrix.m_rows, 0);
       for (int row = 0; row < result.getDim (); row++)
 	{
 	  for (int col = 0; col < MMatrix.m_cols; col++)
@@ -120,7 +120,7 @@ namespace CxxUtils
 				      col) * MVector[col];
 	    }
 	}
-      return CxxUtils::MVector<Scalar> (result);
+      return CxxUtil::MVector<Scalar> (result);
     }
 
     /** multiplication of a matrix with a matrix
@@ -246,9 +246,9 @@ namespace CxxUtils
 
 }
   // include INLINES if required
-#include "cxxutils/MMatrix.cc"
+#include "cxxutil/MMatrix.cc"
 #ifndef OUTLINE
-#include "cxxutils/MMatrix.ih"
+#include "cxxutil/MMatrix.ih"
 #endif
 
 #endif // MMATRIX_H

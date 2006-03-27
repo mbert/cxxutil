@@ -1,6 +1,6 @@
 /* -*-gnu-*- */
 /*
- * CxxUtils C++ utility library
+ * CxxUtil C++ utility library
  * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
  *
  * Unless otherwise stated in the source file, this code is provided under 
@@ -14,8 +14,8 @@
 /* --------------------------------------------------------------------
  * 4D point class definition
  *
- * $Date: 2006-03-27 12:32:44 $
- * $Revision: 1.2 $
+ * $Date: 2006-03-27 13:00:00 $
+ * $Revision: 1.3 $
  * -------------------------------------------------------------------- */
 
 /**
@@ -44,13 +44,13 @@
 
 
 // class specific includes
-#include "cxxutils/cdefines.h"
-#include "cxxutils/MPoint3D.hh"
+#include "cxxutil/cdefines.h"
+#include "cxxutil/MPoint3D.hh"
 
 
 // forward declarations
 
-namespace CxxUtils 
+namespace CxxUtil 
 {
 
   template<class Scalar> class MPoint4D:public MPoint<Scalar>
@@ -82,9 +82,9 @@ namespace CxxUtils
 }
 
   // include INLINES if required
-#include "cxxutils/MPoint4D.cc"
+#include "cxxutil/MPoint4D.cc"
 #ifndef OUTLINE
-#include "cxxutils/MPoint4D.ih"
+#include "cxxutil/MPoint4D.ih"
 #endif
 
 #endif // MPOINT4D_H

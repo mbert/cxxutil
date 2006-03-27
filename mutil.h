@@ -1,6 +1,6 @@
 /* -*-gnu-*- */
 /*
- * CxxUtils C++ utility library
+ * CxxUtil C++ utility library
  * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
  *
  * Unless otherwise stated, this software is provided under the terms of the
@@ -14,8 +14,8 @@
 /* --------------------------------------------------------------------
  * Math utilities declarations
  *
- * $Date: 2006-03-27 11:08:15 $
- * $Revision: 1.3 $
+ * $Date: 2006-03-27 13:00:01 $
+ * $Revision: 1.4 $
  * -------------------------------------------------------------------- */
 
 /**
@@ -32,9 +32,9 @@
 #endif
 
 // project specific includes
-#include "cxxutils/cdefines.h"
+#include "cxxutil/cdefines.h"
 
-namespace CxxUtils 
+namespace CxxUtil 
 {
 
   INLINE double cub (double a);
@@ -66,7 +66,7 @@ namespace CxxUtils
 
   // include INLINES if required
 #ifndef OUTLINE
-#include "cxxutils/mutil.ih"
+#include "cxxutil/mutil.ih"
 #endif
 
 #endif // UTIL_MATH_H
