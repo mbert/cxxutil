@@ -1,5 +1,6 @@
 #
-# MSC Makefile for Math --  (c) 2003 by Herbert
+# Microsoft Visual C/C++ Makefile for cxxutils --  (c) 2006 by Herbert
+#
 #
 # No dependency checking done!
 #
@@ -9,7 +10,7 @@ SHELL = cmd.exe /c
 #
 # The program's main version...
 #
-VERSION = 0.9
+VERSION = 1.0
 MAJOR = 0
 
 #
@@ -24,11 +25,10 @@ A = .lib
 #
 # Name of target object files:
 #
-OBJS = MTuple$O mutil$O \
-	MPoint$O MPoint2d$O MPoint3d$O MPoint4d$O \
-	MVector$O MVector2d$O MVector3d$O MVector4d$O \
-	MMatrix$O MMatrix4x4$O
-MAINOBJ = mathmain$O
+OBJS = CDebug$O Getopt$O MMatrix$O MMatrix4x4$O MPoint$O MPoint2D$O \
+	MPoint3D$O MPoint4D$O MTuple$O MVector$O MVector2D$O MVector3D$O \
+	MVector4D$O StringTok$O mutil$O utils$O getopt_wrapper$O
+MAINOBJ = utilmain$O
 LIBS = 
 .PHONY: all clean _test tar zip
 
@@ -36,12 +36,12 @@ LIBS =
 # Main target and file dependencies:
 #
 
-all: Math$A
+all: CxxUtils$A
 
 test: _test
-_test: mathmain$E
+_test: utilmain$E
 	@echo  From ze test its beginnink...
-	@.\\mathmain$E
+	@.\\utilmain$E
 	@echo From ze test its end!
 
 #
@@ -51,7 +51,7 @@ CPPFLAGS = -I..
 CXXDEBUG = -DDPRINTF=""
 CXXOPT = -Ox 
 CXXFLAGS = $(CXXDEBUG) $(CPPFLAGS) $(CXXOPT) -GX -TP -W3 -WX
-LDFLAGS = /link .\\Math$A ..\\common\\$A
+LDFLAGS = /link .\\CxxUtils$A 
 LDOFLAG = -Fe 
 
 #
@@ -67,14 +67,14 @@ ARFLAGS = /nologo /out:
 # rules:
 #
 
-Math$A: $(OBJS)
+CxxUtils$A: $(OBJS)
 	$(AR) $(ARFLAGS)$@ $(OBJS)
 
-mathmain$E: $(MAINOBJ)
+utilmain$E: $(MAINOBJ)
 
 clean: 
-	-del $(OBJS) *~ Math$A Math-$(VERSION)-win32-bin.tar.gz \
-		Math-$(VERSION)-win32-bin.zip
+	-del $(OBJS) *~ CxxUtils$A CxxUtils-$(VERSION)-win32-bin.tar.gz \
+		CxxUtils-$(VERSION)-win32-bin.zip
 
 #
 # Automatic targets and rules:

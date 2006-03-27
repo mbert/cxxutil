@@ -1,13 +1,16 @@
+#
+# Watcom C/C++ Makefile for cxxutils --  (c) 2006 by Herbert
+#
+
 O = .obj
 E = .exe
 A = .lib
-OBJ1 = MTuple$O mutil$O MPoint$O MPoint2d$O MPoint3d$O 
-OBJ2 = MPoint4d$O MVector$O MVector2d$O MVector3d$O 
-OBJ3 = MVector4d$O MMatrix$O MMatrix4x4$O
-OBJECTS = $(OBJ1) $(OBJ2) $(OBJ3)
-MAINOBJ = mathmain$O
-MAIN = mathmain$E
-TARGET = math$A
+OBJECTS = CDebug$O Getopt$O MMatrix$O MMatrix4x4$O MPoint$O MPoint2D$O   &
+	MPoint3D$O MPoint4D$O MTuple$O MVector$O MVector2D$O MVector3D$O &
+	MVector4D$O StringTok$O mutil$O utils$O getopt_wrapper$O
+MAINOBJ = utilsmain$O
+MAIN = utilsmain$E
+TARGET = CxxUtils$A
 
 CPPFLAGS = -i=.. -dPRINTF=""
 CFLAGS = -e25 -za -xs -zq -otexan -5s -mf -xr
@@ -25,19 +28,23 @@ clean : .SYMBOLIC
 
 !define BLANK ""
 
-MTuple$O : MTuple.cc .AUTODEPEND
+CDebug$O: CDebug.cc .AUTODEPEND
+Getopt$O: Getopt.cc .AUTODEPEND
 mutil$O : mutil.cc .AUTODEPEND
 MPoint$O : MPoint.cc .AUTODEPEND
 MPoint2d$O : MPoint2D.cc .AUTODEPEND
 MPoint3d$O : MPoint3D.cc .AUTODEPEND
 MPoint4d$O : MPoint4D.cc .AUTODEPEND
+MTuple$O : MTuple.cc .AUTODEPEND
 MVector$O : MVector.cc .AUTODEPEND
 MVector2d$O : MVector2D.cc .AUTODEPEND
 MVector3d$O : MVector3D.cc .AUTODEPEND
 MVector4d$O : MVector4D.cc .AUTODEPEND
 MMatrix$O : MMatrix.cc .AUTODEPEND
 MMatrix4x4$O : MMatrix4x4.cc .AUTODEPEND
-mathmain$O : mathmain.cc .AUTODEPEND
+StringTok$O: StringTok.cc .AUTODEPEND
+utils$O: utils.cc .AUTODEPEND
+utilsmain$O: utilsmain.cc .AUTODEPEND
 
 .cc$O:
  *$(COMPILE) $<

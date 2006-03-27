@@ -1,10 +1,10 @@
 #
-# Makefile for utils --  (c) 2003 by Herbert
+# Makefile for cxxutils --  (c) 2006 by Herbert
 #
 # Compatibility: GNU
 #
-# $Revision: 1.3 $
-# $Date: 2006-03-27 11:08:15 $
+# $Revision: 1.4 $
+# $Date: 2006-03-27 12:32:44 $
 #
 
 #
@@ -64,7 +64,7 @@ CXXWARN = @CXXWARN@ @CXXWARN2@
 LDFLAGS = @LDFLAGS@ -lm 
 CXXFLAGS = $(CPPFLAGS) $(CXXSHARED) $(CXXOPT) $(CXXDEBUG) $(CXXWARN) @CXXMISC@
 
-.PHONY : all complete test install uninstall clean distclean debug 
+.PHONY : all complete test install uninstall clean distclean debug tar
 
 #
 # Main target and file dependencies:
@@ -84,11 +84,26 @@ $(MAIN)$E: $(MAINOBJ) $(TARGET)
 	$(CXX) $^ -o $@ $(LDFLAGS)
 
 clean: 
-	rm -f $(OBJS) $(DEPENDS) $(TARGET) $(MAIN)$E $(MAINOBJ) *~ .\#*.[0-9]*
+	rm -f $(OBJS) $(DEPENDS) $(TARGET) $(MAIN)$E $(MAINOBJ) *~ */*~ .\#*.[0-9]*  \
+	doxy.log warnings.log
 
 distclean: 
 	-$(MAKE) clean
 	-rm -f config.cache config.status config.log Makefile 
+
+tar: cxxutils-$(VERSION).tar.gz
+
+cxxutils-$(VERSION).tar.gz: clean
+	rm -f $@
+	PWD=`pwd`; DIR=`basename $$PWD`; cd ..; find $$DIR -type f | \
+	egrep -v "CVS|autom4te\.cache|config\.status|config\.log" | \
+	xargs tar czvf $$DIR/$@
+
+ifdef DOXYGEN
+doc: 
+	$(DOXYGEN) Doxyfile | tee doxy.log
+	( grep -A 4 "Warning:" doxy.log || true ) >warnings.log
+endif
 
 
 $(TARGET): $(OBJS)

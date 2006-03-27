@@ -6,9 +6,6 @@
  * Unless otherwise stated in the source file, this code is provided under 
  * the terms of the GNU LESSER PUBLIC LICENSE. The text of this license 
  * agreement accompanies this library's source distribution.
- *
- * This source file is based on code published in C/C++ Users' Journal, issue
- * 10/2001. The exact license terms are unknown, BSD-like license is assumed.
  */
 
 #ifndef GETOPT_H
@@ -17,8 +14,8 @@
 /* --------------------------------------------------------------------
  * Getopt wrapper class definition
  *
- * $Date: 2006-03-27 11:08:15 $
- * $Revision: 1.3 $
+ * $Date: 2006-03-27 12:32:44 $
+ * $Revision: 1.4 $
  * -------------------------------------------------------------------- */
 
 #include <list>

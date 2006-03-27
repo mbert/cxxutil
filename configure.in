@@ -1,13 +1,5 @@
 # ##############################################################################
-# Configure script for configsys
-#
-# Author: Martin Dietze
-#
-# This script currently only disables doxygen or parts of it if necessary,
-# checks build prerequisites and aborts the build if necessary.
-#
-# Future versions might/should setup all the Makefiles and allow setting
-# build options, i.e. debug, optimization etc.
+# Configure script for cxxutils --  (c) 2006 by Herbert
 
 # ##############################################################################
 # Initial checks (compiler, linker, standard libraries...)
@@ -154,10 +146,10 @@ AC_SUBST(MRMESSAGE)
 DFMESSAGE="# Doxyfile automatically generated from Doxyfile.in by configure"
 AC_SUBST(DFMESSAGE)
 
-VERSION=`grep UTILS_VERSION utils_version.h | sed "s/.*\"\(.*\)\"/\1/"`
+VERSION=`grep CXXUTILS_VERSION utils_version.h | sed "s/.*\"\(.*\)\"/\1/"`
 AC_SUBST(VERSION)
 
-MAJOR=`grep UTILS_VERSION utils_version.h | sed "s/.*\"\(.*\)\..*\"/\1/"`
+MAJOR=`grep CXXUTILS_VERSION utils_version.h | sed "s/.*\"\(.*\)\..*\"/\1/"`
 AC_SUBST(MAJOR)
 
 AC_OUTPUT(Makefile Doxyfile)
