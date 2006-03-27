@@ -1,58 +1,6 @@
 // simple testing area
 #include "cxxutils/utils.h"
 #include "cxxutils/testing.h"
-#include <iostream>
-
-using namespace std;
-
-static void
-testUtils (void)
-{
-  cout << "Testing utils:" << endl;
-  cout << "  ... CxxUtils::innerProduct:" << endl;
-
-  ColorImage img;
-  
-  TEST_NO_EXCEPTION (img.read ("../texgen/testdata/lena512.ppm"));
-  img.colormodel (cm_yuv);
-  Image &grey = img.channel (0);
-
-  MMatrix<double> mat (20, 20, 0.0);
-  
-  TEST_DBL_EQUALS (CxxUtils::innerProduct (mat, grey, 0, 0), 0);
-  TEST_DBL_EQUALS (CxxUtils::innerProduct (mat, grey, -100, -100), 0);
-  TEST_DBL_EQUALS (CxxUtils::innerProduct (mat, grey, 512, 512), 0);
-
-  int val = 0;
-  for (int y = 0; y < mat.rows (); y++)
-    {
-      for (int x = 0; x < mat.cols (); x++)
-        {
-          grey.to (y, x, 1.0);
-          mat (y, x) = 1.0;
-          val++;
-        }
-    }
-
-  TEST_DBL_EQUALS (CxxUtils::innerProduct (mat, grey, 0, 0), (double)val);
-
-  cout << "  ... OK." << endl;
-  cout << "  ... CxxUtils::tempFileName:" << endl;
-  char buf[256];
-  strcpy (buf, "/tmp/fooXXXXXX");
-  TEST_GEN_EQUALS (CxxUtils::tempFileName (buf, ".jpg"), 0);
-  cout << "      " << buf << ".jpg" << endl;
-  cout << "  ... OK." << endl;
-  cout << "OK." << endl;
-}
-
-int
-main (int argc, char *argv[])
-{
-  testUtils ();
-  return 0;
-}
-
 #include "cxxutils/MPoint2d.hh"
 #include "cxxutils/MPoint3d.hh"
 #include "cxxutils/MPoint4d.hh"
@@ -60,26 +8,26 @@ main (int argc, char *argv[])
 #include "cxxutils/MVector3d.hh"
 #include "cxxutils/MVector4d.hh"
 #include "cxxutils/MMatrix4x4.hh"
-#include "cxxutils/testing.h"
 
 #include <iostream>
 
-#if !(defined __WATCOMC__ && __WATCOMC__ < 1230)
 using namespace std;
-#endif
+using namespace CxxUtils;
 
-static void test_MVector (void);
-static void test_MPoint (void);
-static void test_MMatrix (void);
+static void testMVector (void);
+static void testMPoint (void);
+static void testMMatrix (void);
+
 
 int
 main (void)
 {
-  test_MVector ();
-  test_MPoint ();
-  test_MMatrix ();
+  testMVector ();
+  testMPoint ();
+  testMMatrix ();
   return 0;
 }
+
 
 static void
 MVector_doTest (MVector<double>&a, MVector<double>&b,
@@ -159,7 +107,7 @@ MVector_doTest (MVector<double>&a, MVector<double>&b,
 }
 
 static void
-test_MVector (void)
+testMVector (void)
 {
   {
     cout << "Testing class MVector<double> (1 dimension) ..." << endl;
@@ -372,7 +320,7 @@ MPoint_doTest (MPoint<double>&a, MPoint<double>&b, MPoint<double>&c)
 }
 
 static void
-test_MPoint (void)
+testMPoint (void)
 {
   {
     cout << "Testing class MPoint<double> (1 dimension) ..." << endl;
@@ -474,7 +422,7 @@ test_MPoint (void)
 }
 
 static void
-test_MMatrix (void)
+testMMatrix (void)
 {
   cout << "Testing class MMatrix<double> ..." << endl;
   MMatrix<double>m1 (4, 4);

@@ -5,8 +5,8 @@
 //  Project: Repairing and texturing of VR models
 //  (C) Copyright Fachhochschule Wedel, Germany 2003
 //  -------------------------------------------------------------------
-//  $Revision: 1.2 $
-//  $Date: 2006-03-27 09:02:56 $
+//  $Revision: 1.3 $
+//  $Date: 2006-03-27 09:15:30 $
 // ******************************************************************** */
 
 #ifndef MTUPLE_CPP
@@ -379,7 +379,7 @@ CxxUtils::AbstractTuple<Scalar>::init (int dim)
 }
 
 template<class Scalar> std::ostream &
-operator<< (std::ostream & os, const CxxUtils::AbstractTuple<Scalar> p)
+CxxUtils::operator<< (std::ostream & os, const CxxUtils::AbstractTuple<Scalar> p)
 {
   os << "( ";
   for (int i = 0; i < p.getDim (); i++)
@@ -395,7 +395,7 @@ operator<< (std::ostream & os, const CxxUtils::AbstractTuple<Scalar> p)
 }
 
 template<class Scalar> std::istream &
-operator>> (std::istream & is, CxxUtils::AbstractTuple<Scalar> p)
+CxxUtils::operator>> (std::istream & is, CxxUtils::AbstractTuple<Scalar> p)
 {
   char
     c;
