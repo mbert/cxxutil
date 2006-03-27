@@ -3,8 +3,8 @@
 #
 # Compatibility: GNU
 #
-# $Revision: 1.4 $
-# $Date: 2006-03-27 12:32:44 $
+# $Revision: 1.5 $
+# $Date: 2006-03-27 12:44:33 $
 #
 
 #
@@ -32,7 +32,8 @@ E =
 A = .a
 D = .so
 
-TARGET = libCxxUtils$A
+NAME = libCxxUtils
+TARGET = $(NAME)$A
 
 #
 # Name of target object files:
@@ -44,12 +45,13 @@ OBJS = CDebug$O Getopt$O MMatrix$O MMatrix4x4$O MPoint$O MPoint2D$O \
 MAINOBJ = $(MAIN)$O
 SOURCES = $(OBJS:$O=.cc) $(MAINOBJ:$O=.cpp)
 DEPENDS = $(SOURCES:.cc=.dd)
-HEADERS = $(wildcard *.h)
+HEADERS = $(wildcard *.h *.hh *.ih)
+TEMPLATES = $(shell grep -l _CC *.cc)
 
 LIBS = 
 BINDIR = $(prefix)/bin
 LIBDIR = $(prefix)/lib
-INCDIR = $(prefix)/include
+INCDIR = $(prefix)/include/cxxutils
 DOCDIR = $(prefix)/doc
 MANDIR = $(prefix)/man
 
@@ -64,13 +66,16 @@ CXXWARN = @CXXWARN@ @CXXWARN2@
 LDFLAGS = @LDFLAGS@ -lm 
 CXXFLAGS = $(CPPFLAGS) $(CXXSHARED) $(CXXOPT) $(CXXDEBUG) $(CXXWARN) @CXXMISC@
 
-.PHONY : all complete test install uninstall clean distclean debug tar
+.PHONY : all complete test install uninstall clean distclean debug tar shared
 
 #
 # Main target and file dependencies:
 #
 
 all: $(TARGET)
+
+shared:
+	$(MAKE) -e LIB=libcxxutils$D CXXSHARED=-fPIC
 
 complete: all test 
 
@@ -85,7 +90,7 @@ $(MAIN)$E: $(MAINOBJ) $(TARGET)
 
 clean: 
 	rm -f $(OBJS) $(DEPENDS) $(TARGET) $(MAIN)$E $(MAINOBJ) *~ */*~ .\#*.[0-9]*  \
-	doxy.log warnings.log
+	$(NAME)$D* doxy.log warnings.log
 
 distclean: 
 	-$(MAKE) clean
@@ -106,17 +111,43 @@ doc:
 endif
 
 
-$(TARGET): $(OBJS)
+$(NAME)$A: $(OBJS)
 ifdef PRELINK
 	$(PRELINK) $^
 endif
 	$(AR) crs $@ $^
 
+$(NAME)$D: $(OBJS)
+	$(CXX) $^ -shared -Wl,-soname,$*$(D).$(MAJOR) -o $*$(D).$(VERSION)
+	ln -sf $*$(D).$(VERSION) $*$(D).$(MAJOR)
+	ln -sf $*$(D).$(MAJOR) $*$(D)
+
+install: $(PROGRAM)
+	install -d -m 775 $(DESTDIR)$(INCDIR)
+	install -m 664 $(HEADERS) $(DESTDIR)$(INCDIR)
+	install -m 664 $(TEMPLATES) $(DESTDIR)$(INCDIR)
+	install -d -m 775 $(DESTDIR)$(prefix)/lib
+	if [ -f $(NAME)$A ]; then \
+	  install -m 664 $(NAME)$A $(DESTDIR)$(prefix)/lib; \
+	fi
+	if [ -f $(NAME)$D.$(VERSION) ]; then \
+	  install -m 775 $(NAME)$D.$(VERSION) $(DESTDIR)$(prefix)/lib; \
+	  ln -sf $(NAME)$D.$(VERSION) $(DESTDIR)$(prefix)/lib/$(NAME)$D.$(MAJOR); \
+	  ln -sf $(NAME)$D.$(MAJOR) $(DESTDIR)$(prefix)/lib/$(NAME)$D; \
+	fi
+
+uninstall: $(PROGRAM)
+	rm -f $(DESTDIR)$(prefix)/lib/$(NAME)$A
+	rm -f $(DESTDIR)$(prefix)/lib/$(NAME)$D
+	rm -f $(DESTDIR)$(prefix)/lib/$(NAME)$D.$(MAJOR)
+	rm -f $(DESTDIR)$(prefix)/lib/$(NAME)$D.$(VERSION)
+	rm -rf $(DESTDIR)$(INCDIR)
+
 #
 # Automatic targets and rules:
 #
 %$O: getopt/%.c
-	$(CC) -Igetopt -I. -c $(CPPFLAGS) $< -o $@
+	$(CC) -Igetopt -I. -c $(CXXSHARED) $(CPPFLAGS) $< -o $@
 
 %$O: %.cc
 	$(CXX) -c $(CXXFLAGS) $< -o $@
