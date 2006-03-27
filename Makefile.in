@@ -3,8 +3,8 @@
 #
 # Compatibility: GNU
 #
-# $Revision: 1.5 $
-# $Date: 2006-03-27 12:44:33 $
+# $Revision: 1.6 $
+# $Date: 2006-03-27 12:46:13 $
 #
 
 #
@@ -52,7 +52,7 @@ LIBS =
 BINDIR = $(prefix)/bin
 LIBDIR = $(prefix)/lib
 INCDIR = $(prefix)/include/cxxutils
-DOCDIR = $(prefix)/doc
+DOCDIR = $(prefix)/doc/cxxutils
 MANDIR = $(prefix)/man
 
 #
