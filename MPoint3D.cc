@@ -1,23 +1,32 @@
-#ifndef MPOINT3D_CPP
-#define MPOINT3D_CPP
+/* -*-gnu-*- */
+/*
+ * CxxUtils C++ utility library
+ * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
+ *
+ * Unless otherwise stated, this software is provided under the terms of the
+ * GNU LESSER PUBLIC LICENSE. The text of this license agreement accompanies
+ * this library's source distribution.
+ */
 
-/* ********************************************************************
-//  Class: MPoint3D
-//  Implementation of class MPoint3D
-//  -------------------------------------------------------------------
-//  Project: Repairing and texturing of VR models
-//  (C) Copyright Fachhochschule Wedel, Germany 2002
-// ******************************************************************** */
+#ifndef MPOINT3D_CC
+#define MPOINT3D_CC
+
+/* --------------------------------------------------------------------
+ * 3D point class implementation
+ *
+ * $Date: 2006-03-27 11:08:15 $
+ * $Revision: 1.1 $
+ * -------------------------------------------------------------------- */
 
 // system specific includes
 #include <assert.h>
 
 // class specific includes
-#include "cxxutils/MPoint3d.hh"
+#include "cxxutils/MPoint3D.hh"
 
 // include "outlined" INLINE functions
 #ifdef OUTLINE
-#include "cxxutils/MPoint3d.ih"
+#include "cxxutils/MPoint3D.ih"
 #endif
 
 // Description:
@@ -61,4 +70,4 @@ CxxUtils::MPoint3D<Scalar>::~MPoint3D (void)
 {
 }
 
-#endif // MPOINT3D_CPP
+#endif // MPOINT3D_CC

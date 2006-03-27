@@ -1,16 +1,22 @@
-#ifndef MMATRIX_CPP
-#define MMATRIX_CPP
+/* -*-gnu-*- */
+/*
+ * CxxUtils C++ utility library
+ * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
+ *
+ * Unless otherwise stated, this software is provided under the terms of the
+ * GNU LESSER PUBLIC LICENSE. The text of this license agreement accompanies
+ * this library's source distribution.
+ */
 
-/* ********************************************************************
-//  Class: MMatrix
-//  Implementation of class MMatrix
-//  -------------------------------------------------------------------
-//  Project: Repairing and texturing of VR models
-//  (C) Copyright Fachhochschule Wedel, Germany 2003
-//  -------------------------------------------------------------------
-//  $Revision: 1.2 $
-//  $Date: 2006-03-27 09:02:55 $
-// ******************************************************************** */
+#ifndef MMATRIX_CC
+#define MMATRIX_CC
+
+/* --------------------------------------------------------------------
+ * Generic matrix class implementation
+ *
+ * $Date: 2006-03-27 11:08:15 $
+ * $Revision: 1.3 $
+ * -------------------------------------------------------------------- */
 
 // class specific includes
 #include "cxxutils/MMatrix.hh"
@@ -125,4 +131,4 @@ CxxUtils::operator<< (std::ostream & os, MMatrix<Scalar> m)
 #include "cxxutils/MMatrix.ih"
 #endif
 
-#endif // MMATRIX_CPP
+#endif // MMATRIX_CC

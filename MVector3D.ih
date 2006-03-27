@@ -9,21 +9,8 @@
  */
 
 /* --------------------------------------------------------------------
- * Utility function inline implementations
+ * 3D vector class inline implementations
  *
  * $Date: 2006-03-27 11:08:15 $
- * $Revision: 1.3 $
+ * $Revision: 1.1 $
  * -------------------------------------------------------------------- */
-
-#include <string.h>
-
-INLINE int
-CxxUtils::simplehash(const char s[], int key, int base)
-{
-  int l=strlen(s), i, r=0;
-  for ( i = 0; i < l; i ++ ) 
-    {
-      r = (base*r + (int)(s[i])) % key;
-    }
-  return r;
-}

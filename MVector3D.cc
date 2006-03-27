@@ -1,23 +1,32 @@
-#ifndef MVECTOR3D_CPP
-#define MVECTOR3D_CPP
+/* -*-gnu-*- */
+/*
+ * CxxUtils C++ utility library
+ * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
+ *
+ * Unless otherwise stated, this software is provided under the terms of the
+ * GNU LESSER PUBLIC LICENSE. The text of this license agreement accompanies
+ * this library's source distribution.
+ */
 
-/* ********************************************************************
-//  Class: MVector3D
-//  Implementation of class MVector3D
-//  -------------------------------------------------------------------
-//  Project: Repairing and texturing of VR models
-//  (C) Copyright Fachhochschule Wedel, Germany 2002
-// ******************************************************************** */
+#ifndef MVECTOR3D_CC
+#define MVECTOR3D_CC
+
+/* --------------------------------------------------------------------
+ * 3D vector class implementation
+ *
+ * $Date: 2006-03-27 11:08:15 $
+ * $Revision: 1.1 $
+ * -------------------------------------------------------------------- */
 
 // system specific includes
 #include <assert.h>
 
 // class specific includes
-#include "cxxutils/MVector3d.hh"
+#include "cxxutils/MVector3D.hh"
 
 // include "outlined" INLINE functions
 #ifdef OUTLINE
-#include "cxxutils/MVector3d.ih"
+#include "cxxutils/MVector3D.ih"
 #endif
 
 // Description:
@@ -73,4 +82,4 @@ CxxUtils::MVector3D<Scalar>::operator^ (const MVector3D & v) const
 }
 
 
-#endif // MVECTOR3D_CPP
+#endif // MVECTOR3D_CC

@@ -1,21 +1,36 @@
-#ifndef MPOINT4D_HPP
-#define MPOINT4D_HPP
+/* -*-gnu-*- */
+/*
+ * CxxUtils C++ utility library
+ * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
+ *
+ * Unless otherwise stated in the source file, this code is provided under 
+ * the terms of the GNU LESSER PUBLIC LICENSE. The text of this license 
+ * agreement accompanies this library's source distribution.
+ *
+ * This source file is based on code published in C/C++ Users' Journal, issue
+ * 10/2001. The exact license terms are unknown, BSD-like license is assumed.
+ */
 
-/** @addtogroup math */
-// *********************************************************************
-/*! @class MPoint4d
-//
-//  @short 4D point class
-//
-//  This class defines 4-dim points. Since it is derived from
-//  MPoint, all public methods from this base class are avialable in
-//  this class with the introduction of the constructor
-//  MPoint4D (MPoint<..>). This constructor is absolutely neccessary.
-//
-//  @ingroup math
-//  @author  Andreas Kolb<akolb@fh-wedel.de>, Martin Dietze<di@fh-wedel.de>
-//  @version 0.1
-*/
+#ifndef MPOINT4D_H
+#define MPOINT4D_H
+
+/* --------------------------------------------------------------------
+ * 4D point class definition
+ *
+ * $Date: 2006-03-27 11:08:15 $
+ * $Revision: 1.1 $
+ * -------------------------------------------------------------------- */
+
+/**
+ * @class MPoint4D
+ *
+ * @short 4D point class
+ *
+ * This class defines 4-dim points. Since it is derived from
+ * MPoint, all public methods from this base class are avialable in
+ * this class with the introduction of the constructor
+ * MPoint4D (MPoint<..>). This constructor is absolutely neccessary.
+ */
 /*  --------------------------------------------------------------------
 //  Project: Repairing and texturing of VR models
 //  (C) Copyright Fachhochschule Wedel, Germany 2002
@@ -33,7 +48,7 @@
 
 // class specific includes
 #include "cxxutils/cdefines.h"
-#include "cxxutils/MPoint3d.hh"
+#include "cxxutils/MPoint3D.hh"
 
 
 // forward declarations
@@ -70,9 +85,9 @@ namespace CxxUtils
 }
 
   // include INLINES if required
-#include "cxxutils/MPoint4d.cc"
+#include "cxxutils/MPoint4D.cc"
 #ifndef OUTLINE
-#include "cxxutils/MPoint4d.ih"
+#include "cxxutils/MPoint4D.ih"
 #endif
 
-#endif // MPOINT4D_HPP
+#endif // MPOINT4D_H

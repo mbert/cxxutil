@@ -1,16 +1,22 @@
-#ifndef MPOINT_CPP
-#define MPOINT_CPP
+/* -*-gnu-*- */
+/*
+ * CxxUtils C++ utility library
+ * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
+ *
+ * Unless otherwise stated, this software is provided under the terms of the
+ * GNU LESSER PUBLIC LICENSE. The text of this license agreement accompanies
+ * this library's source distribution.
+ */
 
-/* ********************************************************************
-//  Class: MPoint
-//  Implementation of class MPoint
-//  -------------------------------------------------------------------
-//  Project: Repairing and texturing of VR models
-//  (C) Copyright Fachhochschule Wedel, Germany 2003
-//  -------------------------------------------------------------------
-//  $Revision: 1.2 $
-//  $Date: 2006-03-27 09:02:55 $
-// ******************************************************************** */
+#ifndef MPOINT_CC
+#define MPOINT_CC
+
+/* --------------------------------------------------------------------
+ * Generic point class implementation
+ *
+ * $Date: 2006-03-27 11:08:15 $
+ * $Revision: 1.3 $
+ * -------------------------------------------------------------------- */
 
 // class specific includes
 #include "cxxutils/MPoint.hh"
@@ -63,4 +69,4 @@ CxxUtils::MPoint<Scalar>::dist (const CxxUtils::MPoint<Scalar> &q) const
 #endif
 
 
-#endif // MPOINT_CPP
+#endif // MPOINT_CC

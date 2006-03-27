@@ -1,24 +1,32 @@
+/* -*-gnu-*- */
+/*
+ * CxxUtils C++ utility library
+ * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
+ *
+ * Unless otherwise stated in the source file, this code is provided under 
+ * the terms of the GNU LESSER PUBLIC LICENSE. The text of this license 
+ * agreement accompanies this library's source distribution.
+ *
+ * This source file is based on code published in C/C++ Users' Journal, issue
+ * 10/2001. The exact license terms are unknown, BSD-like license is assumed.
+ */
+
 #ifndef MMATRIX4X4_H
 #define MMATRIX4X4_H
 
-/** @addtogroup math */
-// *********************************************************************
-/*! @class MMatrix4x4
-//
-//  @short A 4x4 matrix. This specialized version is only necessary to 
-//  provide support for the 4x4 array structure needed by RxHelper.
-//
-//  @ingroup math
-//  @author Andreas Kolb<ko@fh-wedel.de>, Martin Dietze<herbert@spamcop.net>
-//  @version 0.1
-*/
-/*  --------------------------------------------------------------------
-//  Project: Repairing and texturing of VR models
-//  (C) Copyright Fachhochschule Wedel, Germany 2003
-//  --------------------------------------------------------------------
-//  $Revision: 1.2 $
-//  $Date: 2006-03-27 09:02:55 $
-// ********************************************************************** */
+/* --------------------------------------------------------------------
+ * 4D Matrix class definition
+ *
+ * $Date: 2006-03-27 11:08:15 $
+ * $Revision: 1.3 $
+ * -------------------------------------------------------------------- */
+
+/**
+ * @class MMatrix4x4
+ *
+ * @short A 4x4 matrix. This specialized version is only necessary to 
+ * provide support for the 4x4 array structure needed by RxHelper.
+ */
 
 // INLINE declaration
 #ifndef INLINE

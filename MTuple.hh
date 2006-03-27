@@ -1,31 +1,40 @@
-#ifndef MTUPLE_HPP
-#define MTUPLE_HPP
-/** @addtogroup math */
-// *********************************************************************
-/*! @class MTuple
-//
-//  @short An n-tuple.
-//
-//  This is an template class for the basic tuple classes. It is 
-//  used for the construction of vector-classes, point-classes etc. The
-//  fundamental funtionality for tuple-calculations is offered by this
-//  template class, so classes build upon this class can use them
-//  quite simply.
-//
-//  Though not abstract, this class should not be used directly but rather
-//  be subclassed, see MVector and MPoint.
-//
-//  @ingroup math
-//  @author  Andreas Kolb<ko@fh-wedel.de>, Martin Dietze<herbert@spamcop.net>
-//  @version 0.1
-*/
-/*  --------------------------------------------------------------------
-//  Project: Repairing and texturing of VR models
-//  (C) Copyright Fachhochschule Wedel, Germany 2003
-//  --------------------------------------------------------------------
-//  $Revision: 1.2 $
-//  $Date: 2006-03-27 09:02:56 $
-// ********************************************************************** */
+/* -*-gnu-*- */
+/*
+ * CxxUtils C++ utility library
+ * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
+ *
+ * Unless otherwise stated in the source file, this code is provided under 
+ * the terms of the GNU LESSER PUBLIC LICENSE. The text of this license 
+ * agreement accompanies this library's source distribution.
+ *
+ * This source file is based on code published in C/C++ Users' Journal, issue
+ * 10/2001. The exact license terms are unknown, BSD-like license is assumed.
+ */
+
+#ifndef MTUPLE_H
+#define MTUPLE_H
+
+/* --------------------------------------------------------------------
+ * 3D vector class definition
+ *
+ * $Date: 2006-03-27 11:08:15 $
+ * $Revision: 1.3 $
+ * -------------------------------------------------------------------- */
+
+/**
+ * @class MTuple
+ *
+ * @short An n-tuple.
+ *
+ * This is an template class for the basic tuple classes. It is 
+ * used for the construction of vector-classes, point-classes etc. The
+ * fundamental funtionality for tuple-calculations is offered by this
+ * template class, so classes build upon this class can use them
+ * quite simply.
+ *
+ * Though not abstract, this class should not be used directly but rather
+ * be subclassed, see MVector and MPoint.
+ */
 
 // INLINE declaration
 #ifndef INLINE
@@ -282,4 +291,4 @@ namespace CxxUtils
 #include "cxxutils/MTuple.ih"
 #endif
 
-#endif // MTUPLE_HPP
+#endif // MTUPLE_H

@@ -1,13 +1,31 @@
-#ifndef DEBUG_INCL
-#define DEBUG_INCL
-/* --------------------------------------------------------------------
-// KLASSE:  CDebug
-// AUFGABE: Definition einer einfachen Debug-Klasse/Funktionalitaet
-// BESCHR.: 
-//          
-// ----------------------------------------------------------------- */
+/* -*-gnu-*- */
+/*
+ * CxxUtils C++ utility library
+ * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
+ *
+ * Unless otherwise stated in the source file, this code is provided under 
+ * the terms of the GNU LESSER PUBLIC LICENSE. The text of this license 
+ * agreement accompanies this library's source distribution.
+ *
+ * This source file is based on code published in C/C++ Users' Journal, issue
+ * 10/2001. The exact license terms are unknown, BSD-like license is assumed.
+ */
 
-// $Id: CDebug.hh,v 1.2 2006-03-27 09:02:55 herbert Exp $
+#ifndef DEBUG_H
+#define DEBUG_H
+
+/* --------------------------------------------------------------------
+ * Getopt wrapper class definition
+ *
+ * $Date: 2006-03-27 11:08:15 $
+ * $Revision: 1.3 $
+ * -------------------------------------------------------------------- */
+
+/**
+ * @class CDebug
+ *
+ * @short Simple debug output wrapper class
+ */
 
 // debug inline functions?
 #ifndef INLINE
@@ -59,7 +77,7 @@ namespace CxxUtils
   public:
 
     //! Aufzaehlungstyp fuer Debug-Level 
-    /*! Debug-Levels koennen einzeln gesetzt werden (NONE setzt alles zurueck:)
+    /** Debug-Levels koennen einzeln gesetzt werden (NONE setzt alles zurueck:)
       INFO = I_OUT Ausgabe; ERROR = E_OUT Ausgabe; DEBUG = D_OUT Ausgabe */
     enum DebugLevel
       { None = 0, Info = 1, Error = 2, Debug = 4, All = 7 };

@@ -1,12 +1,25 @@
-/* -*-configsys-*- */
-/* ---------------------------------------------------------------------------
-/// @file
-/// @brief Wrapper for compiling the NetBSD implementation of getopt.
-/// @author Martin Dietze
-// --------------------------------------------------------------------------- */
+/* -*-gnu-*- */
+/*
+ * CxxUtils C++ utility library
+ * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
+ *
+ * Unless otherwise stated in the source file, this code is provided under 
+ * the terms of the GNU LESSER PUBLIC LICENSE. The text of this license 
+ * agreement accompanies this library's source distribution.
+ *
+ * This source file is based on code published in C/C++ Users' Journal, issue
+ * 10/2001. The exact license terms are unknown, BSD-like license is assumed.
+ */
 
 #ifndef GETOPT_WRAPPER_H
 #define GETOPT_WRAPPER_H
+
+/* --------------------------------------------------------------------
+ * Wrapper for BSD-getopt implementation
+ *
+ * $Date: 2006-03-27 11:08:15 $
+ * $Revision: 1.2 $
+ * -------------------------------------------------------------------- */
 
 /* macros used in getopt/getopt.h (make sure this does not cause problems) */
 #ifndef __P

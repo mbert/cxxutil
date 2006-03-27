@@ -1,12 +1,29 @@
+/* -*-gnu-*- */
+/*
+ * CxxUtils C++ utility library
+ * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
+ *
+ * Unless otherwise stated, this software is provided under the terms of the
+ * GNU LESSER PUBLIC LICENSE. The text of this license agreement accompanies
+ * this library's source distribution.
+ */
+
+/* --------------------------------------------------------------------
+ * Main test program
+ *
+ * $Date: 2006-03-27 11:08:15 $
+ * $Revision: 1.4 $
+ * -------------------------------------------------------------------- */
+
 // simple testing area
 #include "cxxutils/utils.h"
 #include "cxxutils/testing.h"
-#include "cxxutils/MPoint2d.hh"
-#include "cxxutils/MPoint3d.hh"
-#include "cxxutils/MPoint4d.hh"
-#include "cxxutils/MVector2d.hh"
-#include "cxxutils/MVector3d.hh"
-#include "cxxutils/MVector4d.hh"
+#include "cxxutils/MPoint2D.hh"
+#include "cxxutils/MPoint3D.hh"
+#include "cxxutils/MPoint4D.hh"
+#include "cxxutils/MVector2D.hh"
+#include "cxxutils/MVector3D.hh"
+#include "cxxutils/MVector4D.hh"
 #include "cxxutils/MMatrix4x4.hh"
 
 #include <iostream>

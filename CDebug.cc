@@ -1,9 +1,19 @@
+/* -*-gnu-*- */
+/*
+ * CxxUtils C++ utility library
+ * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
+ *
+ * Unless otherwise stated, this software is provided under the terms of the
+ * GNU LESSER PUBLIC LICENSE. The text of this license agreement accompanies
+ * this library's source distribution.
+ */
+
 /* --------------------------------------------------------------------
-// KLASSE:  CDebug
-// AUFGABE: Implementiert die Debug-Klasse
-// BESCHR.: 
-//          
-// ----------------------------------------------------------------- */
+ * Debugging utils class implementation
+ *
+ * $Date: 2006-03-27 11:08:15 $
+ * $Revision: 1.3 $
+ * -------------------------------------------------------------------- */
 
 #include "cxxutils/CDebug.hh"
 
@@ -23,7 +33,7 @@ int CxxUtils::CDebug::level;
 
 
 //! Default constructor
-/*! Constructor for the static CDebug-class */
+/** Constructor for the static CDebug-class */
 CxxUtils::CDebug::CDebug (void)
 {
   level = CDebug::Info | CDebug::Error;
@@ -86,7 +96,7 @@ CxxUtils::CDebug::open (const char *fileName)
 
 
 //! OStream-Operator
-/*! This method is used to put a given message to stdout or the specified
+/** This method is used to put a given message to stdout or the specified
     file*/
 ostream & 
 CxxUtils::CDebug::getOStr (void)

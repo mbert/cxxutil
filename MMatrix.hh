@@ -1,23 +1,31 @@
+/*
+ * CxxUtils C++ utility library
+ * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
+ *
+ * Unless otherwise stated, this software is provided under the terms of the
+ * GNU LESSER PUBLIC LICENSE. The text of this license agreement accompanies
+ * this library's source distribution.
+ */
+
 #ifndef MMATRIX_H
 #define MMATRIX_H
 
-/** @addtogroup math */
-// *********************************************************************
-/*! @class MMatrix
-//
-//  @short A generic NM matrix.
-//
-//  @ingroup math
-//  @author Andreas Kolb<ko@fh-wedel.de>, Martin Dietze<herbert@spamcop.net>
-//  @version 0.1
-*/
-/*  --------------------------------------------------------------------
-//  Project: Repairing and texturing of VR models
-//  (C) Copyright Fachhochschule Wedel, Germany 2003
-//  --------------------------------------------------------------------
-//  $Revision: 1.2 $
-//  $Date: 2006-03-27 09:02:55 $
-// ********************************************************************** */
+/* --------------------------------------------------------------------
+ * MMatrix class definition
+ *
+ * $Date: 2006-03-27 11:08:15 $
+ * $Revision: 1.3 $
+ * -------------------------------------------------------------------- */
+
+/**
+ * @class MMatrix
+ *
+ *  @short A generic NM matrix.
+ *
+ *  @ingroup math
+ *  @author Andreas Kolb<ko@fh-wedel.de>, Martin Dietze<herbert@spamcop.net>
+ *  @version 0.1
+ */
 
 // INLINE declaration
 #ifndef INLINE

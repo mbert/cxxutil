@@ -1,23 +1,32 @@
-#ifndef MVECTOR2D_CPP
-#define MVECTOR2D_CPP
+/* -*-gnu-*- */
+/*
+ * CxxUtils C++ utility library
+ * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
+ *
+ * Unless otherwise stated, this software is provided under the terms of the
+ * GNU LESSER PUBLIC LICENSE. The text of this license agreement accompanies
+ * this library's source distribution.
+ */
 
-/* ********************************************************************
-//  Class: MVector2D
-//  Implementation of class MVector2D
-//  -------------------------------------------------------------------
-//  Project: Repairing and texturing of VR models
-//  (C) Copyright Fachhochschule Wedel, Germany 2002
-// ******************************************************************** */
+#ifndef MVECTOR2D_CC
+#define MVECTOR2D_CC
+
+/* --------------------------------------------------------------------
+ * 2D vector class implementation
+ *
+ * $Date: 2006-03-27 11:08:15 $
+ * $Revision: 1.1 $
+ * -------------------------------------------------------------------- */
 
 // system specific includes
 #include <assert.h>
 
 // class specific includes
-#include "cxxutils/MVector2d.hh"
+#include "cxxutils/MVector2D.hh"
 
 // include "outlined" INLINE functions
 #ifdef OUTLINE
-#include "cxxutils/MVector2d.ih"
+#include "cxxutils/MVector2D.ih"
 #endif
 
 // Description:
@@ -65,4 +74,4 @@ CxxUtils::MVector2D<Scalar>::getOrthogonal (void) const
   return MVector2D (-this->m_coord[1], this->m_coord[0]);
 }
 
-#endif // MVECTOR2D_CPP
+#endif // MVECTOR2D_CC

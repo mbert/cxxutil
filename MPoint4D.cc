@@ -1,22 +1,31 @@
-#ifndef MPOINT4D_CPP
-#define MPOINT4D_CPP
+/* -*-gnu-*- */
+/*
+ * CxxUtils C++ utility library
+ * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
+ *
+ * Unless otherwise stated, this software is provided under the terms of the
+ * GNU LESSER PUBLIC LICENSE. The text of this license agreement accompanies
+ * this library's source distribution.
+ */
 
-/* ********************************************************************
-//  Class: MPoint4D
-//  Implementation of class MPoint4D
-//  -------------------------------------------------------------------
-//  Project: Repairing and texturing of VR models
-//  (C) Copyright Fachhochschule Wedel, Germany 2002
-// ******************************************************************** */
+#ifndef MPOINT4D_CC
+#define MPOINT4D_CC
+
+/* --------------------------------------------------------------------
+ * 4D point class implementation
+ *
+ * $Date: 2006-03-27 11:08:15 $
+ * $Revision: 1.1 $
+ * -------------------------------------------------------------------- */
 
 // system specific includes
 
 // class specific includes
-#include "cxxutils/MPoint4d.hh"
+#include "cxxutils/MPoint4D.hh"
 
 // include "outlined" INLINE functions
 #ifdef OUTLINE
-#include "cxxutils/MPoint4d.ih"
+#include "cxxutils/MPoint4D.ih"
 #endif
 
 // Description:
@@ -70,4 +79,4 @@ CxxUtils::MPoint4D<Scalar>::projectTo3D (void) const
   return res;
 }
 
-#endif // MPOINT4D_CPP
+#endif // MPOINT4D_CC

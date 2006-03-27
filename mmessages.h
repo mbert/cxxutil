@@ -1,18 +1,25 @@
+/* -*-gnu-*- */
+/*
+ * CxxUtils C++ utility library
+ * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
+ *
+ * Unless otherwise stated, this software is provided under the terms of the
+ * GNU LESSER PUBLIC LICENSE. The text of this license agreement accompanies
+ * this library's source distribution.
+ */
+
 #ifndef MMESSAGES_H
 #define MMESSAGES_H
-/** @addtogroup math */
-// *********************************************************************
-/*
-//  Output messages
-//
-//  @ingroup math
-//  @author Martin Dietze<herbert@spamcop.net>
-//  @version 0.1
-*/
-/*  --------------------------------------------------------------------
-//  Project: Repairing and texturing of VR models
-//  (C) Copyright Fachhochschule Wedel, Germany 2003
-// ********************************************************************** */
+/* --------------------------------------------------------------------
+ * Message definitions
+ *
+ * $Date: 2006-03-27 11:08:15 $
+ * $Revision: 1.3 $
+ * -------------------------------------------------------------------- */
+
+/**
+ *  @short Output messages
+ */
 
 #define MSG_ERROR_WEIGHTS_TO_ONE "weights do sum to 1."
 #define MSG_ERROR_NUMBER_POINTS "invalid number of points"

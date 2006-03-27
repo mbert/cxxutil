@@ -1,7 +1,25 @@
-/**
- * String tokenizer class for use with C++ std::string or whatever.
- * Code based on Conversations article in C/C++ Users' Journal, issue 10/2001 
+/* -*-gnu-*- */
+/*
+ * CxxUtils C++ utility library
+ * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
+ *
+ * Unless otherwise stated, this software is provided under the terms of the
+ * GNU LESSER PUBLIC LICENSE. The text of this license agreement accompanies
+ * this library's source distribution.
+ *
+ * This source file is based on code published in C/C++ Users' Journal, issue
+ * 10/2001. The exact license terms are unknown, BSD-like license is assumed.
  */
+
+#ifndef STRING_TOK_CC
+#define STRING_TOK_CC
+
+/* --------------------------------------------------------------------
+ * String Tokenizer class implementation
+ *
+ * $Date: 2006-03-27 11:08:15 $
+ * $Revision: 1.3 $
+ * -------------------------------------------------------------------- */
 
 #include "cxxutils/StringTok.hh"
 
@@ -39,3 +57,5 @@ CxxUtils::StringTok<T>::operator() (const T& delim)
 
   return token;
 }
+
+#endif // STRING_TOK_CC

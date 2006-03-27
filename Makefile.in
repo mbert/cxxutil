@@ -3,8 +3,8 @@
 #
 # Compatibility: GNU
 #
-# $Revision: 1.2 $
-# $Date: 2006-03-27 09:02:56 $
+# $Revision: 1.3 $
+# $Date: 2006-03-27 11:08:15 $
 #
 
 #
@@ -38,9 +38,9 @@ TARGET = libCxxUtils$A
 # Name of target object files:
 #
 MAIN = utilsmain
-OBJS = CDebug$O Getopt$O MMatrix$O MMatrix4x4$O MPoint$O MPoint2d$O MPoint3d$O \
-	MPoint4d$O MTuple$O MVector$O MVector2d$O MVector3d$O MVector4d$O \
-	StringTok$O mutil$O utils$O
+OBJS = CDebug$O Getopt$O MMatrix$O MMatrix4x4$O MPoint$O MPoint2D$O \
+	MPoint3D$O MPoint4D$O MTuple$O MVector$O MVector2D$O MVector3D$O \
+	MVector4D$O StringTok$O mutil$O utils$O getopt_wrapper$O
 MAINOBJ = $(MAIN)$O
 SOURCES = $(OBJS:$O=.cc) $(MAINOBJ:$O=.cpp)
 DEPENDS = $(SOURCES:.cc=.dd)
@@ -100,6 +100,9 @@ endif
 #
 # Automatic targets and rules:
 #
+%$O: getopt/%.c
+	$(CC) -Igetopt -I. -c $(CPPFLAGS) $< -o $@
+
 %$O: %.cc
 	$(CXX) -c $(CXXFLAGS) $< -o $@
 

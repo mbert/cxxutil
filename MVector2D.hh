@@ -1,25 +1,36 @@
-#ifndef MVECTOR2D_HPP
-#define MVECTOR2D_HPP
+/* -*-gnu-*- */
+/*
+ * CxxUtils C++ utility library
+ * Copyright (c) 2003, 2006 Andreas Kolb, Martin Dietze and Contributors
+ *
+ * Unless otherwise stated in the source file, this code is provided under 
+ * the terms of the GNU LESSER PUBLIC LICENSE. The text of this license 
+ * agreement accompanies this library's source distribution.
+ *
+ * This source file is based on code published in C/C++ Users' Journal, issue
+ * 10/2001. The exact license terms are unknown, BSD-like license is assumed.
+ */
 
-/** @addtogroup math */
-// *********************************************************************
-/*! @class MVector2d
-//
-//  @short 2D vector class
-//
-//  This class defines 2-dim vectors. Since it is derived from
-//  MVector, all public methods from this base class are avialable in
-//  this class with the introduction of the constructor
-//  MVector2D (MVector<..>). This constructor is absolutely neccessary.
-//
-//  @ingroup math
-//  @author  Andreas Kolb<akolb@fh-wedel.de>, Martin Dietze<di@fh-wedel.de>
-//  @version 0.1
-*/
-/*  --------------------------------------------------------------------
-//  Project: Repairing and texturing of VR models
-//  (C) Copyright Fachhochschule Wedel, Germany 2002
-// ********************************************************************** */
+#ifndef MVECTOR2D_H
+#define MVECTOR2D_H
+
+/* --------------------------------------------------------------------
+ * 3D vector class definition
+ *
+ * $Date: 2006-03-27 11:08:15 $
+ * $Revision: 1.1 $
+ * -------------------------------------------------------------------- */
+
+/**
+ * @class MVector2D
+ *
+ * @short 2D vector class
+ *
+ * This class defines 2-dim vectors. Since it is derived from
+ * MVector, all public methods from this base class are avialable in
+ * this class with the introduction of the constructor
+ * MVector2D (MVector<..>). This constructor is absolutely neccessary.
+ */
 
 // INLINE declaration
 #ifndef INLINE
@@ -76,9 +87,9 @@ namespace CxxUtils
 }
 
   // include INLINES if required
-#include "cxxutils/MVector2d.cc"
+#include "cxxutils/MVector2D.cc"
 #ifndef OUTLINE
-#include "cxxutils/MVector2d.ih"
+#include "cxxutils/MVector2D.ih"
 #endif
 
-#endif // MVECTOR2D_HPP
+#endif // MVECTOR2D_H
