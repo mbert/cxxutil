@@ -13,8 +13,8 @@
 /* --------------------------------------------------------------------
  * Common definitions
  *
- * $Date: 2006-03-27 13:00:01 $
- * $Revision: 1.4 $
+ * $Date: 2006-03-27 13:12:43 $
+ * $Revision: 1.5 $
  * -------------------------------------------------------------------- */
 
 #include <limits.h>
@@ -37,8 +37,40 @@
 namespace CxxUtil 
 {
 
+// --------------------------------------------------------------------
+// GNU/Linux on a PC platform, glibc
+// --------------------------------------------------------------------
 #if defined (__GNUC__) && defined (__i386__) && (__GNUC__ >= 2)
 
+#ifndef LINUX
+#define LINUX
+#endif
+/** Unsigned 8-bit integer */
+typedef unsigned char u8;
+/** Unsigned 16-bit integer */
+typedef unsigned short u16;
+/** Unsigned 32-bit integer */
+typedef unsigned long u32;
+/** Signed 64-bit integer */
+typedef uint64_t u64;
+#define CXXUU16_MAX USHRT_MAX
+#define CXXUU32_MAX ULONG_MAX
+
+/** Signed 8-bit integer */
+typedef signed char i8;
+/** Signed 16-bit integer */
+typedef signed short i16;
+/** Signed 32-bit integer */
+typedef long int i32;
+/** Signed 64-bit integer */
+typedef int64_t i64;
+
+#define CXXU_BYTE_SWAP 1
+
+// --------------------------------------------------------------------
+// GNU/Linux on MTX-1 platform, no glibc
+// --------------------------------------------------------------------
+#elif defined (__GNUC__) && defined (CONFIG_MIPS_MTX1) && (__GNUC__ >= 2)
 #ifndef LINUX
 #define LINUX
 #endif
