@@ -3,8 +3,8 @@
 #
 # Compatibility: GNU
 #
-# $Revision: 1.7 $
-# $Date: 2006-03-27 13:00:00 $
+# $Revision: 1.8 $
+# $Date: 2006-03-27 14:12:16 $
 #
 
 #
@@ -66,7 +66,7 @@ CXXWARN = @CXXWARN@ @CXXWARN2@
 LDFLAGS = @LDFLAGS@ -lm 
 CXXFLAGS = $(CPPFLAGS) $(CXXSHARED) $(CXXOPT) $(CXXDEBUG) $(CXXWARN) @CXXMISC@
 
-.PHONY : all complete test install uninstall clean distclean debug tar shared
+.PHONY : all complete test install uninstall clean distclean debug tar shared package
 
 #
 # Main target and file dependencies:
@@ -75,7 +75,7 @@ CXXFLAGS = $(CPPFLAGS) $(CXXSHARED) $(CXXOPT) $(CXXDEBUG) $(CXXWARN) @CXXMISC@
 all: $(TARGET)
 
 shared:
-	$(MAKE) -e LIB=libcxxutil$D CXXSHARED=-fPIC
+	$(MAKE) -e TARGET=libCxxUtil$D CXXSHARED=-fPIC
 
 complete: all test 
 
@@ -104,6 +104,10 @@ cxxutil-$(VERSION).tar.gz: clean
 	egrep -v "CVS|autom4te\.cache|config\.status|config\.log" | \
 	xargs tar czvf $$DIR/$@
 
+package:
+	fakeroot dpkg-buildpackage -us -uc
+	cd ..; for i in libcxxutil*.deb; do fakeroot alien --to-rpm $$i; done
+
 ifdef DOXYGEN
 doc: 
 	$(DOXYGEN) Doxyfile | tee doxy.log
@@ -118,29 +122,29 @@ endif
 	$(AR) crs $@ $^
 
 $(NAME)$D: $(OBJS)
-	$(CXX) $^ -shared -Wl,-soname,$*$(D).$(MAJOR) -o $*$(D).$(VERSION)
-	ln -sf $*$(D).$(VERSION) $*$(D).$(MAJOR)
-	ln -sf $*$(D).$(MAJOR) $*$(D)
+	$(CXX) $^ -shared -Wl,-soname,$*$(D).$(MAJOR) -o $(NAME)$(D).$(VERSION)
+	ln -sf $(NAME)$(D).$(VERSION) $(NAME)$(D).$(MAJOR)
+	ln -sf $(NAME)$(D).$(MAJOR) $(NAME)$(D)
 
 install: $(PROGRAM)
 	install -d -m 775 $(DESTDIR)$(INCDIR)
 	install -m 664 $(HEADERS) $(DESTDIR)$(INCDIR)
 	install -m 664 $(TEMPLATES) $(DESTDIR)$(INCDIR)
-	install -d -m 775 $(DESTDIR)$(prefix)/lib
+	install -d -m 775 $(DESTDIR)$(LIBDIR)
 	if [ -f $(NAME)$A ]; then \
-	  install -m 664 $(NAME)$A $(DESTDIR)$(prefix)/lib; \
+	  install -m 664 $(NAME)$A $(DESTDIR)$(LIBDIR); \
 	fi
 	if [ -f $(NAME)$D.$(VERSION) ]; then \
-	  install -m 775 $(NAME)$D.$(VERSION) $(DESTDIR)$(prefix)/lib; \
-	  ln -sf $(NAME)$D.$(VERSION) $(DESTDIR)$(prefix)/lib/$(NAME)$D.$(MAJOR); \
-	  ln -sf $(NAME)$D.$(MAJOR) $(DESTDIR)$(prefix)/lib/$(NAME)$D; \
+	  install -m 775 $(NAME)$D.$(VERSION) $(DESTDIR)$(LIBDIR); \
+	  ln -sf $(NAME)$D.$(VERSION) $(DESTDIR)$(LIBDIR)/$(NAME)$D.$(MAJOR); \
+	  ln -sf $(NAME)$D.$(MAJOR) $(DESTDIR)$(LIBDIR)/$(NAME)$D; \
 	fi
 
 uninstall: $(PROGRAM)
-	rm -f $(DESTDIR)$(prefix)/lib/$(NAME)$A
-	rm -f $(DESTDIR)$(prefix)/lib/$(NAME)$D
-	rm -f $(DESTDIR)$(prefix)/lib/$(NAME)$D.$(MAJOR)
-	rm -f $(DESTDIR)$(prefix)/lib/$(NAME)$D.$(VERSION)
+	rm -f $(DESTDIR)$(LIBDIR)/$(NAME)$A
+	rm -f $(DESTDIR)$(LIBDIR)/$(NAME)$D
+	rm -f $(DESTDIR)$(LIBDIR)/$(NAME)$D.$(MAJOR)
+	rm -f $(DESTDIR)$(LIBDIR)/$(NAME)$D.$(VERSION)
 	rm -rf $(DESTDIR)$(INCDIR)
 
 #
