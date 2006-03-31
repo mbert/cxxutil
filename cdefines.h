@@ -13,8 +13,8 @@
 /* --------------------------------------------------------------------
  * Common definitions
  *
- * $Date: 2006-03-27 13:40:22 $
- * $Revision: 1.6 $
+ * $Date: 2006-03-31 09:33:40 $
+ * $Revision: 1.7 $
  * -------------------------------------------------------------------- */
 
 #include <climits>
@@ -113,10 +113,10 @@ typedef signed short i16;
 typedef long int i32;
 typedef __int64_t i64;
 
-#define BMBFU16_MAX USHRT_MAX
-#define BMBFU32_MAX ULONG_MAX
+#define CXXUU16_MAX USHRT_MAX
+#define CXXUU32_MAX ULONG_MAX
 
-#define BMBF_BYTE_SWAP 1
+#define CXXU_BYTE_SWAP 1
 
 // --------------------------------------------------------------------
 // GCC on SUNOS, Sparc platform
@@ -136,10 +136,10 @@ typedef signed short i16;
 typedef long int i32;
 typedef __int64 i64;
 
-#define BMBFU16_MAX USHRT_MAX
-#define BMBFU32_MAX ULONG_MAX
+#define CXXUU16_MAX USHRT_MAX
+#define CXXUU32_MAX ULONG_MAX
 
-#define BMBF_BYTE_SWAP 0
+#define CXXU_BYTE_SWAP 0
 
 // --------------------------------------------------------------------
 // SGI CC on IRIX, 64-bit MIPS platform
@@ -159,10 +159,10 @@ typedef signed short i16;
 typedef long int i32;
 typedef __int64_t i64;
 
-#define BMBFU16_MAX USHRT_MAX
-#define BMBFU32_MAX ULONG_MAX
+#define CXXUU16_MAX USHRT_MAX
+#define CXXUU32_MAX ULONG_MAX
 
-#define BMBF_BYTE_SWAP 0
+#define CXXU_BYTE_SWAP 0
 
 // --------------------------------------------------------------------
 // MSC on Windows
@@ -188,10 +188,10 @@ typedef signed short i16;
 typedef long int i32;
 typedef __int64 i64;
 
-#define BMBFU16_MAX USHRT_MAX
-#define BMBFU32_MAX ULONG_MAX
+#define CXXUU16_MAX USHRT_MAX
+#define CXXUU32_MAX ULONG_MAX
 
-#define BMBF_BYTE_SWAP 1
+#define CXXU_BYTE_SWAP 1
 
 #else
 #error "I don't know your system, configure me!"
