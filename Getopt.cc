@@ -13,8 +13,8 @@
  *
  * Author: Michael Lipka, minor stuff by Martin Dietze
  *
- * $Date: 2006-03-27 13:05:09 $
- * $Revision: 1.5 $
+ * $Date: 2006-11-27 11:25:00 $
+ * $Revision: 1.6 $
  * -------------------------------------------------------------------- */
 
 #include "cxxutil/Getopt.hh"
@@ -48,7 +48,7 @@ structOption_grow(struct option *opts, int &currentSize)
 	struct my_option *ret = NEW (struct my_option[newSize]);
 	int i = 0;
 	ret[i] = lastEntry;
-	for (i = 0; i < currentSize; i++) 
+	for (i = 0; i < currentSize; i++)
 	{
 		ret[i] = opts[i];
 	}
@@ -60,7 +60,7 @@ static struct option *
 structOption_add(struct option *opts, int &currentSize, struct option entry)
 {
 	struct option *ret = opts;
-	if (currentSize == 0) 
+	if (currentSize == 0)
 	{
 		ret = structOption_grow(ret, currentSize);
 	}
@@ -82,7 +82,7 @@ structOption_add(struct option *opts, int &currentSize, struct option entry)
 // ----------------------------- Public ---------------------------------------
 
 CxxUtil::Getopt::Getopt (bool useSystemWarning)
-	: m_longOpts(NULL), m_longOptsSize(0), m_lastoptndx(1), m_error(false)
+	: m_longOpts(NULL), m_longOptsSize(0), m_lastOptNdx(1), m_error(false)
 {
 	if (!useSystemWarning)
 	{
@@ -102,8 +102,8 @@ CxxUtil::Getopt::~Getopt (void)
 	}
 }
 
-void 
-CxxUtil::Getopt::addOption (const char shortOpt, const bool takesArg, 
+void
+CxxUtil::Getopt::addOption (const char shortOpt, const bool takesArg,
 		const std::string description, const std::string longOpt)
 {
 	OptionDescription tmp;
@@ -128,12 +128,12 @@ CxxUtil::Getopt::addOption (const char shortOpt, const bool takesArg,
 		m_longOpts = structOption_add(m_longOpts, m_longOptsSize, tmp);
 	}
 
-	tmp.leftSide += (takesArg? "<arg>": "      ");
+	tmp.leftSide += (takesArg? "<arg>": "	   ");
 	tmp.rightSide = description;
 	m_optDescriptions.push_back(tmp);
 }
 
-void 
+void
 CxxUtil::Getopt::process(const int argc, char* const argv[])
 {
 	int o;
@@ -142,25 +142,23 @@ CxxUtil::Getopt::process(const int argc, char* const argv[])
 	m_options.clear();
 	int optionindex = 0;
 
-	while ((o = getopt_long(argc, argv, m_optionString.c_str(), 
+	while ((o = getopt_long(argc, argv, m_optionString.c_str(),
 							m_longOpts, &optionindex)) != -1)
 	{
 		if (o == '?')
 		{
 			m_error = true;
 			//cout << "error: " << (char)optopt << endl;
-			m_lastError = "-" + (char)optopt;
+			m_lastError = "- ";
+			m_lastError[1] = (char)optopt;
 		}
 		ProgOption *popt;
 		popt = !optarg? NEW (ProgOption(ucar2str(o)))
 			: NEW (ProgOption(ucar2str(o), optarg));
 
 		m_options.push_back(*popt);
-		if (m_lastoptndx < optind)
-		{
-			m_lastoptndx = optind;
-		}
 	}
+	m_lastOptNdx = optind;
 }
 
 const CxxUtil::Getopt::ProgOption &
@@ -177,7 +175,7 @@ CxxUtil::Getopt::opt (const std::string option) const
 }
 
 
-bool 
+bool
 CxxUtil::Getopt::given (const std::string option) const
 {
 	for (OptionIterator o = m_options.begin(); o != m_options.end(); ++o)
@@ -190,12 +188,12 @@ CxxUtil::Getopt::given (const std::string option) const
 	return false;
 }
 
-void 
+void
 CxxUtil::Getopt::showHelp(void)
 {
 	int longest = 0;
 	for (std::list<OptionDescription>::iterator it = m_optDescriptions.begin();
-			 it != m_optDescriptions.end(); ++it)
+	     it != m_optDescriptions.end(); ++it)
 	{
 		if ((int)it->leftSide.size() > longest)
 		{
@@ -204,7 +202,7 @@ CxxUtil::Getopt::showHelp(void)
 	}
 	std::string outLine;
 	for (std::list<OptionDescription>::iterator it = m_optDescriptions.begin();
-			 it != m_optDescriptions.end(); ++it)
+	     it != m_optDescriptions.end(); ++it)
 	{
 		outLine = it->leftSide;
 		outLine.append(longest - outLine.size(), ' ');
@@ -215,15 +213,15 @@ CxxUtil::Getopt::showHelp(void)
 
 // ----------------------- Private / Protected --------------------------------
 
-std::string 
+std::string
 CxxUtil::Getopt::ucar2str(const int chr)
 {
 	sprintf(m_convstr,"%c", chr);
 	return m_convstr;
 }
 
-const std::string 
-CxxUtil::Getopt::ProgOption::getValue() const 
+const std::string
+CxxUtil::Getopt::ProgOption::getValue() const
 {
 	if (!m_valueSet)
 	{

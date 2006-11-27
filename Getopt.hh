@@ -16,8 +16,8 @@
  *
  * Author: Michael Lipka, minor stuff by Martin Dietze
  *
- * $Date: 2006-03-27 13:05:09 $
- * $Revision: 1.6 $
+ * $Date: 2006-11-27 11:25:00 $
+ * $Revision: 1.7 $
  * -------------------------------------------------------------------- */
 
 #include <list>
@@ -68,7 +68,7 @@ namespace CxxUtil
     void process(const int argc, char* const argv[]);
     const Getopt::ProgOption& opt (const std::string option) const;
     bool given (const std::string option) const;
-    int firstnonop(void) const {return m_lastoptndx;}
+    int firstNonOp(void) const {return m_lastOptNdx;}
     INLINE bool error(void) const {return m_error;}
     INLINE void disableWarnings(void) { my_opterr = 0;}
     INLINE void enableWarnings(void) { my_opterr = 1;}
@@ -92,7 +92,7 @@ namespace CxxUtil
     struct my_option *m_longOpts;
     std::string m_lastError;
     int m_longOptsSize;
-    int m_lastoptndx;
+    int m_lastOptNdx;
     OptionList m_options;
     char m_convstr[2];
     bool m_error;
