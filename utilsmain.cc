@@ -11,8 +11,8 @@
 /* --------------------------------------------------------------------
  * Main test program
  *
- * $Date: 2006-03-27 13:00:01 $
- * $Revision: 1.5 $
+ * $Date: 2007-04-11 14:06:00 $
+ * $Revision: 1.6 $
  * -------------------------------------------------------------------- */
 
 // simple testing area
@@ -25,16 +25,14 @@
 #include "cxxutil/MVector3D.hh"
 #include "cxxutil/MVector4D.hh"
 #include "cxxutil/MMatrix4x4.hh"
+#include "cxxutil/Getopt.hh"
 
 #include <iostream>
-
-using namespace std;
-using namespace CxxUtil;
 
 static void testMVector (void);
 static void testMPoint (void);
 static void testMMatrix (void);
-
+static void testGetopt(void);
 
 int
 main (void)
@@ -42,23 +40,24 @@ main (void)
   testMVector ();
   testMPoint ();
   testMMatrix ();
+  testGetopt();
   return 0;
 }
 
 
 static void
-MVector_doTest (MVector<double>&a, MVector<double>&b,
-                MVector<double>&c)
+MVector_doTest (CxxUtil::MVector<double>&a, CxxUtil::MVector<double>&b,
+                CxxUtil::MVector<double>&c)
 {
-  cout << "a: " << a;
-  cout << endl;
-  cout << "b: " << b;
-  cout << endl;
-  cout << "c: " << c;
-  cout << endl;
-  TEST_GEN_EQUALS (a, MVector<double>(a.getDim (), 0.0));
-  TEST_GEN_EQUALS (b, MVector<double>(b.getDim (), 0.0));
-  TEST_GEN_EQUALS (c, MVector<double>(c.getDim (), 1.0));
+  std::cout << "a: " << a;
+  std::cout << std::endl;
+  std::cout << "b: " << b;
+  std::cout << std::endl;
+  std::cout << "c: " << c;
+  std::cout << std::endl;
+  TEST_GEN_EQUALS (a, CxxUtil::MVector<double>(a.getDim (), 0.0));
+  TEST_GEN_EQUALS (b, CxxUtil::MVector<double>(b.getDim (), 0.0));
+  TEST_GEN_EQUALS (c, CxxUtil::MVector<double>(c.getDim (), 1.0));
   // 0, 0, 1
   a = -c;
   // -1, 0, 1
@@ -114,12 +113,12 @@ MVector_doTest (MVector<double>&a, MVector<double>&b,
 
   TEST_DBL_EQUALS (b | c, b.getSum ());
 
-  cout << "a: " << a;
-  cout << endl;
-  cout << "b: " << b;
-  cout << endl;
-  cout << "c: " << c;
-  cout << endl;
+  std::cout << "a: " << a;
+  std::cout << std::endl;
+  std::cout << "b: " << b;
+  std::cout << std::endl;
+  std::cout << "c: " << c;
+  std::cout << std::endl;
 
 }
 
@@ -127,10 +126,10 @@ static void
 testMVector (void)
 {
   {
-    cout << "Testing class MVector<double> (1 dimension) ..." << endl;
-    MVector<double>a (1);
-    MVector<double>b (a);
-    MVector<double>c (1, 1.0);
+    std::cout << "Testing class MVector<double> (1 dimension) ..." << std::endl;
+    CxxUtil::MVector<double>a (1);
+    CxxUtil::MVector<double>b (a);
+    CxxUtil::MVector<double>c (1, 1.0);
     TEST_GEN_EQUALS (a, b);
     TEST_GEN_DIFFERS (c, a);
     TEST_GEN_DIFFERS (c, b);
@@ -141,17 +140,18 @@ testMVector (void)
 
     MVector_doTest (a, b, c);
 
-    cout << "Test of MVector<double> (1 dimension) completed successfully."
-      << endl;
+    std::cout << "Test of MVector<double> (1 dimension) completed successfully."
+	      << std::endl;
   }
 
   {
-    cout << "Testing class MVector<double> (3 dimensions) ..." << endl;
+    std::cout << "Testing class MVector<double> (3 dimensions) ..."
+	      << std::endl;
 
-    MVector<double>a (3);
-    MVector<double>b (a);
+    CxxUtil::MVector<double>a (3);
+    CxxUtil::MVector<double>b (a);
     TEST_GEN_EQUALS (a, b);
-    MVector<double>c (3, 1.0);
+    CxxUtil::MVector<double>c (3, 1.0);
     TEST_GEN_DIFFERS (c, a);
     TEST_GEN_DIFFERS (c, b);
 
@@ -161,18 +161,17 @@ testMVector (void)
 
     MVector_doTest (a, b, c);
 
-    cout <<
-      "Test of MVector<double> (3 dimensions) completed successfully." <<
-      endl;
+    std::cout << "Test of MVector<double> (3 dims) completed successfully."
+	      << std::endl;
   }
 
   {
-    cout << "Testing class MVector2D<double> ..." << endl;
+    std::cout << "Testing class MVector2D<double> ..." << std::endl;
 
-    MVector2D<double>a;
-    MVector2D<double>b (a);
+    CxxUtil::MVector2D<double>a;
+    CxxUtil::MVector2D<double>b (a);
     TEST_GEN_EQUALS (a, b);
-    MV2D c (1.0, 1.0);
+    CxxUtil::MV2D c (1.0, 1.0);
     TEST_GEN_DIFFERS (c, a);
     TEST_GEN_DIFFERS (c, b);
 
@@ -181,7 +180,7 @@ testMVector (void)
     TEST_GEN_EQUALS (c.getSum (), 2.0);
 
     MVector_doTest (a, b, c);
-    MVector2D<double>tmp = a.getOrthogonal ();
+    CxxUtil::MVector2D<double>tmp = a.getOrthogonal ();
     TEST_DBL_EQUALS (tmp[0], -a[1]);
     TEST_DBL_EQUALS (tmp[1], a[0]);
     tmp = b.getOrthogonal ();
@@ -191,16 +190,17 @@ testMVector (void)
     TEST_DBL_EQUALS (tmp[0], -c[1]);
     TEST_DBL_EQUALS (tmp[1], c[0]);
 
-    cout << "Test of MVector2D<double> completed successfully." << endl;
+    std::cout << "Test of MVector2D<double> completed successfully."
+	      << std::endl;
   }
 
   {
-    cout << "Testing class MVector3D<double> ..." << endl;
+    std::cout << "Testing class MVector3D<double> ..." << std::endl;
 
-    MVector3D<double>a;
-    MVector3D<double>b (a);
+    CxxUtil::MVector3D<double>a;
+    CxxUtil::MVector3D<double>b (a);
     TEST_GEN_EQUALS (a, b);
-    MV3D c (1.0, 1.0, 1.0);
+    CxxUtil::MV3D c (1.0, 1.0, 1.0);
     TEST_GEN_DIFFERS (c, a);
     TEST_GEN_DIFFERS (c, b);
 
@@ -211,26 +211,27 @@ testMVector (void)
     MVector_doTest (a, b, c);
 
     // @todo Test the cross product properly!
-    MV3D e (1.0, 0.0, 0.0);
-    MV3D f (0.0, 1.0, 0.0);
+    CxxUtil::MV3D e (1.0, 0.0, 0.0);
+    CxxUtil::MV3D f (0.0, 1.0, 0.0);
 
-    TEST_GEN_EQUALS (e ^ f, MV3D (0, 0, 1));
+    TEST_GEN_EQUALS (e ^ f, CxxUtil::MV3D (0, 0, 1));
 
     e[1] = 1;
     f[2] = 2;
 
-    TEST_GEN_EQUALS (e ^ f, MV3D (2, -2, 1));
+    TEST_GEN_EQUALS (e ^ f, CxxUtil::MV3D (2, -2, 1));
 
-    cout << "Test of MVector3D<double> completed successfully." << endl;
+    std::cout << "Test of MVector3D<double> completed successfully."
+	      << std::endl;
   }
 
   {
-    cout << "Testing class MVector4D<double> ..." << endl;
+    std::cout << "Testing class MVector4D<double> ..." << std::endl;
 
-    MVector4D<double>a;
-    MVector4D<double>b (a);
+    CxxUtil::MVector4D<double>a;
+    CxxUtil::MVector4D<double>b (a);
     TEST_GEN_EQUALS (a, b);
-    MV4D c (1.0, 1.0, 1.0, 1.0);
+    CxxUtil::MV4D c (1.0, 1.0, 1.0, 1.0);
     TEST_GEN_DIFFERS (c, a);
     TEST_GEN_DIFFERS (c, b);
 
@@ -240,22 +241,24 @@ testMVector (void)
 
     MVector_doTest (a, b, c);
 
-    cout << "Test of MVector4D<double> completed successfully." << endl;
+    std::cout << "Test of MVector4D<double> completed successfully."
+	      << std::endl;
   }
 }
 
 static void
-MPoint_doTest (MPoint<double>&a, MPoint<double>&b, MPoint<double>&c)
+MPoint_doTest (CxxUtil::MPoint<double>&a, CxxUtil::MPoint<double>&b,
+	       CxxUtil::MPoint<double>&c)
 {
-  cout << "a: " << a;
-  cout << endl;
-  cout << "b: " << b;
-  cout << endl;
-  cout << "c: " << c;
-  cout << endl;
-  TEST_GEN_EQUALS (a, MPoint<double>(a.getDim (), 0.0));
-  TEST_GEN_EQUALS (b, MPoint<double>(b.getDim (), 0.0));
-  TEST_GEN_EQUALS (c, MPoint<double>(c.getDim (), 1.0));
+  std::cout << "a: " << a;
+  std::cout << std::endl;
+  std::cout << "b: " << b;
+  std::cout << std::endl;
+  std::cout << "c: " << c;
+  std::cout << std::endl;
+  TEST_GEN_EQUALS (a, CxxUtil::MPoint<double>(a.getDim (), 0.0));
+  TEST_GEN_EQUALS (b, CxxUtil::MPoint<double>(b.getDim (), 0.0));
+  TEST_GEN_EQUALS (c, CxxUtil::MPoint<double>(c.getDim (), 1.0));
   // 0, 0, 1
   a = b;
   // 0, 0, 1
@@ -305,47 +308,47 @@ MPoint_doTest (MPoint<double>&a, MPoint<double>&b, MPoint<double>&c)
     }
   // 1, 2, 1
   TEST_GEN_EQUALS (a, c);
-  cout << "a: " << a;
-  cout << endl;
-  cout << "b: " << b;
-  cout << endl;
-  cout << "c: " << c;
-  cout << endl;
+  std::cout << "a: " << a;
+  std::cout << std::endl;
+  std::cout << "b: " << b;
+  std::cout << std::endl;
+  std::cout << "c: " << c;
+  std::cout << std::endl;
 
-  cout << "affineComb2 () ... " << affineComb2 (0.25, a, b) << endl;
+  std::cout << "affineComb2 () ... " << affineComb2 (0.25, a, b) << std::endl;
   TEST_GEN_EQUALS (affineComb2 (0.25, a, b),
-                   MPoint<double>(a.getDim (), 1.25));
-  cout << "OK" << endl;
+                   CxxUtil::MPoint<double>(a.getDim (), 1.25));
+  std::cout << "OK" << std::endl;
 
-  cout << "affineComb3 () ... ";
+  std::cout << "affineComb3 () ... ";
   TEST_GEN_EQUALS (affineComb3 (0.25, a, 0.50, b, 0.25, c),
-                   MPoint<double>(a.getDim (), 1.5));
-  cout << "OK" << endl;
-  cout << "dist(a, b) == dist(a, c)";
+                   CxxUtil::MPoint<double>(a.getDim (), 1.5));
+  std::cout << "OK" << std::endl;
+  std::cout << "dist(a, b) == dist(a, c)";
   TEST_DBL_EQUALS (a.dist (b), b.dist (c));
-  cout << ", dist(a, b) == sqrt(dim (a))";
+  std::cout << ", dist(a, b) == sqrt(dim (a))";
   TEST_DBL_EQUALS (a.dist (b), sqrt ((double) a.getDim ()));
-  cout << ", dist(a, c) == 0";
+  std::cout << ", dist(a, c) == 0";
   TEST_DBL_EQUALS (a.dist (c), 0.0);
-  cout << " ... OK" << endl;
-  cout << "a: " << a;
-  cout << endl;
-  cout << "b: " << b;
-  cout << endl;
-  cout << "c: " << c;
-  cout << endl;
+  std::cout << " ... OK" << std::endl;
+  std::cout << "a: " << a;
+  std::cout << std::endl;
+  std::cout << "b: " << b;
+  std::cout << std::endl;
+  std::cout << "c: " << c;
+  std::cout << std::endl;
 }
 
 static void
 testMPoint (void)
 {
   {
-    cout << "Testing class MPoint<double> (1 dimension) ..." << endl;
+    std::cout << "Testing class MPoint<double> (1 dimension) ..." << std::endl;
 
-    MPoint<double>a (1);
-    MPoint<double>b (a);
+    CxxUtil::MPoint<double>a (1);
+    CxxUtil::MPoint<double>b (a);
     TEST_GEN_EQUALS (a, b);
-    MPoint<double>c (1, 1.0);
+    CxxUtil::MPoint<double>c (1, 1.0);
     TEST_GEN_DIFFERS (c, a);
     TEST_GEN_DIFFERS (c, b);
 
@@ -354,17 +357,17 @@ testMPoint (void)
 
     MPoint_doTest (a, b, c);
 
-    cout << "Test of MPoint<double> (1 dimension) completed successfully."
-      << endl;
+    std::cout << "Test of MPoint<double> (1 dimension) completed successfully."
+	      << std::endl;
   }
 
   {
-    cout << "Testing class MPoint<double> (3 dimensions) ..." << endl;
+    std::cout << "Testing class MPoint<double> (3 dimensions) ..." << std::endl;
 
-    MPoint<double>a (3);
-    MPoint<double>b (a);
+    CxxUtil::MPoint<double>a (3);
+    CxxUtil::MPoint<double>b (a);
     TEST_GEN_EQUALS (a, b);
-    MPoint<double>c (3, 1.0);
+    CxxUtil::MPoint<double>c (3, 1.0);
     TEST_GEN_DIFFERS (c, a);
     TEST_GEN_DIFFERS (c, b);
 
@@ -373,17 +376,17 @@ testMPoint (void)
 
     MPoint_doTest (a, b, c);
 
-    cout << "Test of MPoint<double> (3 dimensions) completed successfully."
-      << endl;
+    std::cout << "Test of MPoint<double> (3 dimensions) completed successfully."
+	      << std::endl;
   }
 
   {
-    cout << "Testing class MPoint2D<double> ..." << endl;
+    std::cout << "Testing class MPoint2D<double> ..." << std::endl;
 
-    MPoint2D<double>a;
-    MPoint2D<double>b (a);
+    CxxUtil::MPoint2D<double>a;
+    CxxUtil::MPoint2D<double>b (a);
     TEST_GEN_EQUALS (a, b);
-    MP2D c (1.0, 1.0);
+    CxxUtil::MP2D c (1.0, 1.0);
     TEST_GEN_DIFFERS (c, a);
     TEST_GEN_DIFFERS (c, b);
 
@@ -392,16 +395,16 @@ testMPoint (void)
 
     MPoint_doTest (a, b, c);
 
-    cout << "Test of MPoint2D completed successfully." << endl;
+    std::cout << "Test of MPoint2D completed successfully." << std::endl;
   }
 
   {
-    cout << "Testing class MPoint3D<double> ..." << endl;
+    std::cout << "Testing class MPoint3D<double> ..." << std::endl;
 
-    MPoint3D<double>a;
-    MPoint3D<double>b (a);
+    CxxUtil::MPoint3D<double>a;
+    CxxUtil::MPoint3D<double>b (a);
     TEST_GEN_EQUALS (a, b);
-    MP3D c (1.0, 1.0, 1.0);
+    CxxUtil::MP3D c (1.0, 1.0, 1.0);
     TEST_GEN_DIFFERS (c, a);
     TEST_GEN_DIFFERS (c, b);
 
@@ -410,16 +413,17 @@ testMPoint (void)
 
     MPoint_doTest (a, b, c);
 
-    cout << "Test of MPoint3D<double> completed successfully." << endl;
+    std::cout << "Test of MPoint3D<double> completed successfully."
+	      << std::endl;
   }
 
   {
-    cout << "Testing class MPoint4D<double> ..." << endl;
+    std::cout << "Testing class MPoint4D<double> ..." << std::endl;
 
-    MPoint4D<double>a;
-    MPoint4D<double>b (a);
+    CxxUtil::MPoint4D<double>a;
+    CxxUtil::MPoint4D<double>b (a);
     TEST_GEN_EQUALS (a, b);
-    MP4D c (1.0, 1.0, 1.0, 1.0);
+    CxxUtil::MP4D c (1.0, 1.0, 1.0, 1.0);
     TEST_GEN_DIFFERS (c, a);
     TEST_GEN_DIFFERS (c, b);
 
@@ -428,24 +432,24 @@ testMPoint (void)
 
     MPoint_doTest (a, b, c);
 
-    MP3D d = c.projectTo3D ();
-    TEST_GEN_EQUALS (d, MP3D (1.0, 1.0, 1.0));
+    CxxUtil::MP3D d = c.projectTo3D ();
+    TEST_GEN_EQUALS (d, CxxUtil::MP3D (1.0, 1.0, 1.0));
 
     d = b.projectTo3D ();
-    TEST_GEN_EQUALS (d, MP3D (1.0, 1.0, 1.0));
+    TEST_GEN_EQUALS (d, CxxUtil::MP3D (1.0, 1.0, 1.0));
 
-    cout << "Test of MPoint4D completed successfully." << endl;
+    std::cout << "Test of MPoint4D completed successfully." << std::endl;
   }
 }
 
 static void
 testMMatrix (void)
 {
-  cout << "Testing class MMatrix<double> ..." << endl;
-  MMatrix<double>m1 (4, 4);
+  std::cout << "Testing class MMatrix<double> ..." << std::endl;
+  CxxUtil::MMatrix<double>m1 (4, 4);
   TEST_GEN_EQUALS (m1.cols (), 4);
   TEST_GEN_EQUALS (m1.rows (), 4);
-  MMatrix<double>m2 = m1;
+  CxxUtil::MMatrix<double>m2 = m1;
   TEST_GEN_EQUALS (m1, m2);
   TEST_ASSERT (!(m1 != m2));
   m2.fill (42);
@@ -457,17 +461,17 @@ testMMatrix (void)
   TEST_DBL_EQUALS (m2 (2, 3), 42);
   TEST_DBL_EQUALS (m2 (2, 2), 42);
 
-  MMatrix<double>m3 (3, 2, 1);
-  MVector<double>v1 (2, 2);
-  MVector<double>v2 (3, 2);
-  MVector<double>v3;
+  CxxUtil::MMatrix<double>m3 (3, 2, 1);
+  CxxUtil::MVector<double>v1 (2, 2);
+  CxxUtil::MVector<double>v2 (3, 2);
+  CxxUtil::MVector<double>v3;
   TEST_EXCEPTION (v3 = m3 * v2);
   v3 = m3 * v1;
-  TEST_GEN_EQUALS (v3, MVector<double>(3, 4));
+  TEST_GEN_EQUALS (v3, CxxUtil::MVector<double>(3, 4));
   m2 = m3;
   TEST_GEN_EQUALS (m2, m3);
 
-  MMatrix4x4<double>m4 (0);
+  CxxUtil::MMatrix4x4<double>m4 (0);
   double a[4][4];
 
   for (int y = 0; y < 4; y++)
@@ -489,7 +493,7 @@ testMMatrix (void)
         }
     }
 
-  MMatrix<double>ma (2, 4);
+  CxxUtil::MMatrix<double>ma (2, 4);
   for (int y = 0; y < ma.rows (); y++)
     {
       for (int x = 0; x < ma.cols (); x++)
@@ -497,9 +501,9 @@ testMMatrix (void)
           ma (y, x) = y * ma.cols () + x + 1;
         }
     }
-  cout << ma << endl;
+  std::cout << ma << std::endl;
 
-  MMatrix<double>mb (4, 3);
+  CxxUtil::MMatrix<double>mb (4, 3);
   for (int y = 0; y < mb.rows (); y++)
     {
       for (int x = 0; x < mb.cols (); x++)
@@ -507,13 +511,13 @@ testMMatrix (void)
           mb (y, x) = y * mb.cols () + x + 1;
         }
     }
-  cout << mb << endl;
+  std::cout << mb << std::endl;
 
   TEST_DBL_DIFFERS (ma.cols (), m2.rows ());
   TEST_EXCEPTION (m1 = ma * m2);
   TEST_DBL_EQUALS (ma.cols (), mb.rows ());
 
-  MMatrix<double>mc (2, 3);
+  CxxUtil::MMatrix<double>mc (2, 3);
   mc (0, 0) = 70;
   mc (0, 1) = 80;
   mc (0, 2) = 90;
@@ -522,7 +526,7 @@ testMMatrix (void)
   mc (1, 2) = 210;
 
   m1 = ma * mb;
-  cout << m1 << endl;
+  std::cout << m1 << std::endl;
   TEST_GEN_EQUALS (m1, mc);
 
   TEST_EXCEPTION (ma | m2);
@@ -535,5 +539,115 @@ testMMatrix (void)
   TEST_GEN_EQUALS (m2 - m3, m2 * 0);
   TEST_GEN_EQUALS (m2 * 2, m2 / 0.5);
 
-  cout << "Test of MMatrix<double>  completed successfully." << endl;
+  std::cout << "Test of MMatrix<double>  completed successfully." << std::endl;
 }
+
+static char *argv[] = {
+  "getopttest",
+  "-c", "die",
+  "-p", "/home/user/src/foo/bar/foobar/",
+  "first-non-op",
+  NULL
+};
+static char *onlyswitches[] = {
+  "getopttest",
+  "-c", "die",
+  "-p", "/home/user/src/foo/bar/foobar/",
+  "-x",
+  NULL
+};
+static char *nonops[] = {
+  "this",
+  "has",
+  "no",
+  "options",
+  "and",
+  "segfaults",
+  NULL
+};
+
+static char **g_argv;
+static char **g_noops;
+static char **g_onlyswitches;
+static int g_argc;
+static char *g_optionstring;
+static CxxUtil::Getopt *oOption;
+static CxxUtil::Getopt *pOption;
+static CxxUtil::Getopt *sOption;
+
+
+static void
+Getopt_testConstructor(void)
+{
+  TEST_ASSERT(oOption = new CxxUtil::Getopt(true));
+  TEST_ASSERT(pOption = new CxxUtil::Getopt(true));
+  TEST_ASSERT(sOption = new CxxUtil::Getopt(true));
+  oOption->disableWarnings();
+
+  oOption->addOption('c', true, "-c option");
+  pOption->addOption('c', true, "-c option");
+  sOption->addOption('c', true, "-c option");
+  oOption->addOption('p', true, "-p option");
+  pOption->addOption('p', true, "-p option");
+  sOption->addOption('p', true, "-p option");
+  oOption->addOption('x', false, "-x");
+  pOption->addOption('x', false, "-x");
+  sOption->addOption('x', false, "-x");
+
+  oOption->process(g_argc, g_argv);
+  pOption->process(g_argc, g_noops);
+  sOption->process(g_argc, g_onlyswitches);
+}
+
+static void
+Getopt_testErrorHandling(void)
+{
+  TEST_ASSERT(!oOption->error());
+  TEST_ASSERT(!pOption->error());
+  TEST_ASSERT(!sOption->error());
+}
+
+static void
+Getopt_testCommandOption(void)
+{
+  TEST_ASSERT(oOption->given("c"));
+  TEST_ASSERT(oOption->opt("c").getValue() == "die");
+}
+
+static void
+Getopt_testPathOption(void)
+{
+  if (oOption->given("p"))
+    {
+      TEST_ASSERT(oOption->opt("p").getValue() == argv[4]);
+    }
+}
+
+static void
+Getopt_testProgArg(void)
+{
+  //cerr << "*** " << argv[oOption->firstNonOp()] << std::endl;
+  TEST_ASSERT(argv[oOption->firstNonOp()] != NULL);
+  TEST_ASSERT(g_noops[pOption->firstNonOp()] != NULL);
+  TEST_ASSERT(g_onlyswitches[sOption->firstNonOp()] == NULL);
+  TEST_GEN_EQUALS(argv[oOption->firstNonOp()], "first-non-op");
+  TEST_GEN_EQUALS(g_noops[pOption->firstNonOp()], "has");
+}
+
+static void
+testGetopt(void)
+{
+  std::cout << "Testing class Getopt..." << std::endl;
+  g_optionstring = "xc:p:";
+  g_argc = 6;
+  g_argv = argv;
+  g_noops = nonops;
+  g_onlyswitches = onlyswitches;
+  Getopt_testConstructor();
+  Getopt_testErrorHandling();
+  Getopt_testCommandOption();
+  Getopt_testPathOption();
+  Getopt_testProgArg();
+  std::cout << "Test of Getopt completed successfully." << std::endl;
+}
+
