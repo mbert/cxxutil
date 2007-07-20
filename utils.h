@@ -14,8 +14,8 @@
 /* --------------------------------------------------------------------
  * Utility function declarations
  *
- * $Date: 2006-03-27 13:40:22 $
- * $Revision: 1.5 $
+ * $Date: 2007-07-20 15:07:14 $
+ * $Revision: 1.6 $
  * -------------------------------------------------------------------- */
 
 /**
@@ -93,6 +93,7 @@ namespace CxxUtil
    * @return a string object with the result
    */
   std::string itoa (long num);
+
   /**
    * @brief Converts an unsigned long integer into a string
    *

@@ -13,8 +13,8 @@
  *
  * Author: Michael Lipka, minor stuff by Martin Dietze
  *
- * $Date: 2007-04-11 14:06:00 $
- * $Revision: 1.7 $
+ * $Date: 2007-07-20 15:07:14 $
+ * $Revision: 1.8 $
  * -------------------------------------------------------------------- */
 
 #include "cxxutil/Getopt.hh"
@@ -134,7 +134,10 @@ CxxUtil::Getopt::addOption (const char shortOpt, const bool takesArg,
       m_longOpts = structOption_add (m_longOpts, m_longOptsSize, tmp2);
     }
 
-  tmp.leftSide += (takesArg? "<arg>": "	   ");
+  if (takesArg)
+    {
+      tmp.leftSide += "<arg>";
+    }
   tmp.rightSide = description;
   m_optDescriptions.push_back(tmp);
 }
