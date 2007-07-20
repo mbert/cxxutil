@@ -11,8 +11,8 @@
 /* --------------------------------------------------------------------
  * Utility function implementations
  *
- * $Date: 2006-03-27 13:40:22 $
- * $Revision: 1.5 $
+ * $Date: 2007-07-20 17:18:02 $
+ * $Revision: 1.6 $
  * -------------------------------------------------------------------- */
 
 
@@ -104,7 +104,7 @@ CxxUtil::tempFileName (char *templ, const char *extension)
 
   close (fd);
   (void)remove (fname);
-  strncpy (templ, fname, templen);
+  strncpy (templ, fname, templen + extenlen);
   DELETE( fname);
 
   return 0;
