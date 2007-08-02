@@ -13,8 +13,8 @@
 /* --------------------------------------------------------------------
  * Common definitions
  *
- * $Date: 2006-03-31 09:33:40 $
- * $Revision: 1.7 $
+ * $Date: 2007-08-02 12:54:35 $
+ * $Revision: 1.8 $
  * -------------------------------------------------------------------- */
 
 #include <climits>
@@ -38,7 +38,7 @@ namespace CxxUtil
 {
 
 // --------------------------------------------------------------------
-// GNU/Linux on a PC platform, glibc
+// GNU/Linux on a 32-bit PC platform, glibc
 // --------------------------------------------------------------------
 #if defined (__GNUC__) && defined (__i386__) && (__GNUC__ >= 2)
 
@@ -64,6 +64,36 @@ typedef signed short i16;
 typedef long int i32;
 /** Signed 64-bit integer */
 typedef int64_t i64;
+
+#define CXXU_BYTE_SWAP 1
+
+// --------------------------------------------------------------------
+// GNU/Linux on a 64-bit PC platform, glibc
+// --------------------------------------------------------------------
+#elif defined (__GNUC__) && defined (__x86_64__) && (__GNUC__ >= 2)
+
+#ifndef LINUX
+#define LINUX
+#endif
+/** Unsigned 8-bit integer */
+typedef unsigned char u8;
+/** Unsigned 16-bit integer */
+typedef unsigned short u16;
+/** Unsigned 32-bit integer */
+typedef unsigned int u32;
+/** Signed 64-bit integer */
+typedef unsigned long u64;
+#define CXXUU16_MAX USHRT_MAX
+#define CXXUU32_MAX ULONG_MAX
+
+/** Signed 8-bit integer */
+typedef signed char i8;
+/** Signed 16-bit integer */
+typedef signed short i16;
+/** Signed 32-bit integer */
+typedef int i32;
+/** Signed 64-bit integer */
+typedef long int i64;
 
 #define CXXU_BYTE_SWAP 1
 

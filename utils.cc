@@ -11,8 +11,8 @@
 /* --------------------------------------------------------------------
  * Utility function implementations
  *
- * $Date: 2007-07-20 17:18:02 $
- * $Revision: 1.6 $
+ * $Date: 2007-08-02 12:54:35 $
+ * $Revision: 1.7 $
  * -------------------------------------------------------------------- */
 
 
@@ -277,6 +277,18 @@ CxxUtil::utoa (unsigned long num)
   char ctemp[256];
   snprintf(ctemp, sizeof ctemp, "%lu", num);
   return std::string(ctemp);
+}
+
+double
+CxxUtil::atod(const std::string &str)
+{
+  char *error = NULL;
+  long ret = (int)strtod(str.c_str(), &error);
+  if (*error != '\0')
+    {
+      throw std::invalid_argument(std::string("Invalid number format at: ") + error);
+    }
+  return ret;
 }
 
 long

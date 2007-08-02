@@ -10,6 +10,6 @@
 #ifndef VERSION_UTILS_H
 #define VERSION_UTILS_H
 
-#define CXXUTILS_VERSION "1.0"
+#define CXXUTILS_VERSION "1.1-cvs"
 
 #endif // UTILS_VERSION_UTILS_H

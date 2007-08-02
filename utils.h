@@ -14,8 +14,8 @@
 /* --------------------------------------------------------------------
  * Utility function declarations
  *
- * $Date: 2007-07-20 15:07:14 $
- * $Revision: 1.6 $
+ * $Date: 2007-08-02 12:54:35 $
+ * $Revision: 1.7 $
  * -------------------------------------------------------------------- */
 
 /**
@@ -103,6 +103,13 @@ namespace CxxUtil
    * @return a string object with the result
    */
   std::string utoa (unsigned long num);
+  /**
+   * Convert a string to a double
+   * @param str the string to process
+   * @return a double representing the number
+   * @exception std::invalid_argument if the string could not be converted
+   */
+  double atod(const std::string &str);
   /**
    * Convert a string to a long int using any base
    * @param str the string to process
