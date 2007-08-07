@@ -13,8 +13,8 @@
  *
  * Author: Michael Lipka, minor stuff by Martin Dietze
  *
- * $Date: 2007-07-20 15:07:14 $
- * $Revision: 1.8 $
+ * $Date: 2007-08-07 16:58:29 $
+ * $Revision: 1.9 $
  * -------------------------------------------------------------------- */
 
 #include "cxxutil/Getopt.hh"
@@ -53,7 +53,7 @@ structOption_grow(struct option *opts, const int &currentSize)
     {
       ret[i] = opts[i];
     }
-  DELETE( opts);
+  DELETEAR(opts);
   return ret;
 }
 
@@ -100,10 +100,10 @@ CxxUtil::Getopt::~Getopt (void)
       for (int i = 0; i < m_longOptsSize; i++)
 	{
 	  /*lint -save -e605 */
-	  DELETE (m_longOpts[i].name);
+	  DELETEAR (m_longOpts[i].name);
 	  /*lint -restore */
 	}
-      DELETE (m_longOpts);
+      DELETEAR (m_longOpts);
     }
 }
 
