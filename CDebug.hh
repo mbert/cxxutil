@@ -14,8 +14,8 @@
 /* --------------------------------------------------------------------
  * Getopt wrapper class definition
  *
- * $Date: 2006-03-27 13:00:00 $
- * $Revision: 1.5 $
+ * $Date: 2008-04-16 15:41:21 $
+ * $Revision: 1.6 $
  * -------------------------------------------------------------------- */
 
 /**
@@ -42,9 +42,6 @@
 // other includes
 #include "cxxutil/cdefines.h"
 
-namespace CxxUtil 
-{
-
 #if !defined (NDEBUG) && !defined (DPRINTF)
 
   int debug_printf (const char *tmpl, ...);
@@ -61,6 +58,9 @@ namespace CxxUtil
 #endif
 #define DPRINTF(x)
 #endif
+
+namespace CxxUtil 
+{
 
   /// Klasse zur Steuerung der Debugausgaben
   /** Entsprechende Ausgaben koennen ueber die Makros I_OUT, E_OUT und D_OUT
@@ -141,25 +141,30 @@ namespace CxxUtil
     static int level;
   };
 
-
+}
 
 #define I_OUT(method,a) \
-  {if ( CDebug::getLevel() & CDebug::Info ) {              \
-     CDebug::getOStr()<<std::setiosflags(std::ios::left)   \
+  {if ( CxxUtil::CDebug::getLevel() & CxxUtil::CDebug::Info ) {	   \
+     CxxUtil::CDebug::getOStr()<<std::setiosflags(std::ios::left)  \
                       <<std::setfill(' ')<<std::setw(30)   \
                       <<__FILE__"::"method": "             \
                       <<std::resetiosflags(std::ios::left) \
                       << a <<std::endl;}}
 #define D_OUT(method,a) \
-  {if ( CDebug::getLevel() & CDebug::Debug ) {             \
-     CDebug::getOStr()<<std::setiosflags(std::ios::left)   \
+  {if ( CxxUtil::CDebug::getLevel() & CxxUtil::CDebug::Debug ) {    \
+     CxxUtil::CDebug::getOStr()<<std::setiosflags(std::ios::left)   \
                       <<std::setfill(' ')<<std::setw(30)   \
                       <<__FILE__"::"method": "             \
                       <<std::resetiosflags(std::ios::left) \
                       <<std::setfill('0')<<"-("<<std::setw( 5)<<__LINE__\
                       <<"): " << a <<std::endl;}}
-
+#define E_OUT(method,a) \
+  {if ( CxxUtil::CDebug::getLevel() & CxxUtil::CDebug::Error ) {	   \
+     CxxUtil::CDebug::getOStr()<<std::setiosflags(std::ios::left)  \
+                      <<std::setfill(' ')<<std::setw(30)   \
+                      <<__FILE__"::"method": "             \
+                      <<std::resetiosflags(std::ios::left) \
+                      << a <<std::endl;}}
 
 #endif
-}
 

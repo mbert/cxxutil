@@ -14,8 +14,8 @@
 /* --------------------------------------------------------------------
  * Generic tuple class implementation
  *
- * $Date: 2006-03-27 13:00:00 $
- * $Revision: 1.5 $
+ * $Date: 2008-04-16 15:41:21 $
+ * $Revision: 1.6 $
  * -------------------------------------------------------------------- */
 
 // class specific includes
@@ -61,7 +61,7 @@ CxxUtil::AbstractTuple<Scalar>::AbstractTuple (const int dim, const Scalar s)
 template<class Scalar> 
 CxxUtil::AbstractTuple<Scalar>::~AbstractTuple (void)
 {
-  DELETE (m_coord);
+  DELETEAR (m_coord);
 }
 
 // Constructor from two tuples
@@ -209,7 +209,7 @@ CxxUtil::AbstractTuple<Scalar>::assignTo (const AbstractTuple<Scalar> &t)
 {
   if (t.m_dim != this->m_dim)
     {
-      DELETE (m_coord);
+      DELETEAR (m_coord);
       init (t.m_dim);
     }
 

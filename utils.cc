@@ -11,8 +11,8 @@
 /* --------------------------------------------------------------------
  * Utility function implementations
  *
- * $Date: 2007-08-07 16:58:29 $
- * $Revision: 1.8 $
+ * $Date: 2008-04-16 15:41:21 $
+ * $Revision: 1.9 $
  * -------------------------------------------------------------------- */
 
 
@@ -48,6 +48,8 @@
 #include <cmath>
 #include <cassert>
 #include <stdexcept>
+#include <sstream>
+#include <iomanip>
 
 #if defined __GNUC__ && __GNUC__ == 2 || __GNUC__ == 3 && __GNUC_MINOR__ == 0
  /* this is a workaround for g++ 2.95 and g++ 3.0 */
@@ -98,14 +100,14 @@ CxxUtil::tempFileName (char *templ, const char *extension)
 
   if (fd < 0)
     {
-      DELETE( fname);
+      DELETE (fname);
       return -1;
     }
 
   close (fd);
   (void)remove (fname);
   strncpy (templ, fname, templen + extenlen);
-  DELETE( fname);
+  DELETE (fname);
 
   return 0;
 }
@@ -278,7 +280,17 @@ CxxUtil::utoa (unsigned long num)
   snprintf(ctemp, sizeof ctemp, "%lu", num);
   return std::string(ctemp);
 }
-#include <iostream>
+
+std::string
+CxxUtil::dtoa (double num, unsigned precision)
+{
+  std::stringstream s;
+  s.setf (std::ios::fixed, std::ios::floatfield);
+  s << std::setprecision (precision) << num;
+  std::string ret;
+  s >> ret;
+  return ret;
+}
 
 double
 CxxUtil::atod(const std::string &str)

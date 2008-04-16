@@ -14,8 +14,8 @@
 /* --------------------------------------------------------------------
  * Utility function declarations
  *
- * $Date: 2007-08-02 12:54:35 $
- * $Revision: 1.7 $
+ * $Date: 2008-04-16 15:41:21 $
+ * $Revision: 1.8 $
  * -------------------------------------------------------------------- */
 
 /**
@@ -87,7 +87,7 @@ namespace CxxUtil
   /**
    * @brief Converts an integer into a string
    *
-   * A pointer to a new string containing the result is returned. 
+   * A new string containing the result is returned. 
    *
    * @param num the number
    * @return a string object with the result
@@ -97,12 +97,22 @@ namespace CxxUtil
   /**
    * @brief Converts an unsigned long integer into a string
    *
-   * A pointer to a new string containing the result is returned. 
+   * A new string containing the result is returned. 
    *
    * @param num the number
    * @return a string object with the result
    */
   std::string utoa (unsigned long num);
+  /**
+   * @brief Converts a double value into a string
+   *
+   * A new string containing the result is returned. 
+   *
+   * @param num the number
+   * @param precision the number of digits after the decimal dots
+   * @return a string object with the result
+   */
+  std::string dtoa (double num, unsigned precision = 2);
   /**
    * Convert a string to a double
    * @param str the string to process

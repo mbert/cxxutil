@@ -11,8 +11,8 @@
 /* --------------------------------------------------------------------
  * Main test program
  *
- * $Date: 2007-04-11 14:06:00 $
- * $Revision: 1.6 $
+ * $Date: 2008-04-16 15:41:21 $
+ * $Revision: 1.7 $
  * -------------------------------------------------------------------- */
 
 // simple testing area
@@ -29,6 +29,7 @@
 
 #include <iostream>
 
+static void testUtils(void);
 static void testMVector (void);
 static void testMPoint (void);
 static void testMMatrix (void);
@@ -37,13 +38,13 @@ static void testGetopt(void);
 int
 main (void)
 {
+  testUtils ();
   testMVector ();
   testMPoint ();
   testMMatrix ();
   testGetopt();
   return 0;
 }
-
 
 static void
 MVector_doTest (CxxUtil::MVector<double>&a, CxxUtil::MVector<double>&b,
@@ -120,6 +121,20 @@ MVector_doTest (CxxUtil::MVector<double>&a, CxxUtil::MVector<double>&b,
   std::cout << "c: " << c;
   std::cout << std::endl;
 
+}
+
+static void
+testUtils (void)
+{
+  double pi = 3.14159;
+  std::string sPi = CxxUtil::dtoa (pi, 2);
+  TEST_GEN_EQUALS (sPi, "3.14");
+  sPi = CxxUtil::dtoa (pi, 0);
+  TEST_GEN_EQUALS (sPi, "3");
+  sPi = CxxUtil::dtoa (pi, 4);
+  TEST_GEN_EQUALS (sPi, "3.1416");
+  sPi = CxxUtil::dtoa (pi, 6);
+  TEST_GEN_EQUALS (sPi, "3.141590");
 }
 
 static void
@@ -542,21 +557,21 @@ testMMatrix (void)
   std::cout << "Test of MMatrix<double>  completed successfully." << std::endl;
 }
 
-static char *argv[] = {
+static const char *argv[] = {
   "getopttest",
   "-c", "die",
   "-p", "/home/user/src/foo/bar/foobar/",
   "first-non-op",
   NULL
 };
-static char *onlyswitches[] = {
+static const char *onlyswitches[] = {
   "getopttest",
   "-c", "die",
   "-p", "/home/user/src/foo/bar/foobar/",
   "-x",
   NULL
 };
-static char *nonops[] = {
+static const char *nonops[] = {
   "this",
   "has",
   "no",
@@ -630,19 +645,19 @@ Getopt_testProgArg(void)
   TEST_ASSERT(argv[oOption->firstNonOp()] != NULL);
   TEST_ASSERT(g_noops[pOption->firstNonOp()] != NULL);
   TEST_ASSERT(g_onlyswitches[sOption->firstNonOp()] == NULL);
-  TEST_GEN_EQUALS(argv[oOption->firstNonOp()], "first-non-op");
-  TEST_GEN_EQUALS(g_noops[pOption->firstNonOp()], "has");
+  TEST_GEN_EQUALS(argv[oOption->firstNonOp()], (char*)"first-non-op");
+  TEST_GEN_EQUALS(g_noops[pOption->firstNonOp()], (char*)"has");
 }
 
 static void
 testGetopt(void)
 {
   std::cout << "Testing class Getopt..." << std::endl;
-  g_optionstring = "xc:p:";
+  g_optionstring = (char*)"xc:p:";
   g_argc = 6;
-  g_argv = argv;
-  g_noops = nonops;
-  g_onlyswitches = onlyswitches;
+  g_argv = (char**)argv;
+  g_noops = (char**)nonops;
+  g_onlyswitches = (char**)onlyswitches;
   Getopt_testConstructor();
   Getopt_testErrorHandling();
   Getopt_testCommandOption();

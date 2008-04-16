@@ -14,8 +14,8 @@
 /* --------------------------------------------------------------------
  * Generic matrix class implementation
  *
- * $Date: 2006-03-27 13:40:22 $
- * $Revision: 1.5 $
+ * $Date: 2008-04-16 15:41:21 $
+ * $Revision: 1.6 $
  * -------------------------------------------------------------------- */
 
 // class specific includes
@@ -92,7 +92,7 @@ template<class Scalar> void
 CxxUtil::MMatrix<Scalar>::destroy (void)
 {
   DELETE (m_values);
-  DELETE (m_rowOffsets);
+  DELETEAR (m_rowOffsets);
 }
 
 template<class Scalar> std::ostream &
