@@ -11,8 +11,8 @@
 /* --------------------------------------------------------------------
  * Debugging utils class implementation
  *
- * $Date: 2006-03-27 13:40:22 $
- * $Revision: 1.5 $
+ * $Date: 2008-06-27 08:32:32 $
+ * $Revision: 1.6 $
  * -------------------------------------------------------------------- */
 
 #include "cxxutil/CDebug.hh"
@@ -20,7 +20,7 @@
 #include <cstdlib>
 #include <cstdio>
 #include <cstdarg>
-
+#include <cstring>
 
 #if !(defined __WATCOMC__ && __WATCOMC__ < 1230)
 using namespace std;

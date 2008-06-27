@@ -14,8 +14,8 @@
 /* --------------------------------------------------------------------
  * Getopt wrapper class definition
  *
- * $Date: 2008-04-16 15:41:21 $
- * $Revision: 1.6 $
+ * $Date: 2008-06-27 08:32:32 $
+ * $Revision: 1.7 $
  * -------------------------------------------------------------------- */
 
 /**
@@ -38,6 +38,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <cstdlib>
 
 // other includes
 #include "cxxutil/cdefines.h"
