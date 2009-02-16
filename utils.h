@@ -14,8 +14,8 @@
 /* --------------------------------------------------------------------
  * Utility function declarations
  *
- * $Date: 2008-04-16 15:41:21 $
- * $Revision: 1.8 $
+ * $Date: 2009-02-16 09:01:48 $
+ * $Revision: 1.9 $
  * -------------------------------------------------------------------- */
 
 /**
@@ -49,8 +49,11 @@ namespace CxxUtil
    * the address of a writable char-array (<= 255 chars) for the file name 
    * @param extension
    * a string containing anything after the template string (e.g. ".jpg")
-   * return 0 if the operation was successful, -1 if not */
-  int tempFileName (char *templ, const char *extension = "");
+   * @param seed
+   * if not zero, use this as a seed for the PRNG needed for creating 
+   * random patterns
+   * @return 0 if the operation was successful, -1 if not */
+  int tempFileName (char *templ, const char *extension = "", const unsigned seed = 0);
 
   /** Return an open temporary file
    * @param templ

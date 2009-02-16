@@ -11,8 +11,8 @@
 /* --------------------------------------------------------------------
  * Utility function implementations
  *
- * $Date: 2008-04-16 15:41:21 $
- * $Revision: 1.9 $
+ * $Date: 2009-02-16 09:01:48 $
+ * $Revision: 1.10 $
  * -------------------------------------------------------------------- */
 
 
@@ -57,7 +57,7 @@ int setenv (const char *, const char *, int);
 #endif
 
 int
-CxxUtil::tempFileName (char *templ, const char *extension)
+CxxUtil::tempFileName (char *templ, const char *extension, const unsigned seed)
 {
   static char letters[]
     = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -78,7 +78,14 @@ CxxUtil::tempFileName (char *templ, const char *extension)
       return -1;
     }
 
-  srand ((unsigned)time (NULL));
+  if (strcmp (p, "XXXXXX") != 0)
+    {
+      srand ((unsigned)time (NULL));
+    }
+  else
+    {
+      srand (seed);
+    }
   int fd;
   char *fname = NEW (char [templen + extenlen + 1]);
   strcpy (fname, templ);
