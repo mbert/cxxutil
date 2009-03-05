@@ -11,8 +11,8 @@
 /* --------------------------------------------------------------------
  * Utility function implementations
  *
- * $Date: 2009-02-16 09:01:48 $
- * $Revision: 1.10 $
+ * $Date: 2009-03-05 15:49:00 $
+ * $Revision: 1.11 $
  * -------------------------------------------------------------------- */
 
 
@@ -36,7 +36,8 @@
 
 #ifdef WIN32
 # include <io.h>
-# define _open open
+/* not sure if thiw sorks, have no access to W32 system now */
+# define open(a,b,c) _open(a,b)
 #else
 # include <unistd.h>
 #endif
@@ -66,7 +67,7 @@ CxxUtil::tempFileName (char *templ, const char *extension, const unsigned seed)
   int letterlen = strlen (letters);
   int extenlen = strlen (extension);
 
-  if(templen < 6)
+  if (templen < 6)
     {
       return -1;
     }
@@ -78,7 +79,7 @@ CxxUtil::tempFileName (char *templ, const char *extension, const unsigned seed)
       return -1;
     }
 
-  if (strcmp (p, "XXXXXX") != 0)
+  if (seed == 0)
     {
       srand ((unsigned)time (NULL));
     }
@@ -99,7 +100,7 @@ CxxUtil::tempFileName (char *templ, const char *extension, const unsigned seed)
           p[i] = letters[rand () % letterlen];
         }
 
-      if ((fd = open (fname, O_CREAT | O_EXCL)) > 0)
+      if ((fd = open (fname, O_CREAT | O_EXCL, S_IRUSR | S_IWUSR)) > 0)
         {
           break;
         }
