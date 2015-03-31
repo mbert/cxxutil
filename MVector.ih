@@ -21,35 +21,35 @@
 template<class Scalar> INLINE CxxUtil::MVector<Scalar> &
 CxxUtil::MVector<Scalar>::operator= (const CxxUtil::MVector<Scalar> &v)
 {
-  assignTo (v);
+  this->assignTo (v);
   return *this;
 }
 
 template<class Scalar> INLINE CxxUtil::MVector<Scalar> &
 CxxUtil::MVector<Scalar>::operator+= (const CxxUtil::MVector<Scalar> &v)
 {
-  addToMe (v);
+  this->addToMe (v);
   return *this;
 }
 
 template<class Scalar> INLINE CxxUtil::MVector<Scalar> &
 CxxUtil::MVector<Scalar>::operator-= (const CxxUtil::MVector<Scalar> &v)
 {
-  subFromMe (v);
+  this->subFromMe (v);
   return *this;
 }
 
 template<class Scalar> INLINE CxxUtil::MVector<Scalar> &
 CxxUtil::MVector<Scalar>::operator*= (const Scalar s)
 {
-  multMeBy (s);
+  this->multMeBy (s);
   return *this;
 }
 
 template<class Scalar> INLINE CxxUtil::MVector<Scalar> &
 CxxUtil::MVector<Scalar>::operator/= (const Scalar s)
 {
-  divMeBy (s);
+  this->divMeBy (s);
   return *this;
 }
 
@@ -60,25 +60,25 @@ CxxUtil::MVector<Scalar>::operator/= (const Scalar s)
 template<class Scalar> INLINE CxxUtil::MVector<Scalar> 
 CxxUtil::MVector<Scalar>::operator+ (const CxxUtil::MVector<Scalar> &v) const
 {
-  return add (v);
+  return this->add (v);
 }
 
 template<class Scalar> INLINE CxxUtil::MVector<Scalar> 
 CxxUtil::MVector<Scalar>::operator- (const CxxUtil::MVector<Scalar> &v) const
 {
-  return subtract (v);
+  return this->subtract (v);
 }
 
 template<class Scalar> INLINE CxxUtil::MVector<Scalar> 
 CxxUtil::MVector<Scalar>::operator* (const Scalar s) const
 {
-  return multiply (s);
+  return this->multiply (s);
 }
 
 template<class Scalar> INLINE CxxUtil::MVector<Scalar> 
 CxxUtil::MVector<Scalar>::operator/ (const Scalar s) const
 {
-  return divide (s);
+  return this->divide (s);
 }
 
 // NORM OPERATORS
@@ -92,5 +92,5 @@ CxxUtil::MVector<Scalar>::getNorm () const
 template<class Scalar> INLINE CxxUtil::MVector<Scalar> 
 CxxUtil::MVector<Scalar>::operator* (const CxxUtil::MVector<Scalar> &v) const
 {
-  return multiply (v);
+  return this->multiply (v);
 }

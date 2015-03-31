@@ -19,7 +19,7 @@
 template<class Scalar> INLINE CxxUtil::MPoint<Scalar> &
 CxxUtil::MPoint<Scalar>::operator= (const CxxUtil::MPoint<Scalar> &t)
 {
-  assignTo (t);
+  this->assignTo (t);
   return *this;
 }
 
@@ -27,7 +27,7 @@ CxxUtil::MPoint<Scalar>::operator= (const CxxUtil::MPoint<Scalar> &t)
 template<class Scalar> INLINE CxxUtil::MPoint<Scalar> &
 CxxUtil::MPoint<Scalar>::operator= (const Scalar s)
 {
-  assignTo (s);
+  this->assignTo (s);
   return *this;
 }
 
@@ -35,7 +35,7 @@ CxxUtil::MPoint<Scalar>::operator= (const Scalar s)
 template<class Scalar> INLINE CxxUtil::MPoint<Scalar> &
 CxxUtil::MPoint<Scalar>::operator+= (const Scalar s)
 {
-  addToMe (s);
+  this->addToMe (s);
   return *this;
 }
 
@@ -43,7 +43,7 @@ CxxUtil::MPoint<Scalar>::operator+= (const Scalar s)
 template<class Scalar> INLINE CxxUtil::MPoint<Scalar> &
 CxxUtil::MPoint<Scalar>::operator-= (const Scalar s)
 {
-  subFromMe (s);
+  this->subFromMe (s);
   return *this;
 }
 
@@ -51,7 +51,7 @@ CxxUtil::MPoint<Scalar>::operator-= (const Scalar s)
 template<class Scalar> INLINE CxxUtil::MPoint<Scalar> &
 CxxUtil::MPoint<Scalar>::operator+= (const CxxUtil::MVector<Scalar> &t)
 {
-  addToMe (t);
+  this->addToMe (t);
   return *this;
 }
 
@@ -59,7 +59,7 @@ CxxUtil::MPoint<Scalar>::operator+= (const CxxUtil::MVector<Scalar> &t)
 template<class Scalar> INLINE CxxUtil::MPoint<Scalar> &
 CxxUtil::MPoint<Scalar>::operator-= (const CxxUtil::MVector<Scalar> &t)
 {
-  subFromMe (t);
+  this->subFromMe (t);
   return *this;
 }
 
@@ -67,32 +67,32 @@ CxxUtil::MPoint<Scalar>::operator-= (const CxxUtil::MVector<Scalar> &t)
 template<class Scalar> INLINE CxxUtil::MPoint<Scalar>
 CxxUtil::MPoint<Scalar>::operator+ (const CxxUtil::MVector<Scalar> &t) const
 {
-  return add (t);
+  return this->add (t);
 }
 
   // Returns the difference of *this and point t
 template<class Scalar> INLINE CxxUtil::MPoint<Scalar>
 CxxUtil::MPoint<Scalar>::operator- (const CxxUtil::MVector<Scalar> &t) const
 {
-  return subtract (t);
+  return this->subtract (t);
 }
 
   // Returns the difference of *this and point t
 template<class Scalar> INLINE CxxUtil::MVector<Scalar>
 CxxUtil::MPoint<Scalar>::operator- (const CxxUtil::MPoint<Scalar> &t) const
 {
-  return MVector<Scalar> (subtract (t));
+  return MVector<Scalar> (this->subtract (t));
 }
 
 
 template<class Scalar> INLINE CxxUtil::MPoint<Scalar> 
 CxxUtil::MPoint<Scalar>::operator* (const CxxUtil::MPoint<Scalar> &v) const
 {
-  return multiply (v);
+  return this->multiply (v);
 }
 
 template<class Scalar> INLINE CxxUtil::MPoint<Scalar> 
 CxxUtil::MPoint<Scalar>::operator* (const Scalar s) const
 {
-  return multiply (s);
+  return this->multiply (s);
 }

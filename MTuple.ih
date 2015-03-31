@@ -24,28 +24,28 @@ CxxUtil::MTuple<Scalar>::at (int pos)
 template<class Scalar> INLINE CxxUtil::MTuple<Scalar> &
 CxxUtil::MTuple<Scalar>::operator+= (CxxUtil::MTuple<Scalar> & v)
 {
-  addToMe (v);
+  this->addToMe (v);
   return *this;
 }
 
 template<class Scalar> INLINE CxxUtil::MTuple<Scalar> &
 CxxUtil::MTuple<Scalar>::operator-= (CxxUtil::MTuple<Scalar> & v)
 {
-  subFromMe (v);
+  this->subFromMe (v);
   return *this;
 }
 
 template<class Scalar> INLINE CxxUtil::MTuple<Scalar> &
 CxxUtil::MTuple<Scalar>::operator*= (const Scalar s)
 {
-  multMeBy (s);
+  this->multMeBy (s);
   return *this;
 }
 
 template<class Scalar> INLINE CxxUtil::MTuple<Scalar> &
 CxxUtil::MTuple<Scalar>::operator/= (const Scalar s)
 {
-  divMeBy (s);
+  this->divMeBy (s);
   return *this;
 }
 
